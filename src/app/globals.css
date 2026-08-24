@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+:root {
+  --rice-green: #285943;
+  --paddy-green: #6b8e23;
+  --rice-gold: #d4a72c;
+  --rice-cream: #f7f3e8;
+  --rice-dark: #18201b;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--rice-cream);
+  color: var(--rice-dark);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: var(--rice-gold);
+  color: var(--rice-dark);
+}
