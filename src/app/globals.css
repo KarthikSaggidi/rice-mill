@@ -27,3 +27,61 @@ body {
   background: var(--rice-gold);
   color: var(--rice-dark);
 }
+
+
+/* =========================================================
+   MAHADAL HERO ANIMATIONS
+   Lightweight CSS animations instead of Framer Motion
+========================================================= */
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-fade-in {
+  animation: heroFadeIn 0.7s ease-out both;
+}
+
+.hero-fade-up {
+  animation: heroFadeUp 0.7s ease-out both;
+}
+
+.hero-delay-1 {
+  animation-delay: 0.12s;
+}
+
+.hero-delay-2 {
+  animation-delay: 0.22s;
+}
+
+.hero-strip {
+  animation: heroFadeUp 0.7s ease-out 0.3s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade-in,
+  .hero-fade-up,
+  .hero-strip {
+    animation: none;
+  }
+}

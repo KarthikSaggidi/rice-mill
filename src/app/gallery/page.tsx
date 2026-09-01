@@ -1,218 +1,431 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
-  ArrowRight,
+  X,
+  ArrowUpRight,
+  Wheat,
   Factory,
-  Image as ImageIcon,
   Leaf,
   Package,
-  Wheat,
 } from "lucide-react";
-
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
 
 const galleryItems = [
   {
-    title: "Mahadal Rice Mill",
-    category: "Mill",
-    image: "/images/about/rice-mill.jpg",
+    id: 1,
+    title: "Quality Paddy Selection",
+    category: "Raw Paddy",
+    image: "/images/gallery/paddy-selection.jpg",
     description:
-      "A glimpse of our rice milling and processing facility.",
-    size: "large",
-  },
-  {
-    title: "Rice Processing",
-    category: "Processing",
-    image: "/images/hero/rice-hero.jpg",
-    description:
-      "Careful processing that helps maintain the quality of every grain.",
-    size: "normal",
-  },
-  {
-    title: "Quality Rice",
-    category: "Products",
-    image: "/images/hero/rice-hero.jpg",
-    description:
-      "Quality-focused rice products prepared for our customers.",
-    size: "normal",
-  },
-  {
-    title: "Our Operations",
-    category: "Mill",
-    image: "/images/about/rice-mill.jpg",
-    description:
-      "Our operations are focused on consistency and dependable output.",
-    size: "normal",
-  },
-  {
-    title: "From Paddy to Rice",
-    category: "Processing",
-    image: "/images/hero/rice-hero.jpg",
-    description:
-      "Every stage contributes to the quality of the final product.",
-    size: "normal",
-  },
-  {
-    title: "Mahadal Products",
-    category: "Products",
-    image: "/images/about/rice-mill.jpg",
-    description:
-      "Our packaged products represent our focus on quality and trust.",
-    size: "large",
-  },
-];
-
-const categories = [
-  {
-    title: "Our Mill",
-    icon: Factory,
-    description: "Our facility and milling operations.",
-  },
-  {
-    title: "Processing",
+      "Carefully selected paddy forms the foundation of our rice processing. We focus on good grain quality, maturity and consistency before the milling process begins.",
     icon: Wheat,
-    description: "The journey from paddy to rice.",
   },
   {
-    title: "Products",
-    icon: Package,
-    description: "Our rice products and packaging.",
-  },
-  {
-    title: "Quality",
+    id: 2,
+    title: "Paddy Fields",
+    category: "From the Fields",
+    image: "/images/gallery/paddy-fields.jpg",
+    description:
+      "Our journey begins with quality paddy sourced from agricultural regions. Proper sourcing helps us maintain consistency throughout the processing cycle.",
     icon: Leaf,
-    description: "Our focus on quality and consistency.",
+  },
+  {
+    id: 3,
+    title: "Modern Rice Mill",
+    category: "Our Facility",
+    image: "/images/gallery/rice-mill.jpg",
+    description:
+      "Our milling facility is designed to support efficient and controlled rice processing while maintaining cleanliness and product quality.",
+    icon: Factory,
+  },
+  {
+    id: 4,
+    title: "Rice Processing",
+    category: "Milling Process",
+    image: "/images/gallery/rice-processing.jpg",
+    description:
+      "Modern milling equipment helps process paddy with precision, separating impurities and unwanted materials while protecting the quality of the grain.",
+    icon: Factory,
+  },
+  {
+    id: 5,
+    title: "Clean & Processed Rice",
+    category: "Finished Grain",
+    image: "/images/gallery/processed-rice.jpg",
+    description:
+      "After processing and quality checks, the finished rice is prepared to meet the expected standards of cleanliness, appearance and consistency.",
+    icon: Wheat,
+  },
+  {
+    id: 6,
+    title: "Rice Packing",
+    category: "Packaging",
+    image: "/images/gallery/rice-packing.jpg",
+    description:
+      "Finished rice is carefully packed to maintain product quality and ensure that it reaches customers in clean and suitable condition.",
+    icon: Package,
+  },
+  {
+    id: 7,
+    title: "Bulk Rice Supply",
+    category: "Distribution",
+    image: "/images/gallery/bulk-rice.jpg",
+    description:
+      "We support bulk and commercial requirements with organized packing and dependable order handling for retailers, distributors and other buyers.",
+    icon: Package,
+  },
+  {
+    id: 8,
+    title: "Grain Quality",
+    category: "Quality Assurance",
+    image: "/images/gallery/rice-grains.jpg",
+    description:
+      "Quality remains an important part of our process. Rice is checked for appearance, cleanliness, consistency and overall grain quality.",
+    icon: Wheat,
+  },
+  {
+    id: 9,
+    title: "Our Rice Mill",
+    category: "Our Journey",
+    image: "/images/gallery/factory.jpg",
+    description:
+      "Our rice mill brings together agricultural sourcing, modern processing and careful quality practices to deliver dependable rice products.",
+    icon: Factory,
   },
 ];
 
 export default function GalleryPage() {
+  const [selectedItem, setSelectedItem] = useState<
+    (typeof galleryItems)[number] | null
+  >(null);
+
+  /* =========================================================
+     ESCAPE KEY
+  ========================================================= */
+
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setSelectedItem(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, []);
+
+  /* =========================================================
+     PREVENT BODY SCROLL WHEN POPUP IS OPEN
+  ========================================================= */
+
+  useEffect(() => {
+    if (selectedItem) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedItem]);
+
   return (
-    <div className="min-h-screen bg-[#f8f6ed] text-[#173b1b]">
-      <Navbar />
+    <>
+      <main className="min-h-screen bg-[#faf9f4] pt-[105px]">
 
-      <main>
         {/* =====================================================
-            HERO
+            HEADER
         ===================================================== */}
-        <section className="relative overflow-hidden bg-[#173f1b] pt-32">
-          {/* Decorative elements */}
-          <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full border border-[#d3b34d]/20" />
 
-          <div className="pointer-events-none absolute right-20 top-20 h-52 w-52 rounded-full border border-[#d3b34d]/10" />
+        <section className="relative overflow-hidden border-b border-[#e5dfd0] bg-[#f4f1e5]">
+          {/* Decorative wheat */}
+          <div className="pointer-events-none absolute -left-24 -top-20 opacity-[0.035]">
+            <Wheat
+              size={300}
+              strokeWidth={0.7}
+              className="rotate-[-18deg] text-[#285c24]"
+            />
+          </div>
 
-          <div className="pointer-events-none absolute -bottom-32 -left-20 h-72 w-72 rounded-full bg-[#d3b34d]/5 blur-3xl" />
+          <div className="pointer-events-none absolute -right-24 -bottom-20 opacity-[0.035]">
+            <Wheat
+              size={300}
+              strokeWidth={0.7}
+              className="rotate-[18deg] text-[#285c24]"
+            />
+          </div>
 
-          <Wheat
-            size={170}
-            strokeWidth={0.6}
-            className="pointer-events-none absolute right-[10%] top-[35%] hidden text-[#d3b34d]/10 lg:block"
-          />
-
-          <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-28">
+          <div className="relative z-10 mx-auto max-w-[1400px] px-5 py-14 text-center sm:px-8 sm:py-16 lg:px-12 lg:py-20">
+            
+            {/* Small heading */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65 }}
-              className="max-w-3xl"
+              transition={{ duration: 0.5 }}
+              className="mb-4 flex items-center justify-center gap-3"
             >
-              <div className="mb-6 flex items-center gap-3">
-                <span className="h-px w-10 bg-[#d3b34d]" />
+              <span className="h-px w-10 bg-[#b59438]" />
 
-                <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#d3b34d]">
-                  Mahadal Gallery
+              <div className="flex items-center gap-2">
+                <Wheat
+                  size={14}
+                  strokeWidth={1.4}
+                  className="text-[#b59438]"
+                />
+
+                <span className="text-[10px] font-bold uppercase tracking-[0.27em] text-[#285c24]">
+                  Our Gallery
                 </span>
               </div>
 
-              <h1 className="font-serif text-5xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-7xl">
-                See Our
-                <span className="block text-[#d3b34d]">
-                  Journey.
-                </span>
-              </h1>
-
-              <p className="mt-7 max-w-2xl text-base leading-8 text-white/70 sm:text-lg">
-                Explore Mahadal through our mill, processing operations,
-                products and the work that goes into bringing quality rice
-                to our customers.
-              </p>
+              <span className="h-px w-10 bg-[#b59438]" />
             </motion.div>
-          </div>
 
-          <div className="h-10 bg-[#f8f6ed] [clip-path:ellipse(65%_100%_at_50%_100%)]" />
+            {/* Heading */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, delay: 0.05 }}
+              className="
+                font-serif
+                text-[38px]
+                font-bold
+                leading-tight
+                tracking-[-0.035em]
+                text-[#172c18]
+                sm:text-[47px]
+                lg:text-[54px]
+              "
+            >
+              A Glimpse Into
+              <span className="text-[#285c24]"> Our Journey</span>
+            </motion.h1>
+
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="
+                mx-auto
+                mt-4
+                max-w-[680px]
+                text-[13px]
+                leading-6
+                text-[#62685f]
+                sm:text-[14px]
+              "
+            >
+              Explore our fields, milling facility, processing practices,
+              finished grains and the people and processes behind our rice.
+            </motion.p>
+          </div>
         </section>
 
         {/* =====================================================
-            INTRO
+            GALLERY
         ===================================================== */}
-        <section className="py-16 sm:py-20">
-          <div className="mx-auto max-w-7xl px-6 lg:px-10">
-            <div className="grid items-end gap-8 md:grid-cols-2">
+
+        <section className="relative overflow-hidden bg-[#faf9f4]">
+          <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 sm:py-16 lg:px-12 lg:py-20">
+
+            {/* Gallery intro */}
+            <div className="mb-9 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
               <div>
-                <div className="mb-5 flex items-center gap-3">
-                  <span className="h-px w-10 bg-[#c5a43b]" />
+                <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-[#b08b30]">
+                  Inside Our Work
+                </p>
 
-                  <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#63702c]">
-                    A Look Inside
-                  </span>
-                </div>
-
-                <h2 className="font-serif text-4xl font-bold leading-tight text-[#173b1b] sm:text-5xl">
-                  Where Quality
-                  <span className="block text-[#63702c]">
-                    Takes Shape.
-                  </span>
+                <h2 className="mt-1 font-serif text-[27px] font-bold text-[#1c341d] sm:text-[31px]">
+                  From Paddy to Finished Grain
                 </h2>
               </div>
 
-              <p className="max-w-xl text-sm leading-7 text-[#697068] md:justify-self-end">
-                From the rice mill to the final product, every stage plays an
-                important role. Browse through our gallery to get a closer
-                look at Mahadal and our work.
+              <p className="max-w-[430px] text-[10px] leading-5 text-[#777b72] sm:text-right">
+                Click any image to learn more about the work, process and
+                quality practices represented in each photograph.
               </p>
             </div>
-          </div>
-        </section>
 
-        {/* =====================================================
-            CATEGORY CARDS
-        ===================================================== */}
-        <section className="pb-20">
-          <div className="mx-auto max-w-7xl px-6 lg:px-10">
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {categories.map((item, index) => {
+            {/* =================================================
+                GALLERY GRID
+            ================================================= */}
+
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+
+              {galleryItems.map((item, index) => {
                 const Icon = item.icon;
 
                 return (
-                  <motion.div
-                    key={item.title}
+                  <motion.button
+                    key={item.id}
+                    type="button"
+                    onClick={() => setSelectedItem(item)}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{
-                      duration: 0.45,
-                      delay: index * 0.06,
+                    viewport={{
+                      once: true,
+                      amount: 0.15,
                     }}
-                    className="group rounded-3xl border border-[#ddd8c8] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#c9af4e] hover:shadow-[0_18px_40px_rgba(25,55,25,0.07)]"
+                    transition={{
+                      duration: 0.5,
+                      delay: Math.min(index * 0.05, 0.25),
+                    }}
+                    className="
+                      group
+                      relative
+                      overflow-hidden
+                      rounded-[16px]
+                      border
+                      border-[#e4dfd2]
+                      bg-white
+                      text-left
+                      shadow-[0_5px_22px_rgba(40,60,30,0.045)]
+                      transition-all
+                      duration-300
+                      hover:-translate-y-1
+                      hover:border-[#d3c18a]
+                      hover:shadow-[0_15px_35px_rgba(40,60,30,0.10)]
+                      focus:outline-none
+                      focus:ring-2
+                      focus:ring-[#285c24]/30
+                    "
                   >
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#edf3e8] transition-colors group-hover:bg-[#173f1b]">
-                      <Icon
-                        size={22}
-                        className="text-[#28622d] group-hover:text-[#d3b34d]"
+                    {/* Image */}
+                    <div className="relative aspect-[4/3] overflow-hidden bg-[#e6e0cc]">
+
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        loading={index < 3 ? "eager" : "lazy"}
+                        className="
+                          h-full
+                          w-full
+                          object-cover
+                          transition-transform
+                          duration-700
+                          ease-out
+                          group-hover:scale-[1.045]
+                        "
                       />
+
+                      {/* Dark overlay */}
+                      <div className="
+                        absolute
+                        inset-0
+                        bg-gradient-to-t
+                        from-[#102f12]/75
+                        via-[#102f12]/10
+                        to-transparent
+                        opacity-80
+                        transition-opacity
+                        duration-300
+                        group-hover:opacity-95
+                      " />
+
+                      {/* Number */}
+                      <div className="
+                        absolute
+                        left-4
+                        top-4
+                        flex
+                        h-9
+                        w-9
+                        items-center
+                        justify-center
+                        rounded-full
+                        border
+                        border-white/25
+                        bg-black/15
+                        backdrop-blur-md
+                      ">
+                        <span className="font-serif text-[12px] font-bold text-white">
+                          {String(item.id).padStart(2, "0")}
+                        </span>
+                      </div>
+
+                      {/* Open indicator */}
+                      <div className="
+                        absolute
+                        right-4
+                        top-4
+                        flex
+                        h-9
+                        w-9
+                        items-center
+                        justify-center
+                        rounded-full
+                        border
+                        border-white/25
+                        bg-black/15
+                        text-white
+                        opacity-0
+                        backdrop-blur-md
+                        transition-all
+                        duration-300
+                        group-hover:opacity-100
+                      ">
+                        <ArrowUpRight size={16} />
+                      </div>
+
+                      {/* Bottom information */}
+                      <div className="absolute inset-x-0 bottom-0 p-5">
+
+                        <div className="flex items-center gap-2">
+                          <Icon
+                            size={13}
+                            strokeWidth={1.5}
+                            className="text-[#d9bf61]"
+                          />
+
+                          <span className="
+                            text-[8px]
+                            font-bold
+                            uppercase
+                            tracking-[0.18em]
+                            text-[#e0c76e]
+                          ">
+                            {item.category}
+                          </span>
+                        </div>
+
+                        <h3 className="
+                          mt-1
+                          font-serif
+                          text-[21px]
+                          font-bold
+                          leading-tight
+                          text-white
+                        ">
+                          {item.title}
+                        </h3>
+                      </div>
                     </div>
 
-                    <h3 className="mt-5 font-serif text-xl font-bold text-[#173b1b]">
-                      {item.title}
-                    </h3>
+                    {/* Small card footer */}
+                    <div className="flex items-center justify-between px-5 py-3.5">
 
-                    <p className="mt-2 text-sm leading-6 text-[#70766e]">
-                      {item.description}
-                    </p>
-                  </motion.div>
+                      <span className="text-[9px] font-semibold text-[#747970]">
+                        View details
+                      </span>
+
+                      <ArrowUpRight
+                        size={14}
+                        className="
+                          text-[#285c24]
+                          transition-transform
+                          duration-300
+                          group-hover:translate-x-0.5
+                          group-hover:-translate-y-0.5
+                        "
+                      />
+                    </div>
+                  </motion.button>
                 );
               })}
             </div>
@@ -220,236 +433,302 @@ export default function GalleryPage() {
         </section>
 
         {/* =====================================================
-            GALLERY
+            BOTTOM INFORMATION
         ===================================================== */}
-        <section className="bg-white py-20 sm:py-24">
-          <div className="mx-auto max-w-7xl px-6 lg:px-10">
-            {/* Section heading */}
-            <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-              <div>
-                <div className="mb-4 flex items-center gap-3">
-                  <ImageIcon
-                    size={18}
-                    className="text-[#b0922f]"
-                  />
 
-                  <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#63702c]">
-                    Explore Mahadal
-                  </span>
-                </div>
+        <section className="border-t border-[#e4dfd1] bg-[#f4f1e5]">
+          <div className="mx-auto max-w-[1000px] px-5 py-12 text-center sm:px-8 sm:py-14">
 
-                <h2 className="font-serif text-4xl font-bold text-[#173b1b] sm:text-5xl">
-                  Our Gallery
-                </h2>
-              </div>
-
-              <p className="max-w-md text-sm leading-7 text-[#697068]">
-                A visual look at our facility, processing journey and
-                products.
-              </p>
+            <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-[#e8efe4]">
+              <Wheat
+                size={20}
+                strokeWidth={1.4}
+                className="text-[#285c24]"
+              />
             </div>
 
-            {/* Gallery grid */}
-            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {galleryItems.map((item, index) => (
-                <motion.div
-                  key={`${item.title}-${index}`}
-                  initial={{
-                    opacity: 0,
-                    y: 25,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  viewport={{
-                    once: true,
-                    amount: 0.1,
-                  }}
-                  transition={{
-                    duration: 0.5,
-                    delay: index * 0.06,
-                  }}
-                  className={`group relative overflow-hidden rounded-[1.75rem] ${
-                    item.size === "large"
-                      ? "md:row-span-2 lg:row-span-2"
-                      : ""
-                  }`}
-                >
-                  <div
-                    className={`relative w-full ${
-                      item.size === "large"
-                        ? "h-[500px]"
-                        : "h-[310px]"
-                    }`}
-                  >
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
+            <h2 className="mt-4 font-serif text-[25px] font-bold text-[#1c341d]">
+              Quality Begins at the Source
+            </h2>
 
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#102e15]/90 via-[#173f1b]/10 to-transparent opacity-90" />
-
-                    {/* Category */}
-                    <div className="absolute left-5 top-5">
-                      <span className="rounded-full border border-white/20 bg-[#173f1b]/70 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[#e4cb72] backdrop-blur-md">
-                        {item.category}
-                      </span>
-                    </div>
-
-                    {/* Content */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6">
-                      <h3 className="font-serif text-2xl font-bold text-white">
-                        {item.title}
-                      </h3>
-
-                      <p className="mt-2 max-w-md text-xs leading-6 text-white/65">
-                        {item.description}
-                      </p>
-                    </div>
-
-                    {/* Hover icon */}
-                    <div className="absolute right-5 top-5 flex h-10 w-10 translate-y-2 items-center justify-center rounded-full bg-white/10 opacity-0 backdrop-blur-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                      <ArrowRight
-                        size={17}
-                        className="-rotate-45 text-white"
-                      />
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* =====================================================
-            PROCESS STRIP
-        ===================================================== */}
-        <section className="bg-[#f0ede2] py-20">
-          <div className="mx-auto max-w-7xl px-6 lg:px-10">
-            <div className="grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-              <div>
-                <div className="mb-5 flex items-center gap-3">
-                  <span className="h-px w-10 bg-[#c5a43b]" />
-
-                  <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#63702c]">
-                    Our Journey
-                  </span>
-                </div>
-
-                <h2 className="font-serif text-4xl font-bold leading-tight text-[#173b1b] sm:text-5xl">
-                  From Field
-                  <span className="block text-[#63702c]">
-                    to Family.
-                  </span>
-                </h2>
-
-                <p className="mt-5 text-sm leading-7 text-[#697068]">
-                  The journey of rice involves many careful stages. Our
-                  approach is focused on maintaining quality and consistency
-                  throughout that journey.
-                </p>
-              </div>
-
-              <div className="grid gap-3 sm:grid-cols-3">
-                {[
-                  {
-                    number: "01",
-                    title: "Paddy",
-                    icon: Wheat,
-                  },
-                  {
-                    number: "02",
-                    title: "Milling",
-                    icon: Factory,
-                  },
-                  {
-                    number: "03",
-                    title: "Rice",
-                    icon: Package,
-                  },
-                ].map((step) => {
-                  const Icon = step.icon;
-
-                  return (
-                    <div
-                      key={step.number}
-                      className="rounded-3xl border border-[#dcd7c8] bg-white p-6"
-                    >
-                      <span className="text-xs font-bold text-[#b0922f]">
-                        {step.number}
-                      </span>
-
-                      <div className="mt-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#173f1b]">
-                        <Icon
-                          size={22}
-                          className="text-[#d3b34d]"
-                        />
-                      </div>
-
-                      <h3 className="mt-5 font-serif text-xl font-bold text-[#173b1b]">
-                        {step.title}
-                      </h3>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* =====================================================
-            CTA
-        ===================================================== */}
-        <section className="bg-[#173f1b] py-20 sm:py-24">
-          <div className="mx-auto max-w-5xl px-6 text-center lg:px-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-[#d3b34d]/30">
-                <Leaf
-                  size={24}
-                  className="text-[#d3b34d]"
-                />
-              </div>
-
-              <p className="mt-6 text-xs font-bold uppercase tracking-[0.25em] text-[#d3b34d]">
-                Mahadal
-              </p>
-
-              <h2 className="mt-4 font-serif text-4xl font-bold text-white sm:text-5xl">
-                Quality you can
-                <span className="text-[#d3b34d]">
-                  {" "}
-                  trust.
-                </span>
-              </h2>
-
-              <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/60">
-                Want to know more about Mahadal and our products? Get in
-                touch with our team.
-              </p>
-
-              <Link
-                href="/contact"
-                className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#d3b34d] px-7 py-3.5 text-sm font-bold text-[#173b1b] transition-all duration-300 hover:-translate-y-1 hover:bg-[#e0c45e]"
-              >
-                Contact Us
-                <ArrowRight size={17} />
-              </Link>
-            </motion.div>
+            <p className="mx-auto mt-3 max-w-[650px] text-[11px] leading-5 text-[#6d726a]">
+              Every image reflects a part of our journey — from carefully
+              selected paddy and modern milling to quality inspection,
+              packaging and dependable supply.
+            </p>
           </div>
         </section>
       </main>
 
-      <Footer />
-    </div>
+      {/* =======================================================
+          IMAGE POPUP / MODAL
+      ======================================================= */}
+
+      <AnimatePresence>
+        {selectedItem && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="
+              fixed
+              inset-0
+              z-[200]
+              flex
+              items-center
+              justify-center
+              bg-[#071107]/80
+              p-4
+              backdrop-blur-md
+              sm:p-6
+            "
+            onMouseDown={(event) => {
+              if (event.target === event.currentTarget) {
+                setSelectedItem(null);
+              }
+            }}
+          >
+            <motion.div
+              initial={{
+                opacity: 0,
+                scale: 0.96,
+                y: 15,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                y: 0,
+              }}
+              exit={{
+                opacity: 0,
+                scale: 0.96,
+                y: 15,
+              }}
+              transition={{
+                duration: 0.3,
+                ease: "easeOut",
+              }}
+              className="
+                relative
+                max-h-[92vh]
+                w-full
+                max-w-[1050px]
+                overflow-hidden
+                rounded-[20px]
+                border
+                border-white/15
+                bg-[#faf9f4]
+                shadow-[0_25px_80px_rgba(0,0,0,0.35)]
+              "
+            >
+
+              {/* =================================================
+                  CLOSE BUTTON
+              ================================================= */}
+
+              <button
+                type="button"
+                onClick={() => setSelectedItem(null)}
+                aria-label="Close image details"
+                className="
+                  absolute
+                  right-4
+                  top-4
+                  z-30
+                  flex
+                  h-10
+                  w-10
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-white/25
+                  bg-black/30
+                  text-white
+                  backdrop-blur-md
+                  transition-all
+                  duration-200
+                  hover:bg-black/50
+                "
+              >
+                <X size={19} />
+              </button>
+
+              {/* =================================================
+                  POPUP CONTENT
+              ================================================= */}
+
+              <div className="grid max-h-[92vh] overflow-y-auto lg:grid-cols-[1.15fr_0.85fr]">
+
+                {/* Image */}
+                <div className="
+                  relative
+                  min-h-[280px]
+                  bg-[#ded7c1]
+                  sm:min-h-[380px]
+                  lg:min-h-[600px]
+                ">
+                  <img
+                    src={selectedItem.image}
+                    alt={selectedItem.title}
+                    className="h-full w-full object-cover"
+                  />
+
+                  {/* Image overlay */}
+                  <div className="
+                    pointer-events-none
+                    absolute
+                    inset-0
+                    bg-gradient-to-t
+                    from-[#102f12]/45
+                    via-transparent
+                    to-transparent
+                  " />
+
+                  {/* Category */}
+                  <div className="
+                    absolute
+                    bottom-5
+                    left-5
+                    flex
+                    items-center
+                    gap-2
+                    rounded-full
+                    border
+                    border-white/20
+                    bg-black/20
+                    px-3
+                    py-2
+                    backdrop-blur-md
+                  ">
+                    <selectedItem.icon
+                      size={13}
+                      strokeWidth={1.5}
+                      className="text-[#e0c76e]"
+                    />
+
+                    <span className="
+                      text-[8px]
+                      font-bold
+                      uppercase
+                      tracking-[0.18em]
+                      text-white
+                    ">
+                      {selectedItem.category}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Details */}
+                <div className="
+                  flex
+                  flex-col
+                  justify-center
+                  bg-[#faf9f4]
+                  p-7
+                  sm:p-9
+                  lg:p-10
+                ">
+
+                  <div className="flex items-center gap-2">
+                    <span className="h-px w-8 bg-[#b59438]" />
+
+                    <span className="
+                      text-[9px]
+                      font-bold
+                      uppercase
+                      tracking-[0.2em]
+                      text-[#b08b30]
+                    ">
+                      Gallery Detail
+                    </span>
+                  </div>
+
+                  <h2 className="
+                    mt-4
+                    font-serif
+                    text-[30px]
+                    font-bold
+                    leading-tight
+                    tracking-[-0.025em]
+                    text-[#19331b]
+                    sm:text-[35px]
+                  ">
+                    {selectedItem.title}
+                  </h2>
+
+                  <p className="
+                    mt-5
+                    text-[12px]
+                    leading-6
+                    text-[#62685f]
+                    sm:text-[13px]
+                  ">
+                    {selectedItem.description}
+                  </p>
+
+                  {/* Information box */}
+                  <div className="
+                    mt-7
+                    rounded-[14px]
+                    border
+                    border-[#e2ddcf]
+                    bg-white
+                    p-5
+                  ">
+                    <div className="flex items-start gap-3">
+
+                      <div className="
+                        flex
+                        h-9
+                        w-9
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-full
+                        bg-[#edf3e9]
+                      ">
+                        <Wheat
+                          size={17}
+                          strokeWidth={1.4}
+                          className="text-[#285c24]"
+                        />
+                      </div>
+
+                      <div>
+                        <p className="
+                          text-[9px]
+                          font-bold
+                          uppercase
+                          tracking-[0.15em]
+                          text-[#285c24]
+                        ">
+                          Our Approach
+                        </p>
+
+                        <p className="
+                          mt-1.5
+                          text-[10px]
+                          leading-5
+                          text-[#73776f]
+                        ">
+                          We combine careful sourcing, controlled processing
+                          and quality-focused practices to maintain reliable
+                          rice quality from beginning to end.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Close */}
+                  
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

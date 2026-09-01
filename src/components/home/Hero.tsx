@@ -1,12 +1,10 @@
-"use client";
-
-import { motion } from "framer-motion";
+import Link from "next/link";
 import {
   ArrowRight,
-  Leaf,
   Award,
-  Truck,
   ChevronDown,
+  Leaf,
+  Truck,
 } from "lucide-react";
 
 export default function Hero() {
@@ -14,58 +12,50 @@ export default function Hero() {
     <section className="relative min-h-[760px] overflow-hidden bg-[#e9dfc2] pt-[105px] sm:min-h-[780px] lg:min-h-[820px]">
 
       {/* =========================================================
-          HERO IMAGE
-          
-          IMPORTANT:
-          Keep the same image path you are currently using if
-          your existing hero image is stored somewhere else.
+          BACKGROUND IMAGE
       ========================================================= */}
 
       <div className="absolute inset-0">
         <img
           src="/images/hero/rice-hero.jpg"
-          alt="Rice mill and paddy fields"
+          alt="Mahadal rice mill and paddy fields"
           className="h-full w-full object-cover"
+          fetchPriority="high"
         />
 
-        {/* Main overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#fff8e9]/95 via-[#fff8e9]/72 to-transparent" />
+        {/* Main warm overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#fff8e9]/95 via-[#fff8e9]/75 to-transparent" />
 
         {/* Bottom fade */}
-        <div className="absolute inset-x-0 bottom-0 h-[38%] bg-gradient-to-t from-[#f5ecd5]/95 via-[#f5ecd5]/30 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-[#f5ecd5] via-[#f5ecd5]/50 to-transparent" />
 
-        {/* Subtle green tint on right */}
+        {/* Right side subtle green tint */}
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#194d17]/10" />
       </div>
 
       {/* =========================================================
-          CONTENT
+          HERO CONTENT
       ========================================================= */}
 
       <div className="relative z-10 mx-auto flex min-h-[655px] max-w-[1536px] items-center px-6 pb-[135px] sm:px-10 lg:px-[72px]">
 
         <div className="max-w-[700px]">
 
-          {/* Small heading */}
-          <motion.div
-            initial={{ opacity: 0, x: -25 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            className="mb-4 flex items-center gap-3"
-          >
+          {/* Eyebrow */}
+
+          <div className="hero-fade-in mb-4 flex items-center gap-3">
             <span className="h-px w-12 bg-[#b48b2b]" />
 
             <span className="font-serif text-[22px] italic text-[#285c24] sm:text-[27px]">
               From Our Fields
             </span>
-          </motion.div>
+          </div>
 
           {/* Main heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
+
+          <h1
             className="
+              hero-fade-up
               max-w-[720px]
               font-serif
               text-[55px]
@@ -79,35 +69,31 @@ export default function Hero() {
             "
           >
             To Your Table
-          </motion.h1>
+          </h1>
 
           {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.25 }}
+
+          <p
             className="
+              hero-fade-up
+              hero-delay-1
               mt-6
               max-w-[560px]
               text-[15px]
               leading-7
               text-[#303730]
               sm:text-[16px]
-              sm:leading-7
             "
           >
-            Premium quality rice, processed with advanced technology
-            and delivered with purity, consistency and trust.
-          </motion.p>
+            Premium quality rice, carefully processed with modern
+            technology and delivered with purity, consistency and trust.
+          </p>
 
           {/* Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.35 }}
-            className="mt-8 flex flex-wrap gap-3"
-          >
-            <a
+
+          <div className="hero-fade-up hero-delay-2 mt-8 flex flex-wrap gap-3">
+
+            <Link
               href="/products"
               className="
                 group
@@ -132,11 +118,12 @@ export default function Hero() {
 
               <ArrowRight
                 size={16}
+                strokeWidth={2}
                 className="transition-transform duration-300 group-hover:translate-x-1"
               />
-            </a>
+            </Link>
 
-            <a
+            <Link
               href="/about"
               className="
                 group
@@ -146,7 +133,7 @@ export default function Hero() {
                 rounded-xl
                 border
                 border-[#285c24]
-                bg-white/20
+                bg-white/25
                 px-7
                 py-3.5
                 text-[13px]
@@ -155,29 +142,29 @@ export default function Hero() {
                 backdrop-blur-sm
                 transition-all
                 duration-300
-                hover:bg-white/70
+                hover:bg-white/75
               "
             >
               Explore More
 
               <ArrowRight
                 size={16}
+                strokeWidth={2}
                 className="transition-transform duration-300 group-hover:translate-x-1"
               />
-            </a>
-          </motion.div>
+            </Link>
+
+          </div>
         </div>
       </div>
 
       {/* =========================================================
-          HERO QUALITY STRIP
+          QUALITY STRIP
       ========================================================= */}
 
-      <motion.div
-        initial={{ opacity: 0, y: 35 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
+      <div
         className="
+          hero-strip
           absolute
           bottom-0
           left-1/2
@@ -196,7 +183,9 @@ export default function Hero() {
         <div className="grid grid-cols-1 divide-y divide-[#d8ccb0] sm:grid-cols-3 sm:divide-x sm:divide-y-0">
 
           {/* Natural */}
+
           <div className="flex items-center gap-4 px-6 py-5 sm:px-7">
+
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#285c24]/40">
               <Leaf
                 size={20}
@@ -214,10 +203,13 @@ export default function Hero() {
                 Pure & Chemical Free
               </p>
             </div>
+
           </div>
 
           {/* Quality */}
+
           <div className="flex items-center gap-4 px-6 py-5 sm:px-7">
+
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#285c24]/40">
               <Award
                 size={20}
@@ -235,10 +227,13 @@ export default function Hero() {
                 Carefully Processed
               </p>
             </div>
+
           </div>
 
           {/* Delivery */}
+
           <div className="flex items-center gap-4 px-6 py-5 sm:px-7">
+
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#285c24]/40">
               <Truck
                 size={20}
@@ -256,21 +251,22 @@ export default function Hero() {
                 Fast & Reliable
               </p>
             </div>
+
           </div>
 
         </div>
-      </motion.div>
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-3 left-1/2 z-30 hidden -translate-x-1/2 flex-col items-center text-[#285c24]/60 lg:flex">
-        <span className="mb-1 text-[8px] font-semibold uppercase tracking-[0.25em]">
-          Scroll
-        </span>
-
-        <ChevronDown size={14} className="animate-bounce" />
       </div>
 
-      {/* Bottom green line */}
+      {/* =========================================================
+          SCROLL INDICATOR
+      ========================================================= */}
+
+      
+
+      {/* =========================================================
+          BOTTOM LINE
+      ========================================================= */}
+
       <div className="absolute bottom-0 left-0 right-0 z-30 h-[3px] bg-[#285c24]" />
     </section>
   );

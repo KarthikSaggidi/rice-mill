@@ -1,9 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-  ArrowRight,
   Award,
   CheckCircle2,
   Factory,
@@ -15,557 +13,385 @@ import {
   Wheat,
 } from "lucide-react";
 
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
-
-const reasons = [
+const strengths = [
   {
-    icon: Wheat,
-    title: "Quality Rice",
-    text: "We focus on carefully selected rice and paddy to deliver products with dependable quality and consistency.",
+    icon: Leaf,
+    title: "Quality Raw Materials",
+    description:
+      "We carefully select quality paddy to maintain the natural taste, texture and appearance of every grain.",
   },
   {
     icon: Factory,
-    title: "Efficient Processing",
-    text: "Our processing approach focuses on careful handling, cleaning, sorting and milling to maintain product quality.",
+    title: "Modern Processing",
+    description:
+      "Our milling process combines modern equipment with careful handling to achieve consistent results.",
   },
   {
     icon: ShieldCheck,
-    title: "Quality Focus",
-    text: "Quality is considered throughout the journey, from raw material selection to the final packaged product.",
+    title: "Strict Quality Checks",
+    description:
+      "Rice is checked at different stages to maintain cleanliness, consistency and overall product quality.",
   },
   {
     icon: PackageCheck,
-    title: "Secure Packaging",
-    text: "Our products are packed carefully to support cleanliness, protection and convenient handling.",
+    title: "Careful Packing",
+    description:
+      "Finished products are packed carefully to protect the rice and maintain its quality until delivery.",
   },
   {
-    icon: Leaf,
-    title: "Careful Handling",
-    text: "We give attention to the product at every stage to help preserve its natural characteristics.",
+    icon: Truck,
+    title: "Reliable Supply",
+    description:
+      "We focus on dependable order processing and timely supply for customers and business requirements.",
   },
   {
     icon: Handshake,
-    title: "Customer Trust",
-    text: "We believe strong business relationships are built through reliable products, communication and service.",
+    title: "Customer Focus",
+    description:
+      "We value long-term relationships and work to understand and meet the requirements of every customer.",
   },
 ];
 
-const process = [
+const qualitySteps = [
   {
     number: "01",
-    title: "Selection",
-    text: "Suitable rice and paddy are selected with attention to quality.",
+    title: "Select",
+    description: "Quality paddy is carefully sourced and selected.",
   },
   {
     number: "02",
-    title: "Processing",
-    text: "The selected material goes through systematic processing and milling.",
+    title: "Process",
+    description: "Modern milling methods are used with controlled processing.",
   },
   {
     number: "03",
-    title: "Sorting",
-    text: "Cleaning and sorting help maintain consistency in the finished product.",
+    title: "Inspect",
+    description: "Rice is checked for cleanliness, appearance and consistency.",
   },
   {
     number: "04",
-    title: "Packaging",
-    text: "Finished rice is carefully packed and prepared for customers.",
+    title: "Deliver",
+    description: "Carefully packed products are prepared for reliable supply.",
   },
-];
-
-const commitments = [
-  "Quality-focused processing",
-  "Careful product handling",
-  "Consistent packaging",
-  "Customer-focused service",
 ];
 
 export default function WhyChooseUsPage() {
   return (
-    <div className="min-h-screen bg-[#f8f6ed] text-[#173b1b]">
-      {/* Navbar */}
-      <Navbar />
+    <main className="bg-[#faf9f3] text-[#1b301c]">
 
-      <main>
-        {/* =====================================================
-            HERO
-        ===================================================== */}
-        <section className="relative overflow-hidden bg-[#173f1b] pt-32">
-          {/* Decorative circles */}
-          <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full border border-[#d3b34d]/20" />
+      {/* =========================================================
+          COMPACT PAGE INTRO
+      ========================================================= */}
 
-          <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full border border-[#d3b34d]/10" />
-
-          <div className="pointer-events-none absolute bottom-0 left-0 h-72 w-72 rounded-full bg-[#d3b34d]/5 blur-3xl" />
-
+      <section className="relative overflow-hidden border-b border-[#e4dfd0] bg-[#f1ead7] pt-[105px]">
+        {/* Decorative wheat */}
+        <div className="pointer-events-none absolute -left-16 bottom-[-70px] opacity-[0.045]">
           <Wheat
-            className="pointer-events-none absolute right-[8%] top-[35%] hidden text-[#d3b34d]/10 lg:block"
-            size={190}
+            size={280}
             strokeWidth={0.7}
+            className="rotate-[-18deg] text-[#285c24]"
           />
+        </div>
 
-          <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-28">
-            <div className="max-w-3xl">
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="mb-6 flex items-center gap-3"
-              >
-                <span className="h-px w-10 bg-[#d3b34d]" />
-
-                <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#d3b34d]">
-                  Why Choose Mahadal
-                </span>
-              </motion.div>
-
-              <motion.h1
-                initial={{ opacity: 0, y: 25 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.65, delay: 0.08 }}
-                className="font-serif text-5xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-7xl"
-              >
-                Quality You
-                <span className="block text-[#d3b34d]">
-                  Can Trust.
-                </span>
-              </motion.h1>
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.65, delay: 0.16 }}
-                className="mt-7 max-w-2xl text-base leading-8 text-white/70 sm:text-lg"
-              >
-                At Mahadal, we believe good rice begins with careful
-                selection, responsible processing and a commitment to
-                consistent quality.
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.24 }}
-                className="mt-9"
-              >
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-3 rounded-full bg-[#d3b34d] px-7 py-3.5 text-sm font-bold text-[#173b1b] transition-all duration-300 hover:-translate-y-1 hover:bg-[#e0c45e]"
-                >
-                  Talk to Us
-                  <ArrowRight size={17} />
-                </Link>
-              </motion.div>
-            </div>
-          </div>
-
-          {/* Bottom wave */}
-          <div className="h-10 bg-[#f8f6ed] [clip-path:ellipse(65%_100%_at_50%_100%)]" />
-        </section>
-
-        {/* =====================================================
-            INTRODUCTION
-        ===================================================== */}
-        <section className="py-20 sm:py-24">
-          <div className="mx-auto max-w-7xl px-6 lg:px-10">
-            <div className="grid items-center gap-12 lg:grid-cols-2">
-              {/* Text */}
-              <motion.div
-                initial={{ opacity: 0, x: -25 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.65 }}
-              >
-                <div className="mb-5 flex items-center gap-3">
-                  <span className="h-px w-10 bg-[#c5a43b]" />
-
-                  <span className="text-xs font-bold uppercase tracking-[0.23em] text-[#63702c]">
-                    The Mahadal Difference
-                  </span>
-                </div>
-
-                <h2 className="font-serif text-4xl font-bold leading-tight text-[#173b1b] sm:text-5xl">
-                  More Than Rice.
-                  <span className="block text-[#63702c]">
-                    A Commitment to Quality.
-                  </span>
-                </h2>
-
-                <p className="mt-6 text-[15px] leading-8 text-[#62685f]">
-                  Mahadal is focused on delivering dependable rice products
-                  through careful selection, processing, sorting and packaging.
-                </p>
-
-                <p className="mt-4 text-[15px] leading-8 text-[#62685f]">
-                  We believe that quality is not just about the finished
-                  product. It is about maintaining care and consistency at
-                  every stage of the process.
-                </p>
-
-                <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                  {commitments.map((item) => (
-                    <div
-                      key={item}
-                      className="flex items-center gap-3"
-                    >
-                      <CheckCircle2
-                        size={18}
-                        className="shrink-0 text-[#2e6a31]"
-                      />
-
-                      <span className="text-sm font-semibold text-[#394239]">
-                        {item}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Quality card */}
-              <motion.div
-                initial={{ opacity: 0, x: 25 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.65 }}
-                className="relative"
-              >
-                <div className="relative overflow-hidden rounded-[2rem] bg-[#173f1b] p-8 shadow-[0_25px_60px_rgba(23,63,27,0.14)] sm:p-10">
-                  <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full border border-[#d3b34d]/20" />
-
-                  <div className="relative">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#d3b34d]">
-                      <Award
-                        size={30}
-                        className="text-[#173b1b]"
-                      />
-                    </div>
-
-                    <p className="mt-8 text-xs font-bold uppercase tracking-[0.25em] text-[#d3b34d]">
-                      Our Promise
-                    </p>
-
-                    <h3 className="mt-3 font-serif text-3xl font-bold leading-tight text-white sm:text-4xl">
-                      Quality at
-                      <span className="block text-[#d3b34d]">
-                        every stage.
-                      </span>
-                    </h3>
-
-                    <div className="mt-8 space-y-4">
-                      {commitments.map((item) => (
-                        <div
-                          key={item}
-                          className="flex items-center gap-3 border-b border-white/10 pb-4 last:border-0 last:pb-0"
-                        >
-                          <CheckCircle2
-                            size={18}
-                            className="shrink-0 text-[#d3b34d]"
-                          />
-
-                          <span className="text-sm text-white/75">
-                            {item}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="absolute -bottom-5 -right-5 -z-10 h-28 w-28 rounded-full bg-[#d3b34d]/20" />
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* =====================================================
-            REASONS
-        ===================================================== */}
-        <section className="relative overflow-hidden bg-white py-20 sm:py-24">
+        <div className="pointer-events-none absolute -right-16 top-12 opacity-[0.045]">
           <Wheat
-            className="pointer-events-none absolute -left-16 top-20 text-[#173f1b]/[0.035]"
-            size={220}
+            size={280}
             strokeWidth={0.7}
+            className="rotate-[18deg] text-[#285c24]"
           />
+        </div>
 
-          <Wheat
-            className="pointer-events-none absolute -right-16 bottom-10 rotate-45 text-[#173f1b]/[0.035]"
-            size={220}
-            strokeWidth={0.7}
-          />
+        <div className="relative z-10 mx-auto max-w-[1250px] px-5 py-14 sm:px-8 sm:py-16 lg:px-12 lg:py-[68px]">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mx-auto max-w-[850px] text-center"
+          >
+            <div className="mb-4 flex items-center justify-center gap-3">
+              <span className="h-px w-9 bg-[#b59438]" />
 
-          <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
-            <div className="mx-auto max-w-3xl text-center">
-              <div className="mb-5 flex items-center justify-center gap-3">
-                <span className="h-px w-10 bg-[#c5a43b]" />
+              <div className="flex items-center gap-2">
+                <Wheat
+                  size={14}
+                  strokeWidth={1.4}
+                  className="text-[#b59438]"
+                />
 
-                <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#63702c]">
-                  Our Strengths
+                <span className="text-[9px] font-bold uppercase tracking-[0.28em] text-[#285c24]">
+                  Why Choose Us
                 </span>
-
-                <span className="h-px w-10 bg-[#c5a43b]" />
               </div>
 
-              <h2 className="font-serif text-4xl font-bold text-[#173b1b] sm:text-5xl">
-                Why Customers Choose Mahadal
+              <span className="h-px w-9 bg-[#b59438]" />
+            </div>
+
+            <h1 className="font-serif text-[38px] font-bold leading-[1.05] tracking-[-0.035em] text-[#173518] sm:text-[48px] lg:text-[56px]">
+              Quality Built on
+              <span className="text-[#285c24]"> Trust</span>
+            </h1>
+
+            <p className="mx-auto mt-4 max-w-[680px] text-[13px] leading-6 text-[#5f655c] sm:text-[14px]">
+              From carefully selected paddy to finished rice, every stage of
+              our work is focused on quality, consistency and dependable
+              service.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          INTRODUCTION
+      ========================================================= */}
+
+      <section className="bg-white">
+        <div className="mx-auto max-w-[1250px] px-5 py-14 sm:px-8 lg:px-12 lg:py-20">
+          <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+
+            {/* Left */}
+            <motion.div
+              initial={{ opacity: 0, x: -25 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="mb-4 flex items-center gap-3">
+                <span className="h-px w-9 bg-[#b59438]" />
+
+                <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-[#285c24]">
+                  Our Approach
+                </span>
+              </div>
+
+              <h2 className="font-serif text-[32px] font-bold leading-tight text-[#18351a] sm:text-[40px]">
+                Good Rice Starts With
+                <span className="text-[#285c24]"> Good Practices</span>
               </h2>
 
-              <p className="mt-5 text-sm leading-7 text-[#686e65] sm:text-base">
-                Our approach combines quality-focused processing, careful
-                handling and dependable customer service.
+              <p className="mt-5 text-[13px] leading-6 text-[#62675f]">
+                We believe quality is not achieved at just one stage of
+                production. It comes from paying attention to every part of
+                the process — from sourcing and cleaning to milling,
+                inspection and packing.
               </p>
-            </div>
 
-            <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {reasons.map((reason, index) => {
-                const Icon = reason.icon;
+              <p className="mt-4 text-[13px] leading-6 text-[#62675f]">
+                Our focus is to provide rice that customers can rely on for
+                its quality, consistency and everyday performance.
+              </p>
 
-                return (
-                  <motion.div
-                    key={reason.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{
-                      duration: 0.45,
-                      delay: index * 0.06,
-                    }}
-                    className="group rounded-3xl border border-[#e6e2d7] bg-[#fffefa] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#cbb35a] hover:shadow-[0_18px_45px_rgba(25,55,25,0.08)]"
-                  >
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#edf3e8] transition-colors duration-300 group-hover:bg-[#173f1b]">
-                      <Icon
-                        size={25}
-                        strokeWidth={1.8}
-                        className="text-[#28622d] transition-colors group-hover:text-[#d3b34d]"
-                      />
-                    </div>
-
-                    <h3 className="mt-6 font-serif text-xl font-bold text-[#173b1b]">
-                      {reason.title}
-                    </h3>
-
-                    <p className="mt-3 text-sm leading-7 text-[#687068]">
-                      {reason.text}
-                    </p>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* =====================================================
-            PROCESS
-        ===================================================== */}
-        <section className="bg-[#f0ede2] py-20 sm:py-24">
-          <div className="mx-auto max-w-7xl px-6 lg:px-10">
-            <div className="grid items-center gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-              {/* Left */}
-              <motion.div
-                initial={{ opacity: 0, x: -25 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.65 }}
-              >
-                <div className="mb-5 flex items-center gap-3">
-                  <span className="h-px w-10 bg-[#c5a43b]" />
-
-                  <span className="text-xs font-bold uppercase tracking-[0.23em] text-[#63702c]">
-                    Our Approach
-                  </span>
+              <div className="mt-6 flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#edf3e9]">
+                  <Award
+                    size={19}
+                    strokeWidth={1.5}
+                    className="text-[#285c24]"
+                  />
                 </div>
 
-                <h2 className="font-serif text-4xl font-bold leading-tight text-[#173b1b] sm:text-5xl">
-                  From Grain
-                  <span className="block text-[#63702c]">
-                    to Pack.
-                  </span>
-                </h2>
+                <div>
+                  <p className="text-[11px] font-bold text-[#203a21]">
+                    Quality First
+                  </p>
 
-                <p className="mt-6 max-w-lg text-[15px] leading-8 text-[#62685f]">
-                  We focus on maintaining care and consistency throughout the
-                  rice processing journey — from selection to the final
-                  product.
-                </p>
-
-                <div className="mt-8 inline-flex items-center gap-3 rounded-full border border-[#d9d3c2] bg-white px-5 py-3">
-                  <Wheat size={18} className="text-[#b0922f]" />
-
-                  <span className="text-sm font-semibold text-[#3e463d]">
-                    Care at every stage
-                  </span>
+                  <p className="mt-0.5 text-[10px] text-[#777b73]">
+                    Consistency in every batch
+                  </p>
                 </div>
-              </motion.div>
+              </div>
+            </motion.div>
 
-              {/* Process cards */}
-              <div className="grid gap-4 sm:grid-cols-2">
-                {process.map((item, index) => (
-                  <motion.div
-                    key={item.number}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{
-                      duration: 0.45,
-                      delay: index * 0.08,
-                    }}
-                    className="relative overflow-hidden rounded-3xl border border-[#ded9c9] bg-white p-7"
-                  >
-                    <span className="absolute right-5 top-0 font-serif text-7xl font-bold text-[#f0eee6]">
-                      {item.number}
+            {/* Right quality points */}
+            <motion.div
+              initial={{ opacity: 0, x: 25 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="rounded-[18px] border border-[#e4dfd2] bg-[#faf9f4] p-6 sm:p-8"
+            >
+              <div className="grid gap-5 sm:grid-cols-2">
+                {[
+                  "Carefully selected paddy",
+                  "Controlled milling process",
+                  "Consistent grain quality",
+                  "Clean and careful handling",
+                  "Reliable packing standards",
+                  "Customer-focused service",
+                ].map((point) => (
+                  <div key={point} className="flex items-start gap-3">
+                    <CheckCircle2
+                      size={17}
+                      strokeWidth={1.6}
+                      className="mt-0.5 shrink-0 text-[#285c24]"
+                    />
+
+                    <span className="text-[11px] leading-5 text-[#555c54]">
+                      {point}
                     </span>
-
-                    <div className="relative">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#173f1b] text-xs font-bold text-[#d3b34d]">
-                        {item.number}
-                      </div>
-
-                      <h3 className="mt-6 font-serif text-xl font-bold text-[#173b1b]">
-                        {item.title}
-                      </h3>
-
-                      <p className="mt-3 text-sm leading-7 text-[#697069]">
-                        {item.text}
-                      </p>
-                    </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* =====================================================
-            TRUST SECTION
-        ===================================================== */}
-        <section className="bg-[#173f1b] py-20 sm:py-24">
-          <div className="mx-auto max-w-7xl px-6 lg:px-10">
-            <div className="mx-auto max-w-3xl text-center">
-              <div className="mb-5 flex items-center justify-center gap-3">
-                <span className="h-px w-10 bg-[#d3b34d]" />
+      {/* =========================================================
+          WHY CHOOSE US
+      ========================================================= */}
 
-                <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#d3b34d]">
-                  Built on Trust
-                </span>
+      <section className="bg-[#f4f1e6]">
+        <div className="mx-auto max-w-[1250px] px-5 py-14 sm:px-8 lg:px-12 lg:py-20">
 
-                <span className="h-px w-10 bg-[#d3b34d]" />
-              </div>
-
-              <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">
-                A Relationship Beyond the Transaction.
-              </h2>
-
-              <p className="mt-5 text-sm leading-7 text-white/60 sm:text-base">
-                We aim to build lasting relationships through quality products,
-                dependable service and clear communication.
-              </p>
-            </div>
-
-            <div className="mt-12 grid gap-4 md:grid-cols-3">
-              {[
-                {
-                  icon: Award,
-                  title: "Quality Driven",
-                  text: "Quality remains central to our product and processing approach.",
-                },
-                {
-                  icon: Handshake,
-                  title: "Long-Term Relationships",
-                  text: "We value customers and business partners who grow with us.",
-                },
-                {
-                  icon: Truck,
-                  title: "Dependable Service",
-                  text: "We strive to provide a straightforward and reliable customer experience.",
-                },
-              ].map((item, index) => {
-                const Icon = item.icon;
-
-                return (
-                  <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{
-                      duration: 0.5,
-                      delay: index * 0.08,
-                    }}
-                    className="rounded-3xl border border-white/10 bg-white/[0.04] p-8 text-center"
-                  >
-                    <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-[#d3b34d]/30">
-                      <Icon
-                        size={24}
-                        className="text-[#d3b34d]"
-                      />
-                    </div>
-
-                    <h3 className="mt-5 font-serif text-xl font-bold text-white">
-                      {item.title}
-                    </h3>
-
-                    <p className="mt-3 text-sm leading-7 text-white/55">
-                      {item.text}
-                    </p>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* =====================================================
-            CTA
-        ===================================================== */}
-        <section className="bg-[#f8f6ed] px-6 py-20 sm:py-24">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-[#d3b34d]"
+            className="mx-auto max-w-[700px] text-center"
           >
-            <div className="relative px-7 py-14 text-center sm:px-12 sm:py-16">
-              <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full border-[25px] border-white/10" />
+            <div className="mb-4 flex items-center justify-center gap-3">
+              <span className="h-px w-9 bg-[#b59438]" />
 
-              <div className="relative z-10">
-                <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#405629]">
-                  Choose Mahadal
-                </p>
+              <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-[#285c24]">
+                What Sets Us Apart
+              </span>
 
-                <h2 className="mx-auto mt-4 max-w-3xl font-serif text-4xl font-bold leading-tight text-[#173b1b] sm:text-5xl">
-                  Good rice deserves a good standard.
-                </h2>
-
-                <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-[#43563c] sm:text-base">
-                  Get in touch with our team to learn more about Mahadal and
-                  our rice products.
-                </p>
-
-                <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-3 rounded-full bg-[#173f1b] px-7 py-3.5 text-sm font-bold text-white transition-all hover:-translate-y-1 hover:bg-[#0e2f13]"
-                  >
-                    Contact Us
-                    <ArrowRight size={17} />
-                  </Link>
-
-                  <Link
-                    href="/gallery"
-                    className="inline-flex items-center gap-3 rounded-full border border-[#173f1b]/30 px-7 py-3.5 text-sm font-bold text-[#173f1b] transition-all hover:bg-[#173f1b] hover:text-white"
-                  >
-                    View Gallery
-                  </Link>
-                </div>
-              </div>
+              <span className="h-px w-9 bg-[#b59438]" />
             </div>
-          </motion.div>
-        </section>
-      </main>
 
-      {/* Footer */}
-      <Footer />
-    </div>
+            <h2 className="font-serif text-[32px] font-bold text-[#18351a] sm:text-[40px]">
+              Why Customers Choose Us
+            </h2>
+
+            <p className="mt-3 text-[12px] leading-6 text-[#666b63] sm:text-[13px]">
+              A simple commitment to quality, careful processing and reliable
+              service guides everything we do.
+            </p>
+          </motion.div>
+
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {strengths.map((item, index) => {
+              const Icon = item.icon;
+
+              return (
+                <motion.article
+                  key={item.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: index * 0.06,
+                  }}
+                  className="group rounded-[15px] border border-[#e1dccd] bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#cdbb7b] hover:shadow-[0_12px_30px_rgba(40,60,30,0.07)]"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#edf3e9] transition-colors duration-300 group-hover:bg-[#e5efdf]">
+                      <Icon
+                        size={20}
+                        strokeWidth={1.45}
+                        className="text-[#285c24]"
+                      />
+                    </div>
+
+                    <div>
+                      <h3 className="font-serif text-[19px] font-bold text-[#213721]">
+                        {item.title}
+                      </h3>
+
+                      <p className="mt-2 text-[10px] leading-5 text-[#6a7068]">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          QUALITY PROCESS
+      ========================================================= */}
+
+      <section className="bg-white">
+        <div className="mx-auto max-w-[1250px] px-5 py-14 sm:px-8 lg:px-12 lg:py-20">
+
+          <div className="grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+
+            {/* Heading */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="mb-4 flex items-center gap-3">
+                <Wheat
+                  size={16}
+                  strokeWidth={1.4}
+                  className="text-[#b59438]"
+                />
+
+                <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-[#285c24]">
+                  Our Quality Journey
+                </span>
+              </div>
+
+              <h2 className="font-serif text-[32px] font-bold leading-tight text-[#18351a] sm:text-[40px]">
+                From Paddy to
+                <span className="text-[#285c24]"> Your Table</span>
+              </h2>
+
+              <p className="mt-4 max-w-[450px] text-[12px] leading-6 text-[#666b63]">
+                Every stage has a purpose. Our process is designed to protect
+                the quality of the grain while delivering a consistent
+                finished product.
+              </p>
+            </motion.div>
+
+            {/* Steps */}
+            <div className="grid gap-3 sm:grid-cols-2">
+              {qualitySteps.map((step, index) => (
+                <motion.div
+                  key={step.number}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.5,
+                    delay: index * 0.07,
+                  }}
+                  className="rounded-[14px] border border-[#e5e1d7] bg-[#faf9f5] p-5"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-serif text-[25px] font-bold text-[#285c24]/20">
+                      {step.number}
+                    </span>
+
+                    <div className="h-2 w-2 rounded-full bg-[#b59438]" />
+                  </div>
+
+                  <h3 className="mt-2 font-serif text-[19px] font-bold text-[#213721]">
+                    {step.title}
+                  </h3>
+
+                  <p className="mt-2 text-[10px] leading-5 text-[#6c7169]">
+                    {step.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+     
+
+      {/* Bottom separator */}
+      <div className="h-px bg-[#dcd7c8]" />
+    </main>
   );
 }

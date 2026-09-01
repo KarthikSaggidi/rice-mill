@@ -1,12 +1,11 @@
 import Navbar from "../components/Navbar";
-import Hero from "../components/home/Hero";
-import WelcomeSection from "../components/home/WelcomeSection";
-import Stats from "../components/home/Stats";
 import AboutPreview from "../components/home/AboutPreview";
-import ProductsPreview from "../components/home/ProductsPreview";
+import Hero from "../components/home/Hero";
 import MillingProcess from "../components/home/MillingProcess";
+import ProductsPreview from "../components/home/ProductsPreview";
 import TrustCTA from "../components/home/TrustCTA";
-import Footer from "../components/Footer";
+import WelcomeSection from "../components/home/WelcomeSection";
+
 
 export default function Home() {
   return (
@@ -16,14 +15,12 @@ export default function Home() {
       <main>
         <Hero />
         <WelcomeSection />
-        <Stats />
         <AboutPreview />
         <ProductsPreview />
         <MillingProcess />
-        <TrustCTA />
       </main>
 
-      <Footer />
+      <TrustCTA />
     </>
   );
 }

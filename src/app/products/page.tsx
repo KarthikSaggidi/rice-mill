@@ -1,317 +1,429 @@
-import Image from "next/image";
-import Link from "next/link";
+"use client";
+
+import { motion } from "framer-motion";
 import {
   ArrowRight,
   CheckCircle2,
-  Leaf,
   Package,
   Wheat,
 } from "lucide-react";
 
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
-
 const products = [
   {
-    name: "Mahadal Rice",
-    category: "Premium Rice",
-    image: "/images/products/mahadal-rice.jpg",
+    number: "01",
+    name: "Toor Dal",
+    subtitle: "Pigeon Pea",
     description:
-      "Carefully processed rice with a focus on quality, cleanliness and consistent grains.",
-    features: [
-      "Carefully processed",
-      "Clean & sorted",
-      "Consistent quality",
-    ],
+      "Carefully selected pigeon peas processed for clean, uniform grains and dependable cooking quality.",
+    image: "/images/products/toor-dal.jpg",
+    uses: "Dal, sambar & everyday meals",
   },
-  {
-    name: "Mahadal Premium Rice",
-    category: "Premium Selection",
-    image: "/images/products/mahadal-premium.jpg",
-    description:
-      "A premium selection prepared for customers who value quality and consistency in every meal.",
-    features: [
-      "Premium selection",
-      "Quality focused",
-      "Carefully packed",
-    ],
-  },
-  {
-    name: "Mahadal Rice",
-    category: "Everyday Rice",
-    image: "/images/products/mahadal-rice.jpg",
-    description:
-      "A dependable rice option designed for everyday cooking and family meals.",
-    features: [
-      "Reliable quality",
-      "Clean processing",
-      "Everyday use",
-    ],
-  },
-];
 
-const qualities = [
   {
-    icon: Wheat,
-    title: "Quality Grains",
-    text: "We focus on maintaining the quality and consistency of the rice throughout processing.",
+    number: "02",
+    name: "Moong Dal",
+    subtitle: "Split Green Gram",
+    description:
+      "Light and versatile split green gram with clean grains and excellent cooking quality for everyday use.",
+    image: "/images/products/moong-dal.jpg",
+    uses: "Dal, khichdi & light meals",
   },
+
   {
-    icon: Leaf,
-    title: "Careful Processing",
-    text: "Our approach places importance on proper cleaning, sorting and processing.",
+    number: "03",
+    name: "Urad Dal",
+    subtitle: "Black Gram",
+    description:
+      "Carefully processed black gram selected for its consistent quality and suitability for traditional recipes.",
+    image: "/images/products/urad-dal.jpg",
+    uses: "Idli, dosa & traditional dishes",
   },
+
   {
-    icon: Package,
-    title: "Secure Packaging",
-    text: "Products are packed carefully to maintain their quality until they reach customers.",
+    number: "04",
+    name: "Chana Dal",
+    subtitle: "Split Chickpea",
+    description:
+      "Clean and carefully processed split chickpeas offering a rich taste and reliable cooking performance.",
+    image: "/images/products/chana-dal.jpg",
+    uses: "Dal, snacks & Indian recipes",
+  },
+
+  {
+    number: "05",
+    name: "Masoor Dal",
+    subtitle: "Red Lentils",
+    description:
+      "Selected red lentils with consistent quality, ideal for quick preparation and everyday cooking.",
+    image: "/images/products/masoor-dal.jpg",
+    uses: "Dal, soups & everyday meals",
+  },
+
+  {
+    number: "06",
+    name: "Raw Toor",
+    subtitle: "Raw Pigeon Pea",
+    description:
+      "Quality raw toor selected and processed with care to maintain clean appearance and consistent grain quality.",
+    image: "/images/products/raw-toor.jpg",
+    uses: "Dal processing & traditional recipes",
+  },
+
+  {
+    number: "07",
+    name: "Cattle Feed",
+    subtitle: "Nutritious Feed",
+    description:
+      "Carefully prepared cattle feed suitable for supporting regular livestock feeding requirements.",
+    image: "/images/products/cattle-feed.jpg",
+    uses: "Livestock & cattle feeding",
+  },
+
+  {
+    number: "08",
+    name: "Toor Dal Unpolished",
+    subtitle: "Unpolished Pigeon Pea",
+    description:
+      "Unpolished toor dal processed with care, retaining its natural character while providing a wholesome choice.",
+    image: "/images/products/toor-dal-unpolished.jpg",
+    uses: "Dal, sambar & traditional meals",
+  },
+
+  {
+    number: "09",
+    name: "Whole Green Gram",
+    subtitle: "Whole Moong",
+    description:
+      "Carefully selected whole green gram with natural colour, clean appearance and consistent quality.",
+    image: "/images/products/whole-moong.jpg",
+    uses: "Dal, sprouts & traditional dishes",
   },
 ];
 
 export default function ProductsPage() {
   return (
-    <div className="min-h-screen bg-[#f8f6ed] text-[#173b1b]">
-      <Navbar />
+    <main className="min-h-screen bg-[#faf8f0] pt-[105px]">
 
-      <main>
-        {/* =========================================
-            HERO
-        ========================================= */}
-        <section className="relative overflow-hidden bg-[#173f1b] pt-32">
-          <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full border border-[#d3b34d]/15" />
+      {/* =========================================================
+          PAGE HEADER
+      ========================================================= */}
 
-          <div className="pointer-events-none absolute right-20 top-24 h-48 w-48 rounded-full border border-[#d3b34d]/10" />
+      <section className="relative overflow-hidden border-b border-[#e5dfcf] bg-[#f4f0e2]">
+        {/* Decorative wheat */}
+        <div className="pointer-events-none absolute -left-24 top-4 opacity-[0.035]">
+          <Wheat
+            size={320}
+            strokeWidth={0.7}
+            className="rotate-[-18deg] text-[#285c24]"
+          />
+        </div>
 
-          <div className="pointer-events-none absolute -bottom-40 -left-32 h-96 w-96 rounded-full bg-[#d3b34d]/5 blur-3xl" />
+        <div className="pointer-events-none absolute -right-24 bottom-0 opacity-[0.035]">
+          <Wheat
+            size={320}
+            strokeWidth={0.7}
+            className="rotate-[18deg] text-[#285c24]"
+          />
+        </div>
 
-          <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-28">
-            <div className="max-w-3xl">
-              <div className="mb-6 flex items-center gap-3">
-                <span className="h-px w-10 bg-[#d3b34d]" />
+        <div className="relative z-10 mx-auto max-w-[1400px] px-5 py-14 sm:px-8 sm:py-16 lg:px-12 lg:py-[72px]">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65 }}
+            className="mx-auto max-w-[820px] text-center"
+          >
+            {/* Label */}
+            <div className="mb-4 flex items-center justify-center gap-3">
+              <span className="h-px w-10 bg-[#b59438]" />
 
-                <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#d3b34d]">
-                  Mahadal Products
+              <div className="flex items-center gap-2">
+                <Wheat
+                  size={14}
+                  strokeWidth={1.4}
+                  className="text-[#b59438]"
+                />
+
+                <span className="text-[10px] font-bold uppercase tracking-[0.27em] text-[#285c24]">
+                  Our Products
                 </span>
               </div>
 
-              <h1 className="font-serif text-5xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-7xl">
-                Quality in
-                <span className="block text-[#d3b34d]">
-                  Every Grain.
-                </span>
-              </h1>
-
-              <p className="mt-7 max-w-2xl text-base leading-8 text-white/70 sm:text-lg">
-                Explore Mahadal rice products, carefully processed and
-                prepared with a focus on quality, consistency and customer
-                satisfaction.
-              </p>
+              <span className="h-px w-10 bg-[#b59438]" />
             </div>
-          </div>
 
-          <div className="h-10 bg-[#f8f6ed] [clip-path:ellipse(65%_100%_at_50%_100%)]" />
-        </section>
+            {/* Heading */}
+            <h1 className="font-serif text-[40px] font-bold leading-[1.05] tracking-[-0.035em] text-[#172c18] sm:text-[50px] lg:text-[58px]">
+              Quality Pulses for{" "}
+              <span className="text-[#285c24]">
+                Every Kitchen
+              </span>
+            </h1>
 
-        {/* =========================================
-            INTRO
-        ========================================= */}
-        <section className="py-16 sm:py-20">
-          <div className="mx-auto max-w-7xl px-6 lg:px-10">
-            <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
-              <div>
-                <div className="mb-5 flex items-center gap-3">
-                  <span className="h-px w-10 bg-[#c5a43b]" />
+            {/* Description */}
+            <p className="mx-auto mt-5 max-w-[680px] text-[13px] leading-6 text-[#656a62] sm:text-[14px]">
+              We carefully select and supply quality pulses sourced from
+              reliable channels, maintaining cleanliness, consistency and
+              dependable quality for everyday use.
+            </p>
+          </motion.div>
+        </div>
+      </section>
 
-                  <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#63702c]">
-                    Our Products
-                  </span>
+      {/* =========================================================
+          PRODUCTS
+      ========================================================= */}
+
+      <section className="relative overflow-hidden bg-[#faf8f0]">
+        <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 sm:py-16 lg:px-12 lg:py-[78px]">
+
+          {/* Small intro */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55 }}
+            className="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"
+          >
+            <div>
+              <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-[#b08b30]">
+                Our Range
+              </p>
+
+              <h2 className="mt-1 font-serif text-[29px] font-bold text-[#1d341e] sm:text-[34px]">
+                Carefully Selected Pulses
+              </h2>
+            </div>
+
+            <div className="flex items-center gap-2 text-[10px] font-medium text-[#73776e]">
+              <Package
+                size={15}
+                strokeWidth={1.5}
+                className="text-[#285c24]"
+              />
+
+              Quality checked products
+            </div>
+          </motion.div>
+
+          {/* =====================================================
+              PERFECT 3 × 2 GRID
+          ===================================================== */}
+
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
+            {products.map((product, index) => (
+              <motion.article
+                key={product.name}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{
+                  duration: 0.55,
+                  delay: index * 0.06,
+                }}
+                className="
+                  group
+                  flex
+                  h-full
+                  flex-col
+                  overflow-hidden
+                  rounded-[18px]
+                  border
+                  border-[#e3ddce]
+                  bg-white
+                  shadow-[0_6px_25px_rgba(35,55,30,0.045)]
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:border-[#d1bf82]
+                  hover:shadow-[0_18px_40px_rgba(35,55,30,0.10)]
+                "
+              >
+                {/* =================================================
+                    IMAGE
+                ================================================= */}
+
+                <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-[#e6dfca]">
+
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="
+                      h-full
+                      w-full
+                      object-cover
+                      transition-transform
+                      duration-700
+                      ease-out
+                      group-hover:scale-[1.05]
+                    "
+                  />
+
+                  {/* Image overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#102f10]/65 via-transparent to-transparent" />
+
+                  {/* Number */}
+                  <div className="absolute left-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-black/20 backdrop-blur-md">
+                    <span className="font-serif text-[12px] font-bold text-white">
+                      {product.number}
+                    </span>
+                  </div>
+
+                  {/* Bottom image label */}
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#e5cd70]">
+                      {product.subtitle}
+                    </p>
+                  </div>
                 </div>
 
-                <h2 className="font-serif text-4xl font-bold leading-tight sm:text-5xl">
-                  Rice Made with
-                  <span className="block text-[#63702c]">
-                    Care.
-                  </span>
-                </h2>
-              </div>
+                {/* =================================================
+                    CONTENT
+                ================================================= */}
 
-              <p className="max-w-2xl text-sm leading-7 text-[#697068]">
-                At Mahadal, we understand that good rice starts with good
-                raw material and careful processing. Our products are
-                developed with attention to cleanliness, consistency and
-                dependable quality.
-              </p>
-            </div>
-          </div>
-        </section>
+                <div className="flex flex-1 flex-col p-5 sm:p-6">
 
-        {/* =========================================
-            PRODUCTS
-        ========================================= */}
-        <section className="pb-24">
-          <div className="mx-auto max-w-7xl px-6 lg:px-10">
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {products.map((product) => (
-                <article
-                  key={product.name + product.category}
-                  className="group overflow-hidden rounded-[2rem] border border-[#ddd8c8] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#c8ad45] hover:shadow-[0_20px_50px_rgba(24,59,27,0.08)]"
-                >
-                  {/* Product Image */}
-                  <div className="relative h-[360px] overflow-hidden bg-[#f2efe4]">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-contain p-6 transition-transform duration-700 group-hover:scale-105"
-                    />
+                  {/* Product heading */}
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <h3 className="font-serif text-[23px] font-bold leading-tight text-[#1b351d]">
+                        {product.name}
+                      </h3>
 
-                    <div className="absolute left-5 top-5">
-                      <span className="rounded-full border border-white/30 bg-[#173f1b]/90 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.16em] text-[#e2c95f]">
-                        {product.category}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Product Content */}
-                  <div className="p-7">
-                    <h3 className="font-serif text-2xl font-bold text-[#173b1b]">
-                      {product.name}
-                    </h3>
-
-                    <p className="mt-3 text-sm leading-7 text-[#6c736b]">
-                      {product.description}
-                    </p>
-
-                    <div className="mt-6 space-y-3 border-t border-[#ebe7da] pt-5">
-                      {product.features.map((feature) => (
-                        <div
-                          key={feature}
-                          className="flex items-center gap-3 text-sm text-[#4e5b50]"
-                        >
-                          <CheckCircle2
-                            size={16}
-                            className="shrink-0 text-[#637d32]"
-                          />
-
-                          <span>{feature}</span>
-                        </div>
-                      ))}
+                      <p className="mt-1 text-[9px] font-bold uppercase tracking-[0.17em] text-[#b08b30]">
+                        {product.subtitle}
+                      </p>
                     </div>
 
-                    <Link
-                      href="/contact"
-                      className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#285c2c] transition-colors hover:text-[#a08328]"
-                    >
-                      Enquire Now
-                      <ArrowRight
-                        size={16}
-                        className="transition-transform group-hover:translate-x-1"
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#edf3e9]">
+                      <Wheat
+                        size={17}
+                        strokeWidth={1.35}
+                        className="text-[#285c24]"
                       />
-                    </Link>
+                    </div>
                   </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
 
-        {/* =========================================
-            QUALITY SECTION
-        ========================================= */}
-        <section className="bg-[#173f1b] py-20 sm:py-24">
-          <div className="mx-auto max-w-7xl px-6 lg:px-10">
-            <div className="mx-auto max-w-3xl text-center">
-              <div className="mb-5 flex justify-center">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#d3b34d]/30">
-                  <Leaf
-                    size={21}
-                    className="text-[#d3b34d]"
+                  {/* Description */}
+                  <p className="mt-4 text-[11px] leading-5 text-[#686e66]">
+                    {product.description}
+                  </p>
+
+                  {/* Uses */}
+                  <div className="mt-auto pt-5">
+                    <div className="border-t border-[#e8e3d7] pt-4">
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2
+                          size={14}
+                          strokeWidth={1.8}
+                          className="mt-0.5 shrink-0 text-[#285c24]"
+                        />
+
+                        <div>
+                          <p className="text-[8px] font-bold uppercase tracking-[0.14em] text-[#8b8e85]">
+                            Ideal For
+                          </p>
+
+                          <p className="mt-1 text-[10px] font-semibold text-[#3b493b]">
+                            {product.uses}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom accent */}
+                <div className="h-[3px] w-0 bg-[#285c24] transition-all duration-300 group-hover:w-full" />
+              </motion.article>
+            ))}
+          </div>
+
+          {/* =====================================================
+              BOTTOM INFORMATION
+          ===================================================== */}
+
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="
+              mx-auto
+              mt-12
+              max-w-[1050px]
+              rounded-[16px]
+              border
+              border-[#ddd5bd]
+              bg-[#f5f0df]
+              px-6
+              py-6
+              sm:px-8
+            "
+          >
+            <div className="flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-center">
+
+              <div className="flex items-start gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#e8efdf]">
+                  <Package
+                    size={19}
+                    strokeWidth={1.4}
+                    className="text-[#285c24]"
                   />
                 </div>
+
+                <div>
+                  <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#b08b30]">
+                    Bulk Requirements
+                  </p>
+
+                  <h3 className="mt-1 font-serif text-[20px] font-bold text-[#203620]">
+                    Looking for larger quantities?
+                  </h3>
+
+                  <p className="mt-1 max-w-[600px] text-[10px] leading-5 text-[#6c7169]">
+                    We also cater to wholesale, retail and commercial
+                    requirements based on availability and order quantity.
+                  </p>
+                </div>
               </div>
 
-              <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#d3b34d]">
-                The Mahadal Standard
-              </p>
+              <a
+                href="/contact"
+                className="
+                  group
+                  inline-flex
+                  shrink-0
+                  items-center
+                  gap-2
+                  rounded-xl
+                  bg-[#285c24]
+                  px-5
+                  py-3
+                  text-[10px]
+                  font-bold
+                  text-white
+                  shadow-[0_7px_18px_rgba(40,92,36,0.14)]
+                  transition-all
+                  duration-300
+                  hover:-translate-y-0.5
+                  hover:bg-[#1b4a17]
+                "
+              >
+                Contact Us
 
-              <h2 className="mt-4 font-serif text-4xl font-bold text-white sm:text-5xl">
-                More than a product.
-                <span className="block text-[#d3b34d]">
-                  It is our promise.
-                </span>
-              </h2>
-
-              <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/60">
-                Every stage of our process contributes to delivering rice
-                that customers can depend on.
-              </p>
+                <ArrowRight
+                  size={14}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </a>
             </div>
+          </motion.div>
+        </div>
+      </section>
 
-            <div className="mt-14 grid gap-5 md:grid-cols-3">
-              {qualities.map((item) => {
-                const Icon = item.icon;
-
-                return (
-                  <div
-                    key={item.title}
-                    className="rounded-3xl border border-white/10 bg-white/[0.04] p-7"
-                  >
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#d3b34d]/10">
-                      <Icon
-                        size={22}
-                        className="text-[#d3b34d]"
-                      />
-                    </div>
-
-                    <h3 className="mt-6 font-serif text-xl font-bold text-white">
-                      {item.title}
-                    </h3>
-
-                    <p className="mt-3 text-sm leading-7 text-white/55">
-                      {item.text}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* =========================================
-            CTA
-        ========================================= */}
-        <section className="bg-[#f8f6ed] py-20">
-          <div className="mx-auto max-w-4xl px-6 text-center lg:px-10">
-            <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#63702c]">
-              Looking for Mahadal Rice?
-            </p>
-
-            <h2 className="mt-4 font-serif text-4xl font-bold text-[#173b1b] sm:text-5xl">
-              Let&apos;s talk about
-              <span className="text-[#63702c]">
-                {" "}
-                your requirements.
-              </span>
-            </h2>
-
-            <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-[#6b716b]">
-              Get in touch with our team for product information,
-              availability and business enquiries.
-            </p>
-
-            <Link
-              href="/contact"
-              className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#173f1b] px-7 py-4 text-sm font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#285c2c]"
-            >
-              Contact Mahadal
-              <ArrowRight size={17} />
-            </Link>
-          </div>
-        </section>
-      </main>
-
-      <Footer />
-    </div>
+      {/* Bottom separator */}
+      <div className="h-[2px] bg-[#285c24]" />
+    </main>
   );
 }

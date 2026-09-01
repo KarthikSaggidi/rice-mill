@@ -18,153 +18,211 @@ import {
 
 import { FormEvent, useState } from "react";
 
+type FormStatus = "idle" | "loading" | "success" | "error";
+
 export default function ContactPage() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<FormStatus>("idle");
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
 
-    setTimeout(() => {
-      setSubmitted(false);
-    }, 4000);
+    setStatus("loading");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const data = {
+      name: formData.get("name"),
+      phone: formData.get("phone"),
+      email: formData.get("email"),
+      enquiry: formData.get("enquiry"),
+      message: formData.get("message"),
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || "Something went wrong.");
+      }
+
+      setStatus("success");
+      form.reset();
+
+      window.scrollTo({
+        top: document.body.scrollHeight / 2,
+        behavior: "smooth",
+      });
+    } catch (error) {
+      console.error(error);
+      setStatus("error");
+    }
   };
 
   return (
     <main className="min-h-screen bg-[#f8f6ee] text-[#173b1b]">
-      {/* =========================================================
-          NAVBAR
-      ========================================================= */}
       <Navbar />
 
       {/* =========================================================
-          HERO
+          PAGE INTRO
       ========================================================= */}
-      <section className="relative overflow-hidden pt-36 pb-24 md:pt-40 md:pb-28">
-        {/* Decorative rice graphics */}
-        <div className="pointer-events-none absolute -left-20 top-20 opacity-[0.08]">
-          <Wheat size={260} strokeWidth={1} />
+
+      <section className="relative overflow-hidden pb-16 pt-32 md:pb-20 md:pt-36">
+        <div className="pointer-events-none absolute -left-24 top-16 opacity-[0.045]">
+          <Wheat
+            size={300}
+            strokeWidth={0.7}
+            className="-rotate-[18deg] text-[#285c24]"
+          />
         </div>
 
-        <div className="pointer-events-none absolute -right-20 bottom-0 rotate-180 opacity-[0.08]">
-          <Wheat size={280} strokeWidth={1} />
+        <div className="pointer-events-none absolute -right-24 bottom-0 opacity-[0.045]">
+          <Wheat
+            size={300}
+            strokeWidth={0.7}
+            className="rotate-[18deg] text-[#285c24]"
+          />
         </div>
 
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(202,164,58,0.12),transparent_45%)]" />
+        <div className="pointer-events-none absolute left-1/2 top-0 h-[400px] w-[700px] -translate-x-1/2 rounded-full bg-[#d4b65c]/10 blur-3xl" />
 
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="mx-auto max-w-4xl text-center">
-            <div className="mb-5 flex items-center justify-center gap-4">
-              <span className="h-px w-12 bg-[#c5a03b]" />
+        <div className="relative mx-auto max-w-[1250px] px-5 sm:px-8 lg:px-10">
+          <div className="mx-auto max-w-[780px] text-center">
+            <div className="mb-5 flex items-center justify-center gap-3">
+              <span className="h-px w-10 bg-[#b8963e]" />
 
-              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-[#285c2b]">
-                <Wheat size={15} />
-                Get In Touch
+              <div className="flex items-center gap-2">
+                <Wheat
+                  size={14}
+                  strokeWidth={1.4}
+                  className="text-[#b8963e]"
+                />
+
+                <span className="text-[10px] font-bold uppercase tracking-[0.27em] text-[#285c24]">
+                  Get In Touch
+                </span>
               </div>
 
-              <span className="h-px w-12 bg-[#c5a03b]" />
+              <span className="h-px w-10 bg-[#b8963e]" />
             </div>
 
-            <h1 className="font-serif text-5xl font-bold leading-[1.05] tracking-tight text-[#123a18] md:text-6xl lg:text-7xl">
-              Let&apos;s Talk
-              <span className="block text-[#285f2b]">
-                About Rice
+            <h1 className="font-serif text-[46px] font-bold leading-[1.05] tracking-[-0.035em] text-[#173b1b] sm:text-[58px] lg:text-[68px]">
+              Let&apos;s Talk About
+              <span className="block text-[#285c24]">
+                Quality Rice
               </span>
             </h1>
 
-            <p className="mx-auto mt-7 max-w-2xl text-base leading-7 text-[#5d625b] md:text-lg">
-              Whether you are looking for quality rice products, bulk
-              requirements, distribution opportunities, or business
-              enquiries, we would be happy to hear from you.
+            <p className="mx-auto mt-5 max-w-[650px] text-[13px] leading-6 text-[#656a62] sm:text-[14px]">
+              Whether you are looking for our rice products, bulk supplies,
+              distribution opportunities or business information, our team is
+              ready to assist you.
             </p>
           </div>
         </div>
       </section>
 
       {/* =========================================================
-          CONTACT INFORMATION
+          CONTACT CARDS
       ========================================================= */}
-      <section className="relative pb-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+
+      <section className="pb-16 md:pb-20">
+        <div className="mx-auto max-w-[1250px] px-5 sm:px-8 lg:px-10">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
 
             {/* Phone */}
-            <div className="group rounded-3xl border border-[#e4dfcf] bg-white p-7 shadow-[0_12px_40px_rgba(30,60,30,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(30,60,30,0.11)]">
-              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#edf4e9] text-[#225b27] transition-colors group-hover:bg-[#1f5a24] group-hover:text-white">
-                <Phone size={25} strokeWidth={1.8} />
+            <a
+              href="tel:+912385252063"
+              className="group rounded-[18px] border border-[#e3dfd1] bg-white p-6 shadow-[0_8px_28px_rgba(35,55,30,0.045)] transition-all duration-300 hover:-translate-y-1 hover:border-[#d3c18b] hover:shadow-[0_15px_35px_rgba(35,55,30,0.08)]"
+            >
+              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#edf3e9] text-[#285c24] transition-colors group-hover:bg-[#285c24] group-hover:text-white">
+                <Phone size={19} strokeWidth={1.5} />
               </div>
 
-              <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-[#b08c2c]">
+              <p className="mt-5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#b08b30]">
                 Call Us
               </p>
 
-              <h3 className="text-lg font-bold text-[#173b1b]">
+              <h3 className="mt-1 font-serif text-[19px] font-bold text-[#173b1b]">
                 Customer Care
               </h3>
 
-              <a
-                href="tel:+912385252063"
-                className="mt-2 block text-sm text-[#62665e] transition-colors hover:text-[#1f5a24]"
-              >
+              <p className="mt-1 text-[11px] text-[#686d66]">
                 02385 - 252063
-              </a>
-            </div>
+              </p>
+            </a>
 
             {/* Location */}
-            <div className="group rounded-3xl border border-[#e4dfcf] bg-white p-7 shadow-[0_12px_40px_rgba(30,60,30,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(30,60,30,0.11)]">
-              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#edf4e9] text-[#225b27] transition-colors group-hover:bg-[#1f5a24] group-hover:text-white">
-                <MapPin size={25} strokeWidth={1.8} />
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Udgir%2C%20Maharashtra%20413517"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group rounded-[18px] border border-[#e3dfd1] bg-white p-6 shadow-[0_8px_28px_rgba(35,55,30,0.045)] transition-all duration-300 hover:-translate-y-1 hover:border-[#d3c18b] hover:shadow-[0_15px_35px_rgba(35,55,30,0.08)]"
+            >
+              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#edf3e9] text-[#285c24] transition-colors group-hover:bg-[#285c24] group-hover:text-white">
+                <MapPin size={19} strokeWidth={1.5} />
               </div>
 
-              <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-[#b08c2c]">
+              <p className="mt-5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#b08b30]">
                 Visit Us
               </p>
 
-              <h3 className="text-lg font-bold text-[#173b1b]">
+              <h3 className="mt-1 font-serif text-[19px] font-bold text-[#173b1b]">
                 Our Location
               </h3>
 
-              <p className="mt-2 text-sm leading-6 text-[#62665e]">
+              <p className="mt-1 text-[11px] leading-5 text-[#686d66]">
                 Udgir, Maharashtra
                 <br />
                 413517, India
               </p>
-            </div>
+            </a>
 
             {/* Email */}
-            <div className="group rounded-3xl border border-[#e4dfcf] bg-white p-7 shadow-[0_12px_40px_rgba(30,60,30,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(30,60,30,0.11)]">
-              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#edf4e9] text-[#225b27] transition-colors group-hover:bg-[#1f5a24] group-hover:text-white">
-                <Mail size={25} strokeWidth={1.8} />
+            <a
+              href="mailto:info@mahadalricemill.com"
+              className="group rounded-[18px] border border-[#e3dfd1] bg-white p-6 shadow-[0_8px_28px_rgba(35,55,30,0.045)] transition-all duration-300 hover:-translate-y-1 hover:border-[#d3c18b] hover:shadow-[0_15px_35px_rgba(35,55,30,0.08)]"
+            >
+              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#edf3e9] text-[#285c24] transition-colors group-hover:bg-[#285c24] group-hover:text-white">
+                <Mail size={19} strokeWidth={1.5} />
               </div>
 
-              <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-[#b08c2c]">
+              <p className="mt-5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#b08b30]">
                 Write To Us
               </p>
 
-              <h3 className="text-lg font-bold text-[#173b1b]">
+              <h3 className="mt-1 font-serif text-[19px] font-bold text-[#173b1b]">
                 Email Enquiries
               </h3>
 
-              <p className="mt-2 text-sm leading-6 text-[#62665e]">
-                Send us your enquiry and our team will get back to you.
+              <p className="mt-1 text-[11px] text-[#686d66]">
+                Send us your requirement
               </p>
-            </div>
+            </a>
 
             {/* Hours */}
-            <div className="group rounded-3xl border border-[#e4dfcf] bg-white p-7 shadow-[0_12px_40px_rgba(30,60,30,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(30,60,30,0.11)]">
-              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#edf4e9] text-[#225b27] transition-colors group-hover:bg-[#1f5a24] group-hover:text-white">
-                <Clock3 size={25} strokeWidth={1.8} />
+            <div className="group rounded-[18px] border border-[#e3dfd1] bg-white p-6 shadow-[0_8px_28px_rgba(35,55,30,0.045)]">
+              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#edf3e9] text-[#285c24]">
+                <Clock3 size={19} strokeWidth={1.5} />
               </div>
 
-              <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-[#b08c2c]">
+              <p className="mt-5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#b08b30]">
                 Working Hours
               </p>
 
-              <h3 className="text-lg font-bold text-[#173b1b]">
+              <h3 className="mt-1 font-serif text-[19px] font-bold text-[#173b1b]">
                 Business Hours
               </h3>
 
-              <p className="mt-2 text-sm leading-6 text-[#62665e]">
+              <p className="mt-1 text-[11px] leading-5 text-[#686d66]">
                 Monday - Saturday
                 <br />
                 9:00 AM - 6:00 PM
@@ -176,245 +234,297 @@ export default function ContactPage() {
       </section>
 
       {/* =========================================================
-          MAIN CONTACT SECTION
+          CONTACT FORM
       ========================================================= */}
-      <section className="relative overflow-hidden bg-[#173f1b] py-20 md:py-24">
-        {/* Decorative circles */}
-        <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full border border-[#c9a63d]/20" />
-        <div className="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full border border-[#c9a63d]/10" />
 
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="grid items-start gap-12 lg:grid-cols-[0.85fr_1.15fr]">
+      <section className="relative overflow-hidden bg-[#173f1b] py-16 md:py-20">
+        <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full border border-[#d2b450]/15" />
 
-            {/* LEFT INFORMATION */}
-            <div className="text-white">
-              <div className="mb-6 flex items-center gap-3">
-                <span className="h-px w-10 bg-[#d0aa42]" />
+        <div className="pointer-events-none absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full border border-[#d2b450]/10" />
 
-                <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#e1bd56]">
-                  Connect With Mahadal
+        <div className="relative mx-auto max-w-[1250px] px-5 sm:px-8 lg:px-10">
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+
+            {/* LEFT */}
+            <div className="flex flex-col justify-center text-white">
+              <div className="flex items-center gap-3">
+                <span className="h-px w-10 bg-[#d4b451]" />
+
+                <span className="text-[9px] font-bold uppercase tracking-[0.23em] text-[#dfc263]">
+                  Connect With Us
                 </span>
               </div>
 
-              <h2 className="font-serif text-4xl font-bold leading-tight md:text-5xl">
-                Quality rice starts
-                <span className="block text-[#e1bd56]">
-                  with a conversation.
+              <h2 className="mt-5 font-serif text-[37px] font-bold leading-[1.08] sm:text-[45px]">
+                We&apos;re here to
+                <span className="block text-[#dfc263]">
+                  help you.
                 </span>
               </h2>
 
-              <p className="mt-6 max-w-xl text-base leading-7 text-white/70">
-                Tell us what you are looking for. Our team can help you with
-                product information, bulk requirements, distribution enquiries,
-                and other business-related questions.
+              <p className="mt-5 max-w-[480px] text-[12px] leading-6 text-white/60 sm:text-[13px]">
+                Share your requirement with us and our team will get back to
+                you regarding products, bulk orders, distribution and other
+                business enquiries.
               </p>
 
-              {/* Information list */}
-              <div className="mt-10 space-y-6">
+              <div className="mt-9 space-y-6">
 
                 <div className="flex gap-4">
-                  <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#d0aa42]/40 text-[#e1bd56]">
-                    <Factory size={18} />
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#d4b451]/30 text-[#dfc263]">
+                    <Factory size={17} />
                   </div>
 
                   <div>
-                    <h3 className="font-semibold text-white">
+                    <h3 className="text-sm font-semibold">
                       Rice Processing & Supply
                     </h3>
 
-                    <p className="mt-1 text-sm leading-6 text-white/60">
-                      Quality-focused rice processing and product supply for
-                      customers and business requirements.
+                    <p className="mt-1 text-[11px] leading-5 text-white/50">
+                      Quality-focused processing and dependable supply for
+                      different customer requirements.
                     </p>
                   </div>
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#d0aa42]/40 text-[#e1bd56]">
-                    <Wheat size={18} />
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#d4b451]/30 text-[#dfc263]">
+                    <Wheat size={17} />
                   </div>
 
                   <div>
-                    <h3 className="font-semibold text-white">
-                      Rice Products
+                    <h3 className="text-sm font-semibold">
+                      Product Enquiries
                     </h3>
 
-                    <p className="mt-1 text-sm leading-6 text-white/60">
-                      Explore our range of Mahadal rice products and packaging
-                      options for your requirements.
+                    <p className="mt-1 text-[11px] leading-5 text-white/50">
+                      Get information about our rice varieties, packaging and
+                      availability.
                     </p>
                   </div>
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#d0aa42]/40 text-[#e1bd56]">
-                    <MessageCircle size={18} />
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#d4b451]/30 text-[#dfc263]">
+                    <MessageCircle size={17} />
                   </div>
 
                   <div>
-                    <h3 className="font-semibold text-white">
+                    <h3 className="text-sm font-semibold">
                       Business Enquiries
                     </h3>
 
-                    <p className="mt-1 text-sm leading-6 text-white/60">
+                    <p className="mt-1 text-[11px] leading-5 text-white/50">
                       Contact us for bulk orders, distribution and partnership
-                      enquiries.
+                      opportunities.
                     </p>
                   </div>
                 </div>
 
               </div>
 
-              {/* Call CTA */}
-              <div className="mt-10">
-                <a
-                  href="tel:+912385252063"
-                  className="inline-flex items-center gap-3 rounded-full border border-[#d0aa42]/50 px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[#d0aa42] hover:text-[#173f1b]"
-                >
-                  <Phone size={17} />
-                  Call Customer Care
-                  <ArrowRight size={17} />
-                </a>
-              </div>
+              <a
+                href="tel:+912385252063"
+                className="mt-9 inline-flex w-fit items-center gap-3 rounded-xl border border-[#d4b451]/40 px-5 py-3 text-[11px] font-semibold transition-all hover:bg-[#d4b451] hover:text-[#173f1b]"
+              >
+                <Phone size={15} />
+                Call Customer Care
+                <ArrowRight size={15} />
+              </a>
             </div>
 
             {/* FORM */}
-            <div className="rounded-[2rem] bg-[#fdfcf7] p-6 shadow-2xl md:p-9 lg:p-10">
-              <div className="mb-8">
-                <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#b08c2c]">
+            <div className="rounded-[22px] bg-[#fdfcf7] p-6 shadow-[0_25px_70px_rgba(0,0,0,0.18)] sm:p-8 lg:p-9">
+
+              <div className="mb-7">
+                <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-[#b08c2c]">
                   Send An Enquiry
                 </p>
 
-                <h3 className="mt-2 font-serif text-3xl font-bold text-[#173b1b]">
+                <h3 className="mt-2 font-serif text-[28px] font-bold text-[#173b1b]">
                   How can we help?
                 </h3>
 
-                <p className="mt-2 text-sm leading-6 text-[#6a6d66]">
-                  Fill in the details below and our team will contact you.
+                <p className="mt-2 text-[11px] leading-5 text-[#6a6d66]">
+                  Fill in the details below and our team will get back to you.
                 </p>
               </div>
 
-              {submitted && (
-                <div className="mb-6 flex items-start gap-3 rounded-2xl border border-green-200 bg-green-50 p-4 text-sm text-green-800">
-                  <CheckCircle2 className="mt-0.5 shrink-0" size={18} />
+              {/* SUCCESS */}
+              {status === "success" && (
+                <div className="mb-6 flex gap-3 rounded-xl border border-green-200 bg-green-50 p-4">
+                  <CheckCircle2
+                    size={19}
+                    className="mt-0.5 shrink-0 text-green-700"
+                  />
 
                   <div>
-                    <p className="font-semibold">
-                      Thank you for contacting Mahadal.
+                    <p className="text-[12px] font-bold text-green-800">
+                      Enquiry sent successfully.
                     </p>
 
-                    <p className="mt-1 text-green-700">
-                      Your enquiry has been received.
+                    <p className="mt-1 text-[10px] leading-5 text-green-700">
+                      Thank you for contacting Mahadal. Our team will get back
+                      to you shortly.
                     </p>
                   </div>
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-5">
+              {/* ERROR */}
+              {status === "error" && (
+                <div className="mb-6 rounded-xl border border-red-200 bg-red-50 p-4 text-[11px] text-red-700">
+                  <p className="font-bold">
+                    Unable to send your enquiry.
+                  </p>
 
-                <div className="grid gap-5 md:grid-cols-2">
+                  <p className="mt-1">
+                    Please try again or contact us directly by phone.
+                  </p>
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-4">
+
+                <div className="grid gap-4 sm:grid-cols-2">
 
                   <div>
-                    <label className="mb-2 block text-sm font-semibold text-[#243d26]">
-                      Your Name
+                    <label
+                      htmlFor="name"
+                      className="mb-1.5 block text-[11px] font-semibold text-[#243d26]"
+                    >
+                      Your Name *
                     </label>
 
                     <input
+                      id="name"
                       type="text"
                       name="name"
                       required
+                      minLength={2}
                       placeholder="Enter your name"
-                      className="h-13 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-sm text-[#173b1b] outline-none transition focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10"
+                      className="h-12 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-[12px] text-[#173b1b] outline-none transition focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10"
                     />
                   </div>
 
                   <div>
-                    <label className="mb-2 block text-sm font-semibold text-[#243d26]">
-                      Phone Number
+                    <label
+                      htmlFor="phone"
+                      className="mb-1.5 block text-[11px] font-semibold text-[#243d26]"
+                    >
+                      Phone Number *
                     </label>
 
                     <input
+                      id="phone"
                       type="tel"
                       name="phone"
                       required
                       placeholder="Enter phone number"
-                      className="h-13 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-sm text-[#173b1b] outline-none transition focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10"
+                      className="h-12 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-[12px] text-[#173b1b] outline-none transition focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10"
                     />
                   </div>
 
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-semibold text-[#243d26]">
+                  <label
+                    htmlFor="email"
+                    className="mb-1.5 block text-[11px] font-semibold text-[#243d26]"
+                  >
                     Email Address
                   </label>
 
                   <input
+                    id="email"
                     type="email"
                     name="email"
                     placeholder="Enter your email"
-                    className="h-13 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-sm text-[#173b1b] outline-none transition focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10"
+                    className="h-12 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-[12px] text-[#173b1b] outline-none transition focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10"
                   />
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-semibold text-[#243d26]">
-                    Enquiry Type
+                  <label
+                    htmlFor="enquiry"
+                    className="mb-1.5 block text-[11px] font-semibold text-[#243d26]"
+                  >
+                    Enquiry Type *
                   </label>
 
                   <select
+                    id="enquiry"
                     name="enquiry"
                     defaultValue=""
                     required
-                    className="h-13 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-sm text-[#173b1b] outline-none transition focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10"
+                    className="h-12 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-[12px] text-[#173b1b] outline-none transition focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10"
                   >
                     <option value="" disabled>
                       Select an enquiry type
                     </option>
 
-                    <option value="product">
+                    <option value="Product Enquiry">
                       Product Enquiry
                     </option>
 
-                    <option value="bulk">
+                    <option value="Bulk Order">
                       Bulk Order
                     </option>
 
-                    <option value="distribution">
+                    <option value="Distribution">
                       Distribution
                     </option>
 
-                    <option value="business">
+                    <option value="Business Partnership">
                       Business Partnership
                     </option>
 
-                    <option value="other">
+                    <option value="Other">
                       Other
                     </option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-semibold text-[#243d26]">
-                    Message
+                  <label
+                    htmlFor="message"
+                    className="mb-1.5 block text-[11px] font-semibold text-[#243d26]"
+                  >
+                    Message *
                   </label>
 
                   <textarea
+                    id="message"
                     name="message"
                     required
+                    minLength={10}
                     rows={5}
                     placeholder="Tell us about your requirement..."
-                    className="w-full resize-none rounded-xl border border-[#ddd9ca] bg-white px-4 py-3 text-sm text-[#173b1b] outline-none transition focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10"
+                    className="w-full resize-none rounded-xl border border-[#ddd9ca] bg-white px-4 py-3 text-[12px] text-[#173b1b] outline-none transition focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="flex w-full items-center justify-center gap-3 rounded-xl bg-[#1f5a24] px-6 py-4 text-sm font-bold text-white shadow-lg shadow-[#1f5a24]/15 transition-all hover:bg-[#17471c] hover:shadow-xl"
+                  disabled={status === "loading"}
+                  className="flex w-full items-center justify-center gap-3 rounded-xl bg-[#285c24] px-6 py-3.5 text-[12px] font-bold text-white shadow-[0_8px_20px_rgba(40,92,36,0.15)] transition-all hover:bg-[#1b4a17] disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  Send Enquiry
-                  <Send size={17} />
+                  {status === "loading" ? (
+                    <>
+                      <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                      Sending Enquiry...
+                    </>
+                  ) : (
+                    <>
+                      Send Enquiry
+                      <Send size={15} />
+                    </>
+                  )}
                 </button>
+
+                <p className="text-center text-[9px] leading-4 text-[#8a8d85]">
+                  Your information is used only to respond to your enquiry.
+                </p>
 
               </form>
             </div>
@@ -423,118 +533,40 @@ export default function ContactPage() {
       </section>
 
       {/* =========================================================
-          BUSINESS INFORMATION
+          LOCATION
       ========================================================= */}
-      <section className="bg-[#f8f6ee] py-20 md:py-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
 
-          <div className="mx-auto max-w-3xl text-center">
-            <div className="mb-4 flex items-center justify-center gap-3">
-              <span className="h-px w-10 bg-[#c5a03b]" />
+      <section className="bg-[#f8f6ee] py-16 md:py-20">
+        <div className="mx-auto max-w-[1250px] px-5 sm:px-8 lg:px-10">
 
-              <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#285c2b]">
-                Mahadal
-              </span>
+          <div className="grid overflow-hidden rounded-[22px] border border-[#dedacd] bg-white lg:grid-cols-[0.8fr_1.2fr]">
 
-              <span className="h-px w-10 bg-[#c5a03b]" />
-            </div>
-
-            <h2 className="font-serif text-4xl font-bold text-[#173b1b] md:text-5xl">
-              We&apos;re Here To Help
-            </h2>
-
-            <p className="mt-5 text-base leading-7 text-[#686c64]">
-              From choosing the right rice product to discussing bulk
-              requirements and business opportunities, our team is ready to
-              assist you.
-            </p>
-          </div>
-
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
-
-            <div className="rounded-3xl border border-[#e3decd] bg-white p-8 text-center">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#edf4e9] text-[#285f2b]">
-                <Wheat size={24} />
+            <div className="flex flex-col justify-center p-7 sm:p-10 lg:p-12">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#edf3e9] text-[#285c24]">
+                <MapPin size={21} />
               </div>
 
-              <h3 className="mt-5 text-lg font-bold text-[#173b1b]">
-                Product Enquiries
-              </h3>
-
-              <p className="mt-3 text-sm leading-6 text-[#6a6d66]">
-                Want to know more about our rice products, packaging or
-                availability? Get in touch with us.
-              </p>
-            </div>
-
-            <div className="rounded-3xl border border-[#e3decd] bg-white p-8 text-center">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#edf4e9] text-[#285f2b]">
-                <Factory size={24} />
-              </div>
-
-              <h3 className="mt-5 text-lg font-bold text-[#173b1b]">
-                Bulk Requirements
-              </h3>
-
-              <p className="mt-3 text-sm leading-6 text-[#6a6d66]">
-                Discuss your bulk rice requirements with our team and find
-                suitable solutions for your business.
-              </p>
-            </div>
-
-            <div className="rounded-3xl border border-[#e3decd] bg-white p-8 text-center">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#edf4e9] text-[#285f2b]">
-                <MessageCircle size={24} />
-              </div>
-
-              <h3 className="mt-5 text-lg font-bold text-[#173b1b]">
-                Partnerships
-              </h3>
-
-              <p className="mt-3 text-sm leading-6 text-[#6a6d66]">
-                Interested in distribution or working with Mahadal? Let&apos;s
-                start a conversation.
-              </p>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================
-          LOCATION / MAP
-      ========================================================= */}
-      <section className="border-t border-[#e4dfcf] bg-white py-16">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
-
-          <div className="grid overflow-hidden rounded-[2rem] border border-[#ddd9ca] bg-[#f8f6ee] lg:grid-cols-[0.8fr_1.2fr]">
-
-            <div className="flex flex-col justify-center p-8 md:p-12">
-
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#1f5a24] text-white">
-                <MapPin size={25} />
-              </div>
-
-              <p className="mt-7 text-xs font-bold uppercase tracking-[0.2em] text-[#b08c2c]">
+              <p className="mt-6 text-[9px] font-bold uppercase tracking-[0.2em] text-[#b08c2c]">
                 Find Us
               </p>
 
-              <h2 className="mt-2 font-serif text-3xl font-bold text-[#173b1b] md:text-4xl">
+              <h2 className="mt-2 font-serif text-[30px] font-bold text-[#173b1b] sm:text-[35px]">
                 Our Location
               </h2>
 
-              <p className="mt-4 max-w-md text-sm leading-7 text-[#686c64]">
-                Mahadal is based in Udgir, Maharashtra. Contact our team for
-                directions, business enquiries and further information.
+              <p className="mt-4 max-w-md text-[12px] leading-6 text-[#686c64]">
+                Mahadal is based in Udgir, Maharashtra. Get in touch with our
+                team for business enquiries, directions and further
+                information.
               </p>
 
-              <div className="mt-7 flex items-start gap-3">
+              <div className="mt-6 flex items-start gap-3">
                 <MapPin
-                  size={19}
-                  className="mt-1 shrink-0 text-[#285f2b]"
+                  size={17}
+                  className="mt-1 shrink-0 text-[#285c24]"
                 />
 
-                <p className="text-sm font-medium leading-6 text-[#394238]">
+                <p className="text-[12px] font-medium leading-5 text-[#394238]">
                   Udgir,
                   <br />
                   Maharashtra - 413517,
@@ -547,19 +579,18 @@ export default function ContactPage() {
                 href="https://www.google.com/maps/search/?api=1&query=Udgir%2C%20Maharashtra%20413517"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-[#1f5a24] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#17471c]"
+                className="mt-7 inline-flex w-fit items-center gap-2 rounded-xl bg-[#285c24] px-5 py-3 text-[11px] font-semibold text-white transition hover:bg-[#1b4a17]"
               >
                 Get Directions
-                <ArrowRight size={16} />
+                <ArrowRight size={14} />
               </a>
             </div>
 
-            {/* Map Placeholder */}
-            <div className="relative min-h-[380px] overflow-hidden bg-[#e9e6d9]">
+            <div className="relative min-h-[330px] bg-[#e9e6d9]">
               <iframe
-                title="Mahadal Location"
+                title="Mahadal Rice Mill Location"
                 src="https://www.google.com/maps?q=Udgir,Maharashtra,India&output=embed"
-                className="absolute inset-0 h-full w-full border-0 grayscale-[20%]"
+                className="absolute inset-0 h-full w-full border-0"
                 loading="lazy"
               />
             </div>
@@ -567,41 +598,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-
-      {/* =========================================================
-          FINAL CTA
-      ========================================================= */}
-      <section className="relative overflow-hidden bg-[#d1ad45] py-14">
-        <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full border border-white/20" />
-
-        <div className="relative mx-auto flex max-w-7xl flex-col items-center justify-between gap-7 px-6 text-center md:flex-row md:text-left lg:px-10">
-
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#355423]">
-              Have A Requirement?
-            </p>
-
-            <h2 className="mt-2 font-serif text-3xl font-bold text-[#173b1b] md:text-4xl">
-              Let&apos;s build a connection around quality rice.
-            </h2>
-          </div>
-
-          <a
-            href="tel:+912385252063"
-            className="inline-flex shrink-0 items-center gap-3 rounded-full bg-[#173f1b] px-7 py-4 text-sm font-bold text-white transition-all hover:bg-[#0f2d13] hover:shadow-xl"
-          >
-            <Phone size={18} />
-            Contact Mahadal
-            <ArrowRight size={17} />
-          </a>
-
-        </div>
-      </section>
-
-      {/* =========================================================
-          FOOTER
-      ========================================================= */}
-      <Footer />
     </main>
   );
 }

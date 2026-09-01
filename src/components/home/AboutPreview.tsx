@@ -1,167 +1,113 @@
-"use client";
-
-import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 import {
   ArrowRight,
   CheckCircle2,
   Wheat,
-  Factory,
-  ShieldCheck,
 } from "lucide-react";
 
 const highlights = [
-  "Premium quality rice",
-  "Modern milling technology",
-  "Strict quality control",
+  "Carefully selected quality paddy",
+  "Modern and hygienic milling process",
+  "Consistent quality in every batch",
+  "Focused on purity and customer trust",
 ];
 
 export default function AboutPreview() {
   return (
-    <section className="relative overflow-hidden bg-[#f8f5ea]">
-      {/* =========================================================
-          DECORATIVE BACKGROUND
-      ========================================================= */}
-
-      <div className="pointer-events-none absolute -left-24 top-20 opacity-[0.035]">
+    <section className="relative overflow-hidden bg-[#f5f0df]">
+      {/* Decorative grain mark */}
+      <div className="pointer-events-none absolute -right-20 top-10 opacity-[0.035]">
         <Wheat
-          size={330}
-          strokeWidth={0.7}
-          className="rotate-[-18deg] text-[#285c24]"
+          size={280}
+          strokeWidth={0.8}
+          className="rotate-[20deg] text-[#285c24]"
         />
       </div>
 
-      <div className="pointer-events-none absolute -right-24 bottom-0 opacity-[0.035]">
-        <Wheat
-          size={330}
-          strokeWidth={0.7}
-          className="rotate-[18deg] text-[#285c24]"
-        />
-      </div>
-
-      {/* =========================================================
-          MAIN CONTAINER
-      ========================================================= */}
-
-      <div className="relative z-10 mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:px-12 lg:py-[100px]">
+      <div className="relative z-10 mx-auto max-w-[1400px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-[90px]">
         <div className="grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
 
           {/* =====================================================
-              LEFT — IMAGE
+              IMAGE
           ===================================================== */}
 
-          <motion.div
-            initial={{ opacity: 0, x: -35 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.75 }}
-            className="relative mx-auto w-full max-w-[590px]"
-          >
-            {/* Gold offset frame */}
-            <div className="absolute -bottom-4 -left-4 h-full w-full rounded-[20px] border border-[#c5a448]/50 sm:-bottom-5 sm:-left-5" />
-
-            {/* Main image */}
-            <div className="relative aspect-[4/4.5] overflow-hidden rounded-[20px] bg-[#d9d2b9] shadow-[0_20px_50px_rgba(30,55,25,0.12)]">
-              <img
-                src="/images/about/rice-mill.jpg"
-                alt="Rice mill processing facility"
-                className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
-              />
+          <div className="relative">
+            <div className="relative overflow-hidden rounded-[18px] border border-[#ddd4ba] bg-[#e8dfc6] shadow-[0_15px_40px_rgba(40,50,25,0.08)]">
+              <div className="relative aspect-[4/3]">
+                <Image
+                  src="/images/about/rice-mill.jpg"
+                  alt="Mahadal rice mill"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
 
               {/* Image overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#123d12]/60 via-transparent to-transparent" />
-
-              {/* Image label */}
-              <div className="absolute bottom-5 left-5 right-5">
-                <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/20 px-4 py-2 backdrop-blur-md">
-                  <Factory
-                    size={14}
-                    strokeWidth={1.5}
-                    className="text-[#e3c45b]"
-                  />
-
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white">
-                    Modern Rice Processing
-                  </span>
-                </div>
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#173c17]/35 via-transparent to-transparent" />
             </div>
 
             
-          </motion.div>
+          </div>
 
           {/* =====================================================
-              RIGHT — CONTENT
+              CONTENT
           ===================================================== */}
 
-          <motion.div
-            initial={{ opacity: 0, x: 35 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.75 }}
-            className="lg:pl-3"
-          >
+          <div className="lg:pl-2">
+
             {/* Eyebrow */}
-            <div className="mb-5 flex items-center gap-3">
-              <span className="h-px w-10 bg-[#b59438]" />
 
-              <div className="flex items-center gap-2">
-                <Wheat
-                  size={14}
-                  strokeWidth={1.4}
-                  className="text-[#b59438]"
-                />
+            <div className="mb-4 flex items-center gap-3">
+              <span className="h-px w-10 bg-[#b18b2c]" />
 
-                <span className="text-[10px] font-bold uppercase tracking-[0.27em] text-[#285c24]">
-                  About Our Rice Mill
-                </span>
-              </div>
+              <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#285c24]">
+                About Mahadal
+              </span>
             </div>
 
             {/* Heading */}
-            <h2 className="max-w-[650px] font-serif text-[40px] font-bold leading-[1.08] tracking-[-0.035em] text-[#172c18] sm:text-[48px] lg:text-[53px]">
-              Tradition in Every Grain,
-              <span className="block text-[#285c24]">
-                Technology in Every Step.
+
+            <h2 className="max-w-[650px] font-serif text-[38px] font-bold leading-[1.08] tracking-[-0.035em] text-[#172c18] sm:text-[46px] lg:text-[52px]">
+              Good Rice Begins With{" "}
+              <span className="text-[#285c24]">
+                Good Grain
               </span>
             </h2>
 
-            {/* Gold divider */}
-            <div className="mt-6 flex items-center gap-2">
-              <div className="h-[3px] w-12 rounded-full bg-[#c5a448]" />
-              <div className="h-[3px] w-2 rounded-full bg-[#c5a448]/40" />
-            </div>
+            {/* Description */}
 
-            {/* Paragraph */}
-            <p className="mt-6 max-w-[650px] text-[14px] leading-7 text-[#5b6058] sm:text-[15px]">
-              Our rice mill combines years of experience with modern
-              processing technology to deliver rice that meets the highest
-              standards of quality, purity and consistency.
+            <p className="mt-5 max-w-[620px] text-[13px] leading-6 text-[#565c55] sm:text-[14px] sm:leading-7">
+              Mahadal is committed to bringing quality rice from carefully
+              selected paddy to homes and businesses. Our approach combines
+              responsible sourcing, modern milling and careful quality
+              control to deliver rice you can depend on.
             </p>
 
-            <p className="mt-4 max-w-[650px] text-[13px] leading-6 text-[#73776e]">
-              From carefully selected paddy to the final polished grain,
-              every stage of our process is handled with precision and care.
-              Our commitment is simple — provide wholesome rice that families
-              and businesses can trust.
+            <p className="mt-3 max-w-[620px] text-[13px] leading-6 text-[#565c55] sm:text-[14px] sm:leading-7">
+              Every batch is handled with attention to cleanliness,
+              consistency and purity, because we believe quality should be
+              something you can see, cook and trust.
             </p>
 
             {/* =================================================
                 HIGHLIGHTS
             ================================================= */}
 
-            <div className="mt-7 grid gap-3 sm:grid-cols-3">
+            <div className="mt-7 grid gap-3 sm:grid-cols-2">
               {highlights.map((item) => (
                 <div
                   key={item}
-                  className="flex items-center gap-2"
+                  className="flex items-start gap-2.5"
                 >
                   <CheckCircle2
-                    size={17}
-                    strokeWidth={1.8}
-                    className="shrink-0 text-[#285c24]"
+                    size={16}
+                    strokeWidth={1.7}
+                    className="mt-0.5 shrink-0 text-[#285c24]"
                   />
 
-                  <span className="text-[11px] font-semibold leading-4 text-[#394039]">
+                  <span className="text-[11px] font-medium leading-5 text-[#343a34]">
                     {item}
                   </span>
                 </div>
@@ -169,58 +115,11 @@ export default function AboutPreview() {
             </div>
 
             {/* =================================================
-                QUALITY BOX
+                BUTTON
             ================================================= */}
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-[13px] border border-[#e1dac8] bg-white/65 p-4">
-                <div className="flex items-start gap-3">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#edf3e9]">
-                    <ShieldCheck
-                      size={18}
-                      strokeWidth={1.5}
-                      className="text-[#285c24]"
-                    />
-                  </div>
-
-                  <div>
-                    <h3 className="text-[12px] font-bold text-[#1e321f]">
-                      Quality First
-                    </h3>
-
-                    <p className="mt-1 text-[10px] leading-4 text-[#70746c]">
-                      Every batch undergoes careful quality inspection.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="rounded-[13px] border border-[#e1dac8] bg-white/65 p-4">
-                <div className="flex items-start gap-3">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#edf3e9]">
-                    <Factory
-                      size={18}
-                      strokeWidth={1.5}
-                      className="text-[#285c24]"
-                    />
-                  </div>
-
-                  <div>
-                    <h3 className="text-[12px] font-bold text-[#1e321f]">
-                      Modern Processing
-                    </h3>
-
-                    <p className="mt-1 text-[10px] leading-4 text-[#70746c]">
-                      Efficient machinery ensures consistent results.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* CTA */}
             <div className="mt-8">
-              <a
+              <Link
                 href="/about"
                 className="
                   group
@@ -232,29 +131,29 @@ export default function AboutPreview() {
                   px-6
                   py-3.5
                   text-[12px]
-                  font-semibold
+                  font-bold
                   text-white
-                  shadow-[0_8px_20px_rgba(40,92,36,0.16)]
+                  shadow-[0_8px_20px_rgba(40,92,36,0.15)]
                   transition-all
-                  duration-300
+                  duration-200
                   hover:-translate-y-0.5
-                  hover:bg-[#1b4a17]
+                  hover:bg-[#174719]
                 "
               >
-                Discover Our Story
+                Learn More About Us
 
                 <ArrowRight
-                  size={16}
-                  className="transition-transform duration-300 group-hover:translate-x-1"
+                  size={15}
+                  className="transition-transform duration-200 group-hover:translate-x-1"
                 />
-              </a>
+              </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 
       {/* Bottom separator */}
-      <div className="h-[1px] bg-[#d9d2be]" />
+      <div className="h-px bg-[#ddd4ba]" />
     </section>
   );
 }
