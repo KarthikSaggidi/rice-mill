@@ -14,83 +14,83 @@ import {
 const galleryItems = [
   {
     id: 1,
-    title: "Quality Paddy Selection",
-    category: "Raw Paddy",
+    title: "Raw Pulse Selection",
+    category: "Raw Harvest",
     image: "/images/gallery/paddy-selection.jpg",
     description:
-      "Carefully selected paddy forms the foundation of our rice processing. We focus on good grain quality, maturity and consistency before the milling process begins.",
+      "Carefully graded whole pulses form the foundation of our processing. We inspect grain health, moisture levels, and pod maturity before the cleaning and dehulling stages begin.",
     icon: Wheat,
   },
   {
     id: 2,
-    title: "Paddy Fields",
+    title: "Pulse Cultivation Belts",
     category: "From the Fields",
     image: "/images/gallery/paddy-fields.jpg",
     description:
-      "Our journey begins with quality paddy sourced from agricultural regions. Proper sourcing helps us maintain consistency throughout the processing cycle.",
+      "Our journey begins with top-grade legumes sourced directly from trusted farming communities. Direct farm linkages ensure origin traceability and uncompromised raw grain quality.",
     icon: Leaf,
   },
   {
     id: 3,
-    title: "Modern Rice Mill",
+    title: "Modern Pulse Mill",
     category: "Our Facility",
     image: "/images/gallery/rice-mill.jpg",
     description:
-      "Our milling facility is designed to support efficient and controlled rice processing while maintaining cleanliness and product quality.",
+      "Our processing infrastructure is equipped with state-of-the-art machinery designed for gentle dehulling, split-dal processing, and complete dust-free hygienic handling.",
     icon: Factory,
   },
   {
     id: 4,
-    title: "Rice Processing",
-    category: "Milling Process",
+    title: "Advanced Sortex Cleaning",
+    category: "Sorting & Grading",
     image: "/images/gallery/rice-processing.jpg",
     description:
-      "Modern milling equipment helps process paddy with precision, separating impurities and unwanted materials while protecting the quality of the grain.",
+      "Precision optical color sorters and gravity separators eliminate discolored grains, foreign matter, and chalky seeds while safeguarding the natural shape and nutrient profile.",
     icon: Factory,
   },
   {
     id: 5,
-    title: "Clean & Processed Rice",
-    category: "Finished Grain",
+    title: "Pure & Unpolished Dal",
+    category: "Finished Dal",
     image: "/images/gallery/processed-rice.jpg",
     description:
-      "After processing and quality checks, the finished rice is prepared to meet the expected standards of cleanliness, appearance and consistency.",
+      "After rigorous grading, the finished split dals and whole grams are prepared without artificial oils or water polish, preserving pure protein, aroma, and authentic taste.",
     icon: Wheat,
   },
   {
     id: 6,
-    title: "Rice Packing",
+    title: "Hygienic Packaging",
     category: "Packaging",
     image: "/images/gallery/rice-packing.jpg",
     description:
-      "Finished rice is carefully packed to maintain product quality and ensure that it reaches customers in clean and suitable condition.",
+      "Finished pulses are moisture-sealed and packaged in food-grade materials to preserve freshness, natural fiber, and nutritional integrity right up to the customer's kitchen.",
     icon: Package,
   },
   {
     id: 7,
-    title: "Bulk Rice Supply",
+    title: "Bulk Pulse Supply",
     category: "Distribution",
     image: "/images/gallery/bulk-rice.jpg",
     description:
-      "We support bulk and commercial requirements with organized packing and dependable order handling for retailers, distributors and other buyers.",
+      "We cater to institutional, retail, and wholesale pulse demands with standardized bulk bag packaging (25kg, 30kg, 50kg) and dependable logistics fulfillment.",
     icon: Package,
   },
   {
     id: 8,
-    title: "Grain Quality",
+    title: "Grain Quality & Lab Testing",
     category: "Quality Assurance",
     image: "/images/gallery/rice-grains.jpg",
     description:
-      "Quality remains an important part of our process. Rice is checked for appearance, cleanliness, consistency and overall grain quality.",
+      "Every batch undergoes stringent quality evaluation for uniform grain size, high protein count, minimal broken percentage, and zero foreign adulterants.",
     icon: Wheat,
   },
   {
     id: 9,
-    title: "Our Rice Mill",
+    title: "Our Processing Plant",
     category: "Our Journey",
     image: "/images/gallery/factory.jpg",
     description:
-      "Our rice mill brings together agricultural sourcing, modern processing and careful quality practices to deliver dependable rice products.",
+      "Our processing facility integrates traditional grain wisdom, modern sortex technologies, and food-safe quality practices to deliver nutritious, dependable pulses.",
     icon: Factory,
   },
 ];
@@ -221,8 +221,8 @@ export default function GalleryPage() {
                 sm:text-[14px]
               "
             >
-              Explore our fields, milling facility, processing practices,
-              finished grains and the people and processes behind our rice.
+              Explore our farm sourcing, modern pulse processing facility, optical
+              sorting standards, finished unpolished dals, and the dedication behind every grain.
             </motion.p>
           </div>
         </section>
@@ -242,12 +242,12 @@ export default function GalleryPage() {
                 </p>
 
                 <h2 className="mt-1 font-serif text-[27px] font-bold text-[#1c341d] sm:text-[31px]">
-                  From Paddy to Finished Grain
+                  From Harvest to Nutritious Dal
                 </h2>
               </div>
 
               <p className="max-w-[430px] text-[10px] leading-5 text-[#777b72] sm:text-right">
-                Click any image to learn more about the work, process and
+                Click any image to learn more about the sourcing, processing, and
                 quality practices represented in each photograph.
               </p>
             </div>
@@ -448,13 +448,13 @@ export default function GalleryPage() {
             </div>
 
             <h2 className="mt-4 font-serif text-[25px] font-bold text-[#1c341d]">
-              Quality Begins at the Source
+              Pure Quality Begins at the Source
             </h2>
 
             <p className="mx-auto mt-3 max-w-[650px] text-[11px] leading-5 text-[#6d726a]">
-              Every image reflects a part of our journey — from carefully
-              selected paddy and modern milling to quality inspection,
-              packaging and dependable supply.
+              Every image reflects a part of our journey — from ethically
+              sourced raw pulses and gentle processing to sortex grading,
+              hygienic packaging, and reliable distribution.
             </p>
           </div>
         </section>
@@ -713,9 +713,9 @@ export default function GalleryPage() {
                           leading-5
                           text-[#73776f]
                         ">
-                          We combine careful sourcing, controlled processing
-                          and quality-focused practices to maintain reliable
-                          rice quality from beginning to end.
+                          We combine careful crop sourcing, advanced dehulling,
+                          sortex grading, and nutrient-preserving practices to maintain
+                          wholesome, consistent pulse quality from beginning to end.
                         </p>
                       </div>
                     </div>

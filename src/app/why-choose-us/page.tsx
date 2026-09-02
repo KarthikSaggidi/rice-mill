@@ -16,62 +16,62 @@ import {
 const strengths = [
   {
     icon: Leaf,
-    title: "Quality Raw Materials",
+    title: "Quality Raw Harvest",
     description:
-      "We carefully select quality paddy to maintain the natural taste, texture and appearance of every grain.",
+      "We carefully source mature, high-grade raw pulses directly from trusted farming belts to preserve natural nutrients and flavor.",
   },
   {
     icon: Factory,
-    title: "Modern Processing",
+    title: "Modern Dal Processing",
     description:
-      "Our milling process combines modern equipment with careful handling to achieve consistent results.",
+      "Our processing combines advanced de-husking and split-milling technology with gentle handling to safeguard the natural grain shape.",
   },
   {
     icon: ShieldCheck,
-    title: "Strict Quality Checks",
+    title: "Strict Sortex Grading",
     description:
-      "Rice is checked at different stages to maintain cleanliness, consistency and overall product quality.",
+      "Every batch passes optical sorting and laboratory checks to eliminate foreign matter, discolored seeds, and impurities.",
   },
   {
     icon: PackageCheck,
-    title: "Careful Packing",
+    title: "Hygienic Packaging",
     description:
-      "Finished products are packed carefully to protect the rice and maintain its quality until delivery.",
+      "Finished dals and whole grams are packed in food-grade, moisture-resistant packaging to preserve aroma, texture, and freshness.",
   },
   {
     icon: Truck,
-    title: "Reliable Supply",
+    title: "Reliable Bulk Supply",
     description:
-      "We focus on dependable order processing and timely supply for customers and business requirements.",
+      "We ensure smooth logistics and on-schedule dispatches for wholesale buyers, retailers, institutional kitchens, and distributors.",
   },
   {
     icon: Handshake,
-    title: "Customer Focus",
+    title: "Customer & Farmer Trust",
     description:
-      "We value long-term relationships and work to understand and meet the requirements of every customer.",
+      "We build lasting relationships through fair farmer sourcing, transparent business practices, and reliable pulse quality.",
   },
 ];
 
 const qualitySteps = [
   {
     number: "01",
-    title: "Select",
-    description: "Quality paddy is carefully sourced and selected.",
+    title: "Procure",
+    description: "High-protein raw pulses are carefully inspected and sourced from trusted fields.",
   },
   {
     number: "02",
-    title: "Process",
-    description: "Modern milling methods are used with controlled processing.",
+    title: "Clean & Grade",
+    description: "Advanced pre-cleaners, destoners, and optical sortex sorters ensure 99.9% purity.",
   },
   {
     number: "03",
-    title: "Inspect",
-    description: "Rice is checked for cleanliness, appearance and consistency.",
+    title: "Process & Dehull",
+    description: "Gentle dehusking and split-milling maintain natural nutrients without artificial polish.",
   },
   {
     number: "04",
-    title: "Deliver",
-    description: "Carefully packed products are prepared for reliable supply.",
+    title: "Pack & Deliver",
+    description: "Sealed in food-grade packaging and dispatched through a dependable logistics network.",
   },
 ];
 
@@ -127,14 +127,13 @@ export default function WhyChooseUsPage() {
             </div>
 
             <h1 className="font-serif text-[38px] font-bold leading-[1.05] tracking-[-0.035em] text-[#173518] sm:text-[48px] lg:text-[56px]">
-              Quality Built on
+              Purity Built on
               <span className="text-[#285c24]"> Trust</span>
             </h1>
 
             <p className="mx-auto mt-4 max-w-[680px] text-[13px] leading-6 text-[#5f655c] sm:text-[14px]">
-              From carefully selected paddy to finished rice, every stage of
-              our work is focused on quality, consistency and dependable
-              service.
+              From farm-sourced legumes to sortex-cleaned, unpolished dals, every step
+              of our processing focuses on natural nutrition, zero adulteration, and dependable service.
             </p>
           </motion.div>
         </div>
@@ -164,20 +163,21 @@ export default function WhyChooseUsPage() {
               </div>
 
               <h2 className="font-serif text-[32px] font-bold leading-tight text-[#18351a] sm:text-[40px]">
-                Good Rice Starts With
+                Nutritious Pulses Start With
                 <span className="text-[#285c24]"> Good Practices</span>
               </h2>
 
               <p className="mt-5 text-[13px] leading-6 text-[#62675f]">
-                We believe quality is not achieved at just one stage of
-                production. It comes from paying attention to every part of
-                the process — from sourcing and cleaning to milling,
-                inspection and packing.
+                We believe true quality is not achieved at just one phase of
+                handling. It comes from paying attention to every stage of
+                the journey — from direct farm sourcing and optical sortex cleaning to
+                controlled dehulling, lab inspection, and moisture-sealed packaging.
               </p>
 
               <p className="mt-4 text-[13px] leading-6 text-[#62675f]">
-                Our focus is to provide rice that customers can rely on for
-                its quality, consistency and everyday performance.
+                Our priority is to provide unadulterated, wholesome pulses and dals that
+                homes and commercial partners can count on for authentic taste, high protein,
+                and uniform cooking performance.
               </p>
 
               <div className="mt-6 flex items-center gap-3">
@@ -191,11 +191,11 @@ export default function WhyChooseUsPage() {
 
                 <div>
                   <p className="text-[11px] font-bold text-[#203a21]">
-                    Quality First
+                    Purity First
                   </p>
 
                   <p className="mt-0.5 text-[10px] text-[#777b73]">
-                    Consistency in every batch
+                    Naturally unpolished in every batch
                   </p>
                 </div>
               </div>
@@ -211,12 +211,12 @@ export default function WhyChooseUsPage() {
             >
               <div className="grid gap-5 sm:grid-cols-2">
                 {[
-                  "Carefully selected paddy",
-                  "Controlled milling process",
-                  "Consistent grain quality",
-                  "Clean and careful handling",
-                  "Reliable packing standards",
-                  "Customer-focused service",
+                  "Carefully selected raw legumes",
+                  "Optical color-sorting technology",
+                  "Consistent grain size & purity",
+                  "Zero artificial colors or oil polish",
+                  "Food-grade packaging standards",
+                  "Dedicated bulk & wholesale support",
                 ].map((point) => (
                   <div key={point} className="flex items-start gap-3">
                     <CheckCircle2
@@ -261,12 +261,12 @@ export default function WhyChooseUsPage() {
             </div>
 
             <h2 className="font-serif text-[32px] font-bold text-[#18351a] sm:text-[40px]">
-              Why Customers Choose Us
+              Why Buyers & Kitchens Choose Us
             </h2>
 
             <p className="mt-3 text-[12px] leading-6 text-[#666b63] sm:text-[13px]">
-              A simple commitment to quality, careful processing and reliable
-              service guides everything we do.
+              A steadfast commitment to unpolished quality, hygienic handling, and
+              dependable supply chains guides everything we process.
             </p>
           </motion.div>
 
@@ -341,14 +341,14 @@ export default function WhyChooseUsPage() {
               </div>
 
               <h2 className="font-serif text-[32px] font-bold leading-tight text-[#18351a] sm:text-[40px]">
-                From Paddy to
-                <span className="text-[#285c24]"> Your Table</span>
+                From Harvest to
+                <span className="text-[#285c24]"> Wholesome Dal</span>
               </h2>
 
               <p className="mt-4 max-w-[450px] text-[12px] leading-6 text-[#666b63]">
-                Every stage has a purpose. Our process is designed to protect
-                the quality of the grain while delivering a consistent
-                finished product.
+                Every processing stage has a clear purpose. Our multi-tier cleaning and
+                grading cycle retains natural protein, protects seed vitality, and delivers
+                spotless, unpolished grains ready for cooking.
               </p>
             </motion.div>
 
@@ -387,8 +387,6 @@ export default function WhyChooseUsPage() {
           </div>
         </div>
       </section>
-
-     
 
       {/* Bottom separator */}
       <div className="h-px bg-[#dcd7c8]" />

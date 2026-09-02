@@ -1,41 +1,41 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Link from "next/link";
 import {
   ArrowRight,
   CheckCircle2,
   Factory,
-  Sprout,
-  Settings2,
-  SearchCheck,
   PackageCheck,
-  Wheat,
+  SearchCheck,
+  Settings2,
   ShieldCheck,
+  Sprout,
+  Wheat,
 } from "lucide-react";
 
 const processSteps = [
   {
     number: "01",
-    title: "Paddy Selection",
+    title: "Raw Material Selection",
     shortTitle: "Selection",
     description:
-      "Carefully selected paddy is sourced based on grain quality, maturity and natural characteristics.",
+      "Quality pulses are carefully selected based on size, maturity, cleanliness and overall raw material quality.",
     icon: Sprout,
   },
   {
     number: "02",
-    title: "Cleaning",
+    title: "Cleaning & Grading",
     shortTitle: "Cleaning",
     description:
-      "Paddy is thoroughly cleaned to remove dust, stones, husk and other unwanted impurities.",
+      "The raw material is thoroughly cleaned and graded to remove dust, stones, husk and other unwanted impurities.",
     icon: SearchCheck,
   },
   {
     number: "03",
-    title: "Modern Milling",
-    shortTitle: "Milling",
+    title: "Dal Processing",
+    shortTitle: "Processing",
     description:
-      "Advanced milling equipment processes the paddy with precision while protecting grain quality.",
+      "Modern processing equipment is used with controlled operations to maintain the quality and consistency of the pulses.",
     icon: Settings2,
   },
   {
@@ -43,7 +43,7 @@ const processSteps = [
     title: "Quality Inspection",
     shortTitle: "Inspection",
     description:
-      "Rice is carefully inspected for appearance, cleanliness, consistency and overall quality.",
+      "Processed dal is carefully inspected for cleanliness, appearance, consistency and overall product quality.",
     icon: CheckCircle2,
   },
   {
@@ -51,9 +51,16 @@ const processSteps = [
     title: "Packing & Dispatch",
     shortTitle: "Dispatch",
     description:
-      "Finished rice is securely packed and prepared for safe delivery to customers and distributors.",
+      "Finished products are hygienically packed and prepared for safe, reliable delivery to customers and distributors.",
     icon: PackageCheck,
   },
+];
+
+const processHighlights = [
+  "Carefully Selected Pulses",
+  "Modern Processing",
+  "Strict Quality Checks",
+  "Hygienic Packaging",
 ];
 
 export default function MillingProcess() {
@@ -89,14 +96,10 @@ export default function MillingProcess() {
             SECTION HEADER
         ======================================================= */}
 
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.55 }}
-          className="mx-auto max-w-[780px] text-center"
-        >
+        <div className="mx-auto max-w-[780px] text-center">
+
           {/* Eyebrow */}
+
           <div className="mb-5 flex items-center justify-center gap-3">
             <span className="h-px w-10 bg-[#b59438]" />
 
@@ -108,7 +111,7 @@ export default function MillingProcess() {
               />
 
               <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#285c24]">
-                Our Milling Process
+                Our Processing Process
               </span>
             </div>
 
@@ -116,18 +119,20 @@ export default function MillingProcess() {
           </div>
 
           {/* Heading */}
+
           <h2 className="font-serif text-[39px] font-bold leading-[1.06] tracking-[-0.035em] text-[#172c18] sm:text-[48px] lg:text-[54px]">
-            From Paddy to
-            <span className="text-[#285c24]"> Perfect Grain</span>
+            From Quality Pulses to
+            <span className="text-[#285c24]"> Quality Dal</span>
           </h2>
 
           {/* Description */}
-          <p className="mx-auto mt-5 max-w-[670px] text-[13px] leading-6 text-[#656a62] sm:text-[14px]">
-            Every grain passes through a carefully controlled process where
-            traditional knowledge meets modern milling technology to deliver
-            clean, consistent and quality rice.
+
+          <p className="mx-auto mt-5 max-w-[670px] text-[13px] leading-6 text-[#656a62] sm:text-[14px] sm:leading-7">
+            Every batch passes through a carefully controlled process where
+            quality sourcing, modern processing and careful inspection come
+            together to deliver clean, consistent and reliable pulses.
           </p>
-        </motion.div>
+        </div>
 
         {/* =======================================================
             PROCESS TIMELINE
@@ -135,32 +140,21 @@ export default function MillingProcess() {
 
         <div className="relative mx-auto mt-16 max-w-[1200px]">
 
-          {/* Desktop timeline line */}
+          {/* Desktop timeline base line */}
+
           <div className="absolute left-[9%] right-[9%] top-[31px] hidden h-px bg-[#d0c6a5] lg:block" />
 
-          {/* Animated line */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.1, ease: "easeOut" }}
-            className="absolute left-[9%] right-[9%] top-[31px] hidden h-px origin-left bg-[#285c24]/35 lg:block"
-          />
+          {/* Desktop timeline highlight */}
+
+          <div className="absolute left-[9%] right-[9%] top-[31px] hidden h-px bg-[#285c24]/30 lg:block" />
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
             {processSteps.map((step, index) => {
               const Icon = step.icon;
 
               return (
-                <motion.article
+                <article
                   key={step.number}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: index * 0.07,
-                  }}
                   className="group relative text-center"
                 >
                   {/* =================================================
@@ -201,11 +195,12 @@ export default function MillingProcess() {
                     {step.description}
                   </p>
 
-                  {/* Small mobile separator */}
+                  {/* Mobile separator */}
+
                   {index < processSteps.length - 1 && (
                     <div className="mx-auto mt-7 h-px w-10 bg-[#d8cfb6] sm:hidden" />
                   )}
-                </motion.article>
+                </article>
               );
             })}
           </div>
@@ -215,26 +210,13 @@ export default function MillingProcess() {
             QUALITY PROMISE
         ======================================================= */}
 
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.55 }}
-          className="
-            mx-auto
-            mt-16
-            max-w-[1080px]
-            overflow-hidden
-            rounded-[18px]
-            border
-            border-[#d8cfb2]
-            bg-[#fffdf6]
-            shadow-[0_8px_28px_rgba(40,55,30,0.04)]
-          "
-        >
+        <div className="mx-auto mt-16 max-w-[1080px] overflow-hidden rounded-[18px] border border-[#d8cfb2] bg-[#fffdf6] shadow-[0_8px_28px_rgba(40,55,30,0.04)]">
           <div className="grid lg:grid-cols-[1fr_auto]">
 
-            {/* Main commitment */}
+            {/* =================================================
+                MAIN COMMITMENT
+            ================================================= */}
+
             <div className="p-6 sm:p-8 lg:p-9">
               <div className="flex items-start gap-4 sm:gap-5">
 
@@ -256,17 +238,22 @@ export default function MillingProcess() {
                   </h3>
 
                   <p className="mt-2 max-w-[680px] text-[11px] leading-5 text-[#6b7067]">
-                    We focus on maintaining the natural quality of rice from
-                    the moment paddy enters our facility until the finished
-                    product reaches our customers.
+                    From raw material selection to final packing, we focus on
+                    cleanliness, consistency and careful handling so our dal
+                    and pulses maintain dependable quality throughout the
+                    process.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Facility highlight */}
+            {/* =================================================
+                FACILITY HIGHLIGHT
+            ================================================= */}
+
             <div className="border-t border-[#e4dece] bg-[#faf7eb] p-5 sm:px-8 lg:flex lg:min-w-[245px] lg:items-center lg:border-l lg:border-t-0 lg:px-8">
               <div className="flex items-center gap-4">
+
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#edf3e9]">
                   <Factory
                     size={21}
@@ -284,28 +271,18 @@ export default function MillingProcess() {
                     Processing Facility
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* =======================================================
             PROCESS HIGHLIGHTS
         ======================================================= */}
 
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, delay: 0.1 }}
-          className="mx-auto mt-8 flex max-w-[850px] flex-wrap items-center justify-center gap-x-7 gap-y-3"
-        >
-          {[
-            "Carefully Selected Paddy",
-            "Modern Processing",
-            "Strict Quality Checks",
-            "Safe Packaging",
-          ].map((item) => (
+        <div className="mx-auto mt-8 flex max-w-[850px] flex-wrap items-center justify-center gap-x-7 gap-y-3">
+          {processHighlights.map((item) => (
             <div
               key={item}
               className="flex items-center gap-2 text-[10px] font-medium text-[#62685f]"
@@ -316,23 +293,17 @@ export default function MillingProcess() {
                 className="text-[#285c24]"
               />
 
-              {item}
+              <span>{item}</span>
             </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* =======================================================
             CTA
         ======================================================= */}
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          className="mt-9 flex justify-center"
-        >
-          <a
+        <div className="mt-9 flex justify-center">
+          <Link
             href="/about"
             className="
               group
@@ -355,14 +326,14 @@ export default function MillingProcess() {
               hover:text-white
             "
           >
-            Learn More About Our Process
+            <span>Learn More About Our Process</span>
 
             <ArrowRight
               size={15}
               className="transition-transform duration-300 group-hover:translate-x-1"
             />
-          </a>
-        </motion.div>
+          </Link>
+        </div>
       </div>
 
       {/* =========================================================

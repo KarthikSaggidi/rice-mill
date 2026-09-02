@@ -29,28 +29,45 @@ export default function Navbar() {
   return (
     <header className="fixed left-0 right-0 top-0 z-[100]">
       <div className="mx-auto max-w-[1536px] px-4 pt-4 sm:px-6 lg:px-8 lg:pt-5">
-        <nav className="rounded-[18px] border border-white/70 bg-white/95 shadow-[0_10px_40px_rgba(20,50,20,0.12)] backdrop-blur-xl">
-
-          {/* =========================
+        <nav
+          aria-label="Main navigation"
+          className="
+            rounded-[18px]
+            border
+            border-white/70
+            bg-white/95
+            shadow-[0_10px_40px_rgba(20,50,20,0.12)]
+            backdrop-blur-xl
+          "
+        >
+          {/* =====================================================
               MAIN NAVBAR
-          ========================= */}
+          ===================================================== */}
 
           <div className="flex h-[72px] items-center justify-between px-5 sm:px-7 lg:h-[76px] lg:px-8">
-
-            {/* LOGO */}
+            {/* =================================================
+                LOGO
+            ================================================= */}
 
             <Link
               href="/"
               onClick={() => setIsOpen(false)}
+              aria-label="Mahadal - Maharashtra Dal Industries"
               className="flex shrink-0 items-center"
             >
               <div className="flex items-center gap-2.5">
+                {/* Logo Mark */}
 
                 <div className="flex h-[48px] w-[40px] items-center justify-center">
-                  <span className="text-[31px] leading-none">
+                  <span
+                    className="text-[30px] leading-none"
+                    aria-hidden="true"
+                  >
                     🌾
                   </span>
                 </div>
+
+                {/* Brand Name */}
 
                 <div>
                   <div className="font-serif text-[22px] font-bold leading-none tracking-[-0.02em] text-[#174719] sm:text-[25px]">
@@ -60,18 +77,19 @@ export default function Navbar() {
                   <div className="mt-[5px] flex items-center gap-1.5">
                     <span className="h-px w-5 bg-[#b8963e]" />
 
-                    <span className="text-[9px] font-medium tracking-[0.28em] text-[#a17c1e] sm:text-[10px]">
-                      RICE MILL
+                    <span className="text-[9px] font-medium tracking-[0.22em] text-[#a17c1e] sm:text-[10px] sm:tracking-[0.24em]">
+                      MAHARASHTRA DAL INDUSTRIES
                     </span>
 
                     <span className="h-px w-5 bg-[#b8963e]" />
                   </div>
                 </div>
-
               </div>
             </Link>
 
-            {/* DESKTOP NAVIGATION */}
+            {/* =================================================
+                DESKTOP NAVIGATION
+            ================================================= */}
 
             <div className="hidden items-center gap-6 xl:flex 2xl:gap-8">
               {navItems.map((item) => {
@@ -81,7 +99,7 @@ export default function Navbar() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`group relative whitespace-nowrap py-2 text-[13px] font-semibold ${
+                    className={`group relative whitespace-nowrap py-2 text-[13px] font-semibold transition-colors duration-200 ${
                       active
                         ? "text-[#205719]"
                         : "text-[#252a25] hover:text-[#205719]"
@@ -101,38 +119,76 @@ export default function Navbar() {
               })}
             </div>
 
-            {/* DESKTOP PHONE */}
+            {/* =================================================
+                DESKTOP PHONE
+            ================================================= */}
 
             <a
-              href="tel:+919876543210"
-              className="hidden items-center gap-2.5 rounded-xl bg-[#205719] px-5 py-3 text-[13px] font-semibold text-white xl:flex"
+              href="tel:02385252063"
+              aria-label="Call Maharashtra Dal Industries"
+              className="
+                hidden
+                items-center
+                gap-2.5
+                rounded-xl
+                bg-[#205719]
+                px-5
+                py-3
+                text-[13px]
+                font-semibold
+                text-white
+                shadow-[0_5px_14px_rgba(32,87,25,0.14)]
+                transition-all
+                duration-200
+                hover:-translate-y-0.5
+                hover:bg-[#285c24]
+                hover:shadow-[0_8px_18px_rgba(32,87,25,0.2)]
+                xl:flex
+              "
             >
-              <Phone size={15} />
+              <Phone size={15} strokeWidth={1.7} />
 
-              <span>+91 98765 43210</span>
+              <span>02385-252063</span>
             </a>
 
-            {/* MOBILE BUTTON */}
+            {/* =================================================
+                MOBILE MENU BUTTON
+            ================================================= */}
 
             <button
               type="button"
               onClick={() => setIsOpen((current) => !current)}
               aria-label={isOpen ? "Close navigation" : "Open navigation"}
               aria-expanded={isOpen}
-              className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#dfe5dc] text-[#205719] xl:hidden"
+              className="
+                flex
+                h-10
+                w-10
+                items-center
+                justify-center
+                rounded-xl
+                border
+                border-[#dfe5dc]
+                bg-white
+                text-[#205719]
+                transition-all
+                duration-200
+                hover:border-[#c8d4c4]
+                hover:bg-[#f5f8f3]
+                xl:hidden
+              "
             >
               {isOpen ? <X size={21} /> : <Menu size={21} />}
             </button>
           </div>
 
-          {/* =========================
+          {/* =====================================================
               MOBILE NAVIGATION
-          ========================= */}
+          ===================================================== */}
 
           {isOpen && (
             <div className="border-t border-[#e7ebe4] px-5 pb-5 pt-3 xl:hidden">
               <div className="flex flex-col">
-
                 {navItems.map((item) => {
                   const active = checkActive(pathname, item.href);
 
@@ -141,30 +197,51 @@ export default function Navbar() {
                       key={item.href}
                       href={item.href}
                       onClick={() => setIsOpen(false)}
-                      className={`flex items-center justify-between border-b border-[#edf0eb] px-1 py-3.5 text-sm font-semibold ${
+                      className={`flex items-center justify-between border-b border-[#edf0eb] px-1 py-3.5 text-sm font-semibold transition-colors duration-200 ${
                         active
                           ? "text-[#205719]"
-                          : "text-[#252a25]"
+                          : "text-[#252a25] hover:text-[#205719]"
                       }`}
                     >
                       <span>{item.label}</span>
 
                       {active && (
-                        <span className="h-2 w-2 rounded-full bg-[#b8963e]" />
+                        <span
+                          aria-hidden="true"
+                          className="h-2 w-2 rounded-full bg-[#b8963e]"
+                        />
                       )}
                     </Link>
                   );
                 })}
 
+                {/* Mobile Contact Button */}
+
                 <a
-                  href="tel:+919876543210"
-                  className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-[#205719] px-5 py-3.5 text-sm font-semibold text-white"
+                  href="tel:02385252063"
+                  className="
+                    mt-4
+                    flex
+                    items-center
+                    justify-center
+                    gap-2
+                    rounded-xl
+                    bg-[#205719]
+                    px-5
+                    py-3.5
+                    text-sm
+                    font-semibold
+                    text-white
+                    shadow-[0_5px_14px_rgba(32,87,25,0.12)]
+                    transition-all
+                    duration-200
+                    hover:bg-[#285c24]
+                  "
                 >
-                  <Phone size={16} />
+                  <Phone size={16} strokeWidth={1.7} />
 
-                  <span>+91 98765 43210</span>
+                  <span>02385-252063</span>
                 </a>
-
               </div>
             </div>
           )}

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import {
   ArrowRight,
   Check,
@@ -11,28 +10,28 @@ import {
 
 const products = [
   {
-    name: "Basmati Rice",
-    subtitle: "Long Grain & Aromatic",
+    name: "Toor Dal",
+    subtitle: "Premium Split Pigeon Peas",
     description:
-      "Premium long-grain rice with a naturally elegant aroma, texture and appearance.",
-    image: "/images/products/basmati-rice.jpg",
-    tags: ["Long Grain", "Aromatic"],
+      "Carefully processed toor dal with consistent quality, clean appearance and dependable cooking performance.",
+    image: "/images/products/toor-dal.jpg",
+    tags: ["Premium", "Everyday"],
   },
   {
-    name: "Sona Masuri",
-    subtitle: "Light & Everyday Rice",
+    name: "Moong Dal Split",
+    subtitle: "Light & Easy to Cook",
     description:
-      "A versatile rice variety with a soft texture, perfect for everyday meals and traditional dishes.",
-    image: "/images/products/sona-masuri.jpg",
-    tags: ["Light", "Everyday"],
+      "Clean and carefully processed split moong dal known for its light texture and versatile everyday use.",
+    image: "/images/products/moong-dal.jpg",
+    tags: ["Light", "Nutritious"],
   },
   {
-    name: "Steam Rice",
-    subtitle: "Strong & Nutritious",
+    name: "Urad Dal",
+    subtitle: "Clean & Carefully Processed",
     description:
-      "Carefully processed steamed rice designed to retain its natural texture and quality.",
-    image: "/images/products/steam-rice.jpg",
-    tags: ["Steam", "Nutritious"],
+      "Quality urad dal processed with attention to cleanliness, consistency and product quality.",
+    image: "/images/products/urad-dal.jpg",
+    tags: ["Quality", "Versatile"],
   },
 ];
 
@@ -64,17 +63,13 @@ export default function ProductsPreview() {
       ========================================================= */}
 
       <div className="relative z-10 mx-auto max-w-[1400px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-[88px]">
+
         {/* =======================================================
             SECTION HEADER
         ======================================================= */}
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mx-auto max-w-[760px] text-center"
-        >
+        <div className="mx-auto max-w-[760px] text-center">
+
           {/* Label */}
 
           <div className="mb-4 flex items-center justify-center gap-3">
@@ -88,7 +83,7 @@ export default function ProductsPreview() {
               />
 
               <span className="text-[10px] font-bold uppercase tracking-[0.27em] text-[#285c24]">
-                Our Rice Varieties
+                Our Pulse Range
               </span>
             </div>
 
@@ -98,17 +93,20 @@ export default function ProductsPreview() {
           {/* Heading */}
 
           <h2 className="font-serif text-[38px] font-bold leading-[1.08] tracking-[-0.035em] text-[#172c18] sm:text-[46px] lg:text-[52px]">
-            Quality Grains for{" "}
-            <span className="text-[#285c24]">Every Table</span>
+            Quality Pulses for{" "}
+            <span className="text-[#285c24]">
+              Every Kitchen
+            </span>
           </h2>
 
           {/* Description */}
 
-          <p className="mx-auto mt-4 max-w-[680px] text-[13px] leading-6 text-[#656a62] sm:text-[14px]">
-            Carefully selected and professionally processed rice varieties,
-            prepared to deliver excellent taste, texture and consistency.
+          <p className="mx-auto mt-4 max-w-[680px] text-[13px] leading-6 text-[#656a62] sm:text-[14px] sm:leading-7">
+            Carefully selected and professionally processed pulses, prepared
+            with attention to cleanliness, consistency and quality for homes,
+            businesses and bulk requirements.
           </p>
-        </motion.div>
+        </div>
 
         {/* =======================================================
             PRODUCT CARDS
@@ -116,18 +114,8 @@ export default function ProductsPreview() {
 
         <div className="mx-auto mt-10 grid max-w-[1180px] gap-5 md:grid-cols-2 lg:grid-cols-3">
           {products.map((product, index) => (
-            <motion.article
+            <article
               key={product.name}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{
-                once: true,
-                amount: 0.15,
-              }}
-              transition={{
-                duration: 0.45,
-                delay: index * 0.06,
-              }}
               className="
                 group
                 overflow-hidden
@@ -222,6 +210,7 @@ export default function ProductsPreview() {
               ================================================= */}
 
               <div className="p-5">
+
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <h3 className="font-serif text-[21px] font-bold leading-tight text-[#1d341e]">
@@ -261,13 +250,18 @@ export default function ProductsPreview() {
 
                 <div className="mt-4 border-t border-[#e8e3d7] pt-4">
                   <div className="flex items-center gap-2 text-[10px] font-semibold text-[#285c24]">
-                    <Check size={14} strokeWidth={2} />
+                    <Check
+                      size={14}
+                      strokeWidth={2}
+                    />
 
-                    <span>Quality checked & carefully processed</span>
+                    <span>
+                      Quality checked & carefully processed
+                    </span>
                   </div>
                 </div>
               </div>
-            </motion.article>
+            </article>
           ))}
         </div>
 
@@ -275,11 +269,7 @@ export default function ProductsPreview() {
             BOTTOM CTA
         ======================================================= */}
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.45 }}
+        <div
           className="
             mt-9
             flex
@@ -290,6 +280,7 @@ export default function ProductsPreview() {
             sm:flex-row
           "
         >
+
           {/* Bulk order text */}
 
           <div className="flex items-center gap-2 text-[10px] text-[#74786f]">
@@ -299,7 +290,9 @@ export default function ProductsPreview() {
               className="text-[#285c24]"
             />
 
-            <span>Bulk & commercial orders available</span>
+            <span>
+              Bulk & commercial orders available
+            </span>
           </div>
 
           {/* Button */}
@@ -325,14 +318,16 @@ export default function ProductsPreview() {
               hover:bg-[#1b4a17]
             "
           >
-            <span>View All Products</span>
+            <span>
+              View All Products
+            </span>
 
             <ArrowRight
               size={15}
               className="transition-transform duration-300 group-hover:translate-x-1"
             />
           </Link>
-        </motion.div>
+        </div>
       </div>
 
       {/* =========================================================

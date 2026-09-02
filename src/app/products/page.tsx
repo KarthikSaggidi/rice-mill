@@ -14,9 +14,9 @@ const products = [
     name: "Toor Dal",
     subtitle: "Pigeon Pea",
     description:
-      "Carefully selected pigeon peas processed for clean, uniform grains and dependable cooking quality.",
+      "Carefully graded pigeon peas processed for clean, uniform grains, high protein retention, and dependable cooking quality.",
     image: "/images/products/toor-dal.jpg",
-    uses: "Dal, sambar & everyday meals",
+    uses: "Dal tadka, sambar & everyday meals",
   },
 
   {
@@ -24,9 +24,9 @@ const products = [
     name: "Moong Dal",
     subtitle: "Split Green Gram",
     description:
-      "Light and versatile split green gram with clean grains and excellent cooking quality for everyday use.",
+      "Light, easy-to-digest split green gram sortex-cleaned for uniform size, purity, and wholesome everyday nourishment.",
     image: "/images/products/moong-dal.jpg",
-    uses: "Dal, khichdi & light meals",
+    uses: "Khichdi, light dal & wholesome soups",
   },
 
   {
@@ -34,19 +34,19 @@ const products = [
     name: "Urad Dal",
     subtitle: "Black Gram",
     description:
-      "Carefully processed black gram selected for its consistent quality and suitability for traditional recipes.",
+      "Carefully processed black gram selected for superior fermentation properties, rich texture, and classic traditional dishes.",
     image: "/images/products/urad-dal.jpg",
-    uses: "Idli, dosa & traditional dishes",
+    uses: "Idli, dosa batters, dal makhani & vadas",
   },
 
   {
     number: "04",
     name: "Chana Dal",
-    subtitle: "Split Chickpea",
+    subtitle: "Split Bengal Gram",
     description:
-      "Clean and carefully processed split chickpeas offering a rich taste and reliable cooking performance.",
+      "Premium dehulled split chickpeas offering a rich, nutty flavor, high dietary fiber, and firm cooking texture.",
     image: "/images/products/chana-dal.jpg",
-    uses: "Dal, snacks & Indian recipes",
+    uses: "Dal preparations, savory snacks & puran poli",
   },
 
   {
@@ -54,39 +54,39 @@ const products = [
     name: "Masoor Dal",
     subtitle: "Red Lentils",
     description:
-      "Selected red lentils with consistent quality, ideal for quick preparation and everyday cooking.",
+      "Finely graded red lentils with quick-cooking characteristics, high natural iron content, and delicate earthy flavor.",
     image: "/images/products/masoor-dal.jpg",
-    uses: "Dal, soups & everyday meals",
+    uses: "Quick-cook dal, hearty soups & curries",
   },
 
   {
     number: "06",
     name: "Raw Toor",
-    subtitle: "Raw Pigeon Pea",
+    subtitle: "Whole Pigeon Pea Harvest",
     description:
-      "Quality raw toor selected and processed with care to maintain clean appearance and consistent grain quality.",
+      "Premium raw pigeon peas sourced directly from farming belts, screened thoroughly for moisture balance and grain health.",
     image: "/images/products/raw-toor.jpg",
-    uses: "Dal processing & traditional recipes",
+    uses: "Pulse processing, bulk milling & wholesale supply",
   },
 
   {
     number: "07",
-    name: "Cattle Feed",
-    subtitle: "Nutritious Feed",
+    name: "Pulse Husk Feed",
+    subtitle: "Chunni & Nutritious Feed",
     description:
-      "Carefully prepared cattle feed suitable for supporting regular livestock feeding requirements.",
+      "Wholesome pulse by-product rich in natural protein and crude fiber, ideal for balanced livestock and dairy cattle feed.",
     image: "/images/products/cattle-feed.jpg",
-    uses: "Livestock & cattle feeding",
+    uses: "Dairy cattle, sheep & livestock feed",
   },
 
   {
     number: "08",
     name: "Toor Dal Unpolished",
-    subtitle: "Unpolished Pigeon Pea",
+    subtitle: "Natural Unpolished Dal",
     description:
-      "Unpolished toor dal processed with care, retaining its natural character while providing a wholesome choice.",
+      "100% natural, unpolished pigeon peas free from artificial water, oil, or stone polish to keep authentic fiber and nutrients intact.",
     image: "/images/products/toor-dal-unpolished.jpg",
-    uses: "Dal, sambar & traditional meals",
+    uses: "High-fiber traditional cooking & healthy meals",
   },
 
   {
@@ -94,9 +94,9 @@ const products = [
     name: "Whole Green Gram",
     subtitle: "Whole Moong",
     description:
-      "Carefully selected whole green gram with natural colour, clean appearance and consistent quality.",
+      "Carefully harvested, intact green gram with vibrant natural luster, high germination rates, and clean appearance.",
     image: "/images/products/whole-moong.jpg",
-    uses: "Dal, sprouts & traditional dishes",
+    uses: "Sprouts, healthy salads & wholesome gravies",
   },
 ];
 
@@ -145,7 +145,7 @@ export default function ProductsPage() {
                 />
 
                 <span className="text-[10px] font-bold uppercase tracking-[0.27em] text-[#285c24]">
-                  Our Products
+                  Our Pulses Range
                 </span>
               </div>
 
@@ -154,7 +154,7 @@ export default function ProductsPage() {
 
             {/* Heading */}
             <h1 className="font-serif text-[40px] font-bold leading-[1.05] tracking-[-0.035em] text-[#172c18] sm:text-[50px] lg:text-[58px]">
-              Quality Pulses for{" "}
+              Pure, Protein-Rich Pulses for{" "}
               <span className="text-[#285c24]">
                 Every Kitchen
               </span>
@@ -162,9 +162,9 @@ export default function ProductsPage() {
 
             {/* Description */}
             <p className="mx-auto mt-5 max-w-[680px] text-[13px] leading-6 text-[#656a62] sm:text-[14px]">
-              We carefully select and supply quality pulses sourced from
-              reliable channels, maintaining cleanliness, consistency and
-              dependable quality for everyday use.
+              We source directly from trusted farmers and process naturally,
+              ensuring sortex-cleaned, unadulterated dals and legumes that preserve
+              vital plant protein, natural flavor, and wholesome nutrition.
             </p>
           </motion.div>
         </div>
@@ -191,7 +191,7 @@ export default function ProductsPage() {
               </p>
 
               <h2 className="mt-1 font-serif text-[29px] font-bold text-[#1d341e] sm:text-[34px]">
-                Carefully Selected Pulses
+                Carefully Selected Dals & Pulses
               </h2>
             </div>
 
@@ -202,7 +202,7 @@ export default function ProductsPage() {
                 className="text-[#285c24]"
               />
 
-              Quality checked products
+              Sortex cleaned & quality checked
             </div>
           </motion.div>
 
@@ -374,16 +374,16 @@ export default function ProductsPage() {
 
                 <div>
                   <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#b08b30]">
-                    Bulk Requirements
+                    Bulk & Commercial Supply
                   </p>
 
                   <h3 className="mt-1 font-serif text-[20px] font-bold text-[#203620]">
-                    Looking for larger quantities?
+                    Looking for institutional or wholesale quantities?
                   </h3>
 
                   <p className="mt-1 max-w-[600px] text-[10px] leading-5 text-[#6c7169]">
-                    We also cater to wholesale, retail and commercial
-                    requirements based on availability and order quantity.
+                    We supply custom packaging (25kg, 30kg, 50kg bags) and bulk lots
+                    for wholesalers, distributors, retail chains, and food manufacturers.
                   </p>
                 </div>
               </div>
@@ -410,7 +410,7 @@ export default function ProductsPage() {
                   hover:bg-[#1b4a17]
                 "
               >
-                Contact Us
+                Inquire For Bulk
 
                 <ArrowRight
                   size={14}

@@ -21,10 +21,10 @@ const generations = [
     title: "A Foundation Built on Trust",
     image: "/images/about/generation-1.jpg",
     description:
-      "What began with a strong connection to agriculture and a deep understanding of paddy gradually grew into a commitment to providing dependable quality rice. The early years were shaped by hard work, close relationships with farmers and a belief that quality starts with the grain itself.",
+      "What began with a strong connection to agriculture and a deep understanding of pulse cultivation gradually grew into a commitment to providing dependable, nutrient-dense pulses. The early years were shaped by hard work, close partnerships with farmers, and a belief that quality begins at the farm.",
     points: [
       "Strong agricultural roots",
-      "Focus on quality paddy",
+      "Focus on premium raw pulses",
       "Relationships built on trust",
     ],
   },
@@ -34,24 +34,24 @@ const generations = [
     title: "Experience Meets Progress",
     image: "/images/about/generation-2.jpg",
     description:
-      "With experience came a wider understanding of milling, sourcing and customer requirements. The business continued to develop while preserving the values that shaped its foundation—consistency, honesty and responsible practices.",
+      "With experience came a wider understanding of grading, sortex cleaning, dehulling, and customer requirements. The business continued to develop while preserving the values that shaped its foundation—consistency, honesty, and responsible practices.",
     points: [
-      "Growing milling experience",
-      "Stronger quality practices",
+      "Deep processing expertise",
+      "Rigorous grading & sorting",
       "Long-term customer relationships",
     ],
   },
   {
     number: "03",
     period: "Looking Ahead",
-    title: "Tradition Meets Modern Milling",
+    title: "Tradition Meets Modern Processing",
     image: "/images/about/generation-3.jpg",
     description:
-      "Today, the next generation carries the journey forward with a modern approach. Technology, efficient processing and quality-focused operations are combined with the principles that have remained important throughout the family's journey.",
+      "Today, the next generation carries the journey forward with a modern approach. Advanced optical sorting, hygienic processing, and quality-focused operations are combined with the principles that have remained important throughout the family's journey.",
     points: [
-      "Modern processing approach",
+      "Advanced sorting & processing",
       "Quality-focused operations",
-      "Vision for sustainable growth",
+      "Vision for sustainable nutrition",
     ],
   },
 ];
@@ -61,25 +61,25 @@ const values = [
     icon: ShieldCheck,
     title: "Quality First",
     description:
-      "We focus on maintaining quality from carefully selected paddy to the finished product.",
+      "We focus on maintaining uncompromised quality from carefully sourced raw pulses to the finished pack.",
   },
   {
     icon: Handshake,
     title: "Built on Trust",
     description:
-      "We value transparent relationships with farmers, customers, retailers and business partners.",
+      "We value transparent relationships with farmers, customers, retailers, and wholesale partners.",
   },
   {
     icon: Factory,
     title: "Modern Processing",
     description:
-      "Efficient milling practices help us maintain consistency while protecting grain quality.",
+      "State-of-the-art cleaning, grading, and dehulling ensure clean, unadulterated, and nutrient-rich pulses.",
   },
   {
     icon: Leaf,
     title: "Responsible Approach",
     description:
-      "We believe in thoughtful sourcing, careful processing and responsible long-term growth.",
+      "We believe in thoughtful sourcing, ethical handling, and long-term sustainable nourishment.",
   },
 ];
 
@@ -93,7 +93,7 @@ export default function AboutPage() {
 
       <section className="relative overflow-hidden border-b border-[#e5e0d2] bg-[#f4f1e5] pt-[120px]">
 
-        {/* Decorative wheat */}
+        {/* Decorative wheat/grain */}
         <div className="pointer-events-none absolute -left-28 top-20 opacity-[0.035]">
           <Wheat
             size={330}
@@ -129,7 +129,7 @@ export default function AboutPage() {
               />
 
               <span className="text-[9px] font-bold uppercase tracking-[0.27em] text-[#285c24]">
-                About Our Rice Mill
+                About Our Pulses & Grains
               </span>
             </div>
 
@@ -145,7 +145,7 @@ export default function AboutPage() {
           >
             Rooted in Tradition,
             <span className="block text-[#285c24]">
-              Growing With Purpose
+              Nourishing With Purpose
             </span>
           </motion.h1>
 
@@ -156,10 +156,10 @@ export default function AboutPage() {
             transition={{ duration: 0.65, delay: 0.2 }}
             className="mx-auto mt-5 max-w-[700px] text-[12px] leading-6 text-[#646a62] sm:text-[13px]"
           >
-            Our journey is built around agriculture, quality and trust.
-            Over the years, our approach has evolved with changing
-            technology while our commitment to good rice has remained
-            constant.
+            Our journey is built around agriculture, purity, and trust.
+            Over the years, our processing methods have evolved with modern
+            technology while our commitment to wholesome, unadulterated pulses
+            has remained constant.
           </motion.p>
         </div>
       </section>
@@ -187,28 +187,28 @@ export default function AboutPage() {
 
               <h2 className="mt-2 font-serif text-[32px] font-bold leading-tight tracking-[-0.03em] text-[#1b321c] sm:text-[38px]">
                 More Than a
-                <span className="text-[#285c24]"> Rice Mill</span>
+                <span className="text-[#285c24]"> Pulse Processor</span>
               </h2>
 
               <div className="mt-5 space-y-4 text-[12px] leading-6 text-[#62685f] sm:text-[13px]">
                 <p>
-                  A good rice mill is not only about machinery and
-                  processing. It is about understanding the grain,
-                  respecting the people behind it and delivering a product
-                  that customers can depend on.
+                  Delivering nutritious pulses is not just about machinery and
+                  processing lines. It is about understanding the crop,
+                  respecting the farming communities behind it, and delivering
+                  unpolished, wholesome dal and legumes that families can rely on.
                 </p>
 
                 <p>
-                  Our work brings together agricultural knowledge, milling
-                  experience and modern processing practices. From sourcing
-                  paddy to preparing finished rice, each stage receives
-                  careful attention.
+                  Our heritage unites deep agronomic knowledge, multi-stage
+                  sorting, and modern processing infrastructure. From sourcing
+                  raw harvest to final hygienic packing, every single batch receives
+                  stringent quality control.
                 </p>
 
                 <p>
-                  As we continue to grow, our goal remains simple:
-                  maintain dependable quality, build lasting relationships
-                  and bring better rice to more households and businesses.
+                  As we continue to grow, our mission remains clear:
+                  maintain dependable purity, nurture lasting partnerships,
+                  and bring naturally nourishing pulses to kitchens and businesses nationwide.
                 </p>
               </div>
 
@@ -217,7 +217,7 @@ export default function AboutPage() {
                   href="/products"
                   className="group inline-flex items-center gap-2 rounded-xl bg-[#285c24] px-5 py-3 text-[10px] font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1b4a17]"
                 >
-                  Explore Our Products
+                  Explore Our Pulses
 
                   <ArrowRight
                     size={14}
@@ -245,23 +245,23 @@ export default function AboutPage() {
               {[
                 {
                   icon: Wheat,
-                  title: "Quality Grains",
-                  text: "Carefully selected paddy",
+                  title: "Pure Legumes",
+                  text: "Carefully selected harvest",
                 },
                 {
                   icon: Factory,
                   title: "Modern Facility",
-                  text: "Efficient milling practices",
+                  text: "Advanced optical sorting",
                 },
                 {
                   icon: ShieldCheck,
                   title: "Quality Checks",
-                  text: "Careful inspection",
+                  text: "Multi-stage lab testing",
                 },
                 {
                   icon: Handshake,
                   title: "Trusted Relationships",
-                  text: "Long-term partnerships",
+                  text: "Direct farmer partnerships",
                 },
               ].map((item) => {
                 const Icon = item.icon;
@@ -334,9 +334,9 @@ export default function AboutPage() {
             </h2>
 
             <p className="mt-4 text-[12px] leading-6 text-[#686e65] sm:text-[13px]">
-              Each stage of our journey has brought new experience,
-              responsibility and ideas while keeping the values of quality
-              and trust at the centre.
+              Each stage of our journey has brought new expertise,
+              infrastructure, and refined standards while keeping purity,
+              nutrition, and trust at the absolute center.
             </p>
           </motion.div>
 
@@ -454,9 +454,9 @@ export default function AboutPage() {
                 </h2>
 
                 <p className="mt-4 max-w-[600px] text-[12px] leading-6 text-[#686e65]">
-                  The way we work is guided by a few simple principles.
-                  These values influence how we source, process, pack and
-                  serve our customers.
+                  The way we operate is anchored in clear principles.
+                  These values guide how we procure, clean, sort, grade, and
+                  supply natural pulses to our valued partners and customers.
                 </p>
               </motion.div>
 
@@ -532,24 +532,24 @@ export default function AboutPage() {
                 </p>
 
                 <h3 className="mt-2 font-serif text-[27px] font-bold leading-tight text-white sm:text-[32px]">
-                  Good Rice Starts
+                  Nutrient-Rich Pulses
                   <span className="block text-[#d9bf61]">
-                    With Good Practices
+                    Start With Good Practices
                   </span>
                 </h3>
 
                 <p className="mt-4 text-[11px] leading-5 text-white/60">
-                  We continue to improve our processes while staying
-                  connected to the agricultural values and relationships
-                  that have shaped our journey.
+                  We continually enhance our cleaning and grading processes while
+                  remaining grounded in traditional agricultural integrity and
+                  honest farmer relationships.
                 </p>
 
                 <div className="mt-6 space-y-3">
                   {[
-                    "Careful sourcing",
-                    "Controlled processing",
-                    "Quality-focused packing",
-                    "Reliable customer service",
+                    "Unadulterated raw sourcing",
+                    "Advanced sortex cleaning",
+                    "Nutrient-preserving packaging",
+                    "Reliable supply chain service",
                   ].map((item) => (
                     <div
                       key={item}
@@ -588,15 +588,15 @@ export default function AboutPage() {
           />
 
           <h2 className="mt-3 font-serif text-[28px] font-bold text-[#1b321c] sm:text-[34px]">
-            Building the Future,
+            Wholesome Nutrition,
             <span className="text-[#285c24]">
-              {" "}One Grain at a Time
+              {" "}From Farm to Kitchen
             </span>
           </h2>
 
           <p className="mx-auto mt-3 max-w-[600px] text-[11px] leading-5 text-[#6a7068]">
-            Discover our rice varieties or speak with our team about your
-            requirements.
+            Discover our wide range of pulses, dals, and legumes, or speak with
+            our team for institutional and wholesale requirements.
           </p>
 
           <div className="mt-6 flex flex-wrap justify-center gap-3">

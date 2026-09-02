@@ -3,12 +3,8 @@
 import Link from "next/link";
 import {
   ArrowUpRight,
-  Facebook,
-  Instagram,
-  Linkedin,
   MapPin,
   Phone,
-  Mail,
   Wheat,
 } from "lucide-react";
 
@@ -22,16 +18,18 @@ const quickLinks = [
 ];
 
 const productLinks = [
-  "Basmati Rice",
-  "Sona Masuri",
-  "Steam Rice",
-  "Raw Rice",
+  "Toor Dal",
+  "Moong Dal",
+  "Urad Dal",
+  "Chana Dal",
+  "Masoor Dal",
+  "Raw Toor",
+  "Cattle Feed",
 ];
 
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-[#102711] text-white">
-
       {/* =========================================================
           SUBTLE BACKGROUND DECORATION
       ========================================================= */}
@@ -57,19 +55,19 @@ export default function Footer() {
       ========================================================= */}
 
       <div className="relative z-10 mx-auto max-w-[1400px] px-5 py-10 sm:px-8 sm:py-12 lg:px-12">
-
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.5fr_0.8fr_0.85fr_1fr] lg:gap-10">
-
           {/* =====================================================
               BRAND
           ===================================================== */}
 
-          <div className="max-w-[360px]">
-
+          <div className="max-w-[370px]">
             <Link
               href="/"
+              aria-label="Mahadal - Maharashtra Dal Industries"
               className="group inline-flex items-center gap-3"
             >
+              {/* Logo */}
+
               <div
                 className="
                   flex
@@ -94,6 +92,8 @@ export default function Footer() {
                 />
               </div>
 
+              {/* Brand */}
+
               <div>
                 <div className="font-serif text-[21px] font-bold leading-none">
                   Mahadal
@@ -102,8 +102,8 @@ export default function Footer() {
                 <div className="mt-1 flex items-center gap-1.5">
                   <span className="h-px w-4 bg-[#d9bf61]/70" />
 
-                  <span className="text-[7px] font-bold uppercase tracking-[0.28em] text-[#d9bf61]">
-                    Rice Mill
+                  <span className="text-[7px] font-bold uppercase tracking-[0.2em] text-[#d9bf61]">
+                    Maharashtra Dal Industries
                   </span>
 
                   <span className="h-px w-4 bg-[#d9bf61]/70" />
@@ -111,78 +111,34 @@ export default function Footer() {
               </div>
             </Link>
 
-            <p className="mt-4 text-[10px] leading-5 text-white/45">
-              Quality rice, carefully processed with modern technology,
-              consistency and care — from selected paddy to every grain.
+            {/* Company Description */}
+
+            <p className="mt-4 max-w-[350px] text-[10px] leading-5 text-white/45">
+              Maharashtra Dal Industries is committed to delivering quality
+              pulses and dal through careful sourcing, modern processing,
+              quality inspection and hygienic handling.
             </p>
 
-            {/* Social */}
-            <div className="mt-4 flex items-center gap-2">
-              <a
-                href="#"
-                aria-label="Facebook"
-                className="
-                  flex
-                  h-8
-                  w-8
-                  items-center
-                  justify-center
-                  rounded-full
-                  border
-                  border-white/10
-                  text-white/45
-                  transition-all
-                  hover:border-[#d9bf61]/40
-                  hover:bg-[#d9bf61]/10
-                  hover:text-[#d9bf61]
-                "
-              >
-                <Facebook size={13} />
-              </a>
+            {/* Quality Highlight */}
 
-              <a
-                href="#"
-                aria-label="Instagram"
-                className="
-                  flex
-                  h-8
-                  w-8
-                  items-center
-                  justify-center
-                  rounded-full
-                  border
-                  border-white/10
-                  text-white/45
-                  transition-all
-                  hover:border-[#d9bf61]/40
-                  hover:bg-[#d9bf61]/10
-                  hover:text-[#d9bf61]
-                "
-              >
-                <Instagram size={13} />
-              </a>
+            <div className="mt-5 flex items-center gap-2.5">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#d9bf61]/10">
+                <Wheat
+                  size={14}
+                  strokeWidth={1.3}
+                  className="text-[#d9bf61]"
+                />
+              </div>
 
-              <a
-                href="#"
-                aria-label="LinkedIn"
-                className="
-                  flex
-                  h-8
-                  w-8
-                  items-center
-                  justify-center
-                  rounded-full
-                  border
-                  border-white/10
-                  text-white/45
-                  transition-all
-                  hover:border-[#d9bf61]/40
-                  hover:bg-[#d9bf61]/10
-                  hover:text-[#d9bf61]
-                "
-              >
-                <Linkedin size={13} />
-              </a>
+              <div>
+                <p className="text-[8px] font-bold uppercase tracking-[0.16em] text-[#d9bf61]">
+                  Quality Pulses
+                </p>
+
+                <p className="mt-0.5 text-[9px] text-white/35">
+                  Processed with care and consistency
+                </p>
+              </div>
             </div>
           </div>
 
@@ -259,7 +215,12 @@ export default function Footer() {
                   <Wheat
                     size={9}
                     strokeWidth={1.3}
-                    className="shrink-0 text-[#d9bf61]/55 transition-colors group-hover:text-[#d9bf61]"
+                    className="
+                      shrink-0
+                      text-[#d9bf61]/55
+                      transition-colors
+                      group-hover:text-[#d9bf61]
+                    "
                   />
 
                   {product}
@@ -281,9 +242,9 @@ export default function Footer() {
               </h3>
             </div>
 
-            <div className="mt-4 space-y-3.5">
-
+            <div className="mt-4 space-y-4">
               {/* Address */}
+
               <div className="flex items-start gap-2.5">
                 <MapPin
                   size={14}
@@ -293,18 +254,19 @@ export default function Footer() {
 
                 <div>
                   <p className="text-[8px] font-semibold uppercase tracking-[0.12em] text-white/25">
-                    Address
+                    Location
                   </p>
 
                   <p className="mt-0.5 text-[10px] leading-4 text-white/45">
-                    Your Rice Mill Address,
+                    Udgir,
                     <br />
-                    Your City, State, India
+                    Maharashtra - 413517, India
                   </p>
                 </div>
               </div>
 
               {/* Phone */}
+
               <div className="flex items-start gap-2.5">
                 <Phone
                   size={14}
@@ -314,40 +276,61 @@ export default function Footer() {
 
                 <div>
                   <p className="text-[8px] font-semibold uppercase tracking-[0.12em] text-white/25">
-                    Phone
+                    Customer Care
                   </p>
 
                   <a
-                    href="tel:+919876543210"
-                    className="mt-0.5 block text-[10px] text-white/45 transition-colors hover:text-[#d9bf61]"
+                    href="tel:02385252063"
+                    className="
+                      mt-0.5
+                      block
+                      text-[10px]
+                      text-white/45
+                      transition-colors
+                      hover:text-[#d9bf61]
+                    "
                   >
-                    +91 98765 43210
+                    02385-252063
                   </a>
                 </div>
               </div>
 
-              {/* Email */}
-              <div className="flex items-start gap-2.5">
-                <Mail
-                  size={14}
-                  strokeWidth={1.4}
-                  className="mt-0.5 shrink-0 text-[#d9bf61]"
+              {/* Contact Button */}
+
+              <Link
+                href="/contact"
+                className="
+                  group
+                  inline-flex
+                  items-center
+                  gap-2
+                  rounded-lg
+                  border
+                  border-[#d9bf61]/25
+                  bg-[#d9bf61]/5
+                  px-3
+                  py-2.5
+                  text-[9px]
+                  font-semibold
+                  text-[#d9bf61]
+                  transition-all
+                  duration-200
+                  hover:border-[#d9bf61]/45
+                  hover:bg-[#d9bf61]/10
+                "
+              >
+                Send an Enquiry
+
+                <ArrowUpRight
+                  size={11}
+                  className="
+                    transition-transform
+                    duration-200
+                    group-hover:-translate-y-0.5
+                    group-hover:translate-x-0.5
+                  "
                 />
-
-                <div className="min-w-0">
-                  <p className="text-[8px] font-semibold uppercase tracking-[0.12em] text-white/25">
-                    Email
-                  </p>
-
-                  <a
-                    href="mailto:info@mahadalricemill.com"
-                    className="mt-0.5 block break-all text-[10px] text-white/45 transition-colors hover:text-[#d9bf61]"
-                  >
-                    info@mahadalricemill.com
-                  </a>
-                </div>
-              </div>
-
+              </Link>
             </div>
           </div>
         </div>
@@ -358,7 +341,6 @@ export default function Footer() {
       ========================================================= */}
 
       <div className="relative z-10 border-t border-white/10">
-
         <div
           className="
             mx-auto
@@ -377,32 +359,16 @@ export default function Footer() {
             lg:px-12
           "
         >
-
           {/* Copyright */}
+
           <p>
-            © {new Date().getFullYear()} Mahadal Rice Mill. All rights reserved.
+            © {new Date().getFullYear()} Maharashtra Dal Industries. All
+            rights reserved.
           </p>
 
-          {/* Developer + Legal */}
-          <div className="flex flex-wrap items-center gap-4">
+          {/* Developer */}
 
-            <Link
-              href="/privacy"
-              className="transition-colors hover:text-white/60"
-            >
-              Privacy Policy
-            </Link>
-
-            <Link
-              href="/terms"
-              className="transition-colors hover:text-white/60"
-            >
-              Terms & Conditions
-            </Link>
-
-            <span className="hidden h-3 w-px bg-white/10 sm:block" />
-
-            {/* DropXcorp */}
+          <div className="flex flex-wrap items-center gap-3">
             <a
               href="https://www.dropxcorp.in"
               target="_blank"
@@ -418,6 +384,7 @@ export default function Footer() {
               "
             >
               Designed & Developed by
+
               <span className="font-semibold text-white/60 transition-colors group-hover:text-[#d9bf61]">
                 DropXcorp
               </span>
@@ -432,7 +399,6 @@ export default function Footer() {
                 "
               />
             </a>
-
           </div>
         </div>
       </div>
@@ -442,7 +408,6 @@ export default function Footer() {
       ========================================================= */}
 
       <div className="h-[2px] bg-[#d9bf61]" />
-
     </footer>
   );
 }

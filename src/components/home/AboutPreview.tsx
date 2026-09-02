@@ -7,8 +7,8 @@ import {
 } from "lucide-react";
 
 const highlights = [
-  "Carefully selected quality paddy",
-  "Modern and hygienic milling process",
+  "Carefully selected quality pulses",
+  "Modern and hygienic processing",
   "Consistent quality in every batch",
   "Focused on purity and customer trust",
 ];
@@ -37,7 +37,7 @@ export default function AboutPreview() {
               <div className="relative aspect-[4/3]">
                 <Image
                   src="/images/about/rice-mill.jpg"
-                  alt="Mahadal rice mill"
+                  alt="Maharashtra Dal Industries processing facility"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
@@ -47,8 +47,6 @@ export default function AboutPreview() {
               {/* Image overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#173c17]/35 via-transparent to-transparent" />
             </div>
-
-            
           </div>
 
           {/* =====================================================
@@ -58,7 +56,6 @@ export default function AboutPreview() {
           <div className="lg:pl-2">
 
             {/* Eyebrow */}
-
             <div className="mb-4 flex items-center gap-3">
               <span className="h-px w-10 bg-[#b18b2c]" />
 
@@ -68,27 +65,26 @@ export default function AboutPreview() {
             </div>
 
             {/* Heading */}
-
             <h2 className="max-w-[650px] font-serif text-[38px] font-bold leading-[1.08] tracking-[-0.035em] text-[#172c18] sm:text-[46px] lg:text-[52px]">
-              Good Rice Begins With{" "}
+              Quality Pulses Begin With{" "}
               <span className="text-[#285c24]">
-                Good Grain
+                Quality Grain
               </span>
             </h2>
 
             {/* Description */}
-
             <p className="mt-5 max-w-[620px] text-[13px] leading-6 text-[#565c55] sm:text-[14px] sm:leading-7">
-              Mahadal is committed to bringing quality rice from carefully
-              selected paddy to homes and businesses. Our approach combines
-              responsible sourcing, modern milling and careful quality
-              control to deliver rice you can depend on.
+              Mahadal is committed to delivering quality pulses through
+              careful sourcing, modern processing and consistent quality
+              control. From selecting the right raw material to processing
+              and packing, every stage is handled with attention to quality
+              and reliability.
             </p>
 
             <p className="mt-3 max-w-[620px] text-[13px] leading-6 text-[#565c55] sm:text-[14px] sm:leading-7">
-              Every batch is handled with attention to cleanliness,
-              consistency and purity, because we believe quality should be
-              something you can see, cook and trust.
+              Our focus is simple — clean processing, dependable quality and
+              products that customers can trust for their homes, businesses
+              and everyday needs.
             </p>
 
             {/* =================================================

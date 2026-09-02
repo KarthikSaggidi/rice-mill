@@ -11,23 +11,27 @@ import {
 const features = [
   {
     icon: Leaf,
-    title: "Farm Fresh Paddy",
-    description: "Carefully sourced from trusted farming communities.",
+    title: "Quality Pulses",
+    description:
+      "Carefully selected raw materials sourced with attention to quality and consistency.",
   },
   {
     icon: Factory,
-    title: "Modern Milling",
-    description: "Advanced processing for clean and consistent rice.",
+    title: "Modern Processing",
+    description:
+      "Efficient processing systems designed for clean, consistent and reliable products.",
   },
   {
     icon: ShieldCheck,
     title: "Quality Assurance",
-    description: "Strict checks at every stage for reliable quality.",
+    description:
+      "Careful checks throughout processing to maintain cleanliness, purity and consistency.",
   },
   {
     icon: Users,
     title: "Customer First",
-    description: "Building lasting relationships through trust and service.",
+    description:
+      "Building lasting relationships through dependable products, service and trust.",
   },
 ];
 
@@ -37,7 +41,9 @@ export default function WelcomeSection() {
       id="welcome"
       className="relative overflow-hidden bg-[#faf8f0]"
     >
-      {/* Decorative background */}
+      {/* =========================================================
+          DECORATIVE BACKGROUND
+      ========================================================= */}
 
       <div className="pointer-events-none absolute -left-20 top-10 opacity-[0.035]">
         <Wheat
@@ -55,13 +61,19 @@ export default function WelcomeSection() {
         />
       </div>
 
-      {/* Main content */}
+      {/* =========================================================
+          MAIN CONTENT
+      ========================================================= */}
 
       <div className="relative z-10 mx-auto max-w-[1400px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-[82px]">
 
-        {/* Section heading */}
+        {/* =======================================================
+            SECTION HEADING
+        ======================================================= */}
 
         <div className="mx-auto max-w-[780px] text-center">
+
+          {/* Eyebrow */}
 
           <div className="mb-4 flex items-center justify-center gap-3">
             <span className="h-px w-10 bg-[#c5a448]" />
@@ -81,22 +93,29 @@ export default function WelcomeSection() {
             <span className="h-px w-10 bg-[#c5a448]" />
           </div>
 
+          {/* Heading */}
+
           <h2 className="font-serif text-[36px] font-bold leading-[1.08] tracking-[-0.035em] text-[#172c18] sm:text-[44px] lg:text-[52px]">
-            From Trusted Fields to{" "}
+            Quality Pulses From{" "}
             <span className="text-[#285c24]">
-              Every Table
+              Source to Supply
             </span>
           </h2>
 
+          {/* Description */}
+
           <p className="mx-auto mt-5 max-w-[680px] text-[13px] leading-6 text-[#565c55] sm:text-[14px] sm:leading-7">
-            At Mahadal, we believe good rice begins with good grain.
-            From carefully selected paddy to modern milling and careful
-            processing, every step is focused on delivering rice that
-            families can trust.
+            At Mahadal, we focus on delivering quality pulses through careful
+            sourcing, modern processing and consistent quality control. Every
+            stage is handled with attention to cleanliness, purity and
+            reliability so our products can be trusted by customers across
+            different requirements.
           </p>
         </div>
 
-        {/* Feature cards */}
+        {/* =======================================================
+            FEATURE CARDS
+        ======================================================= */}
 
         <div className="mx-auto mt-10 grid max-w-[1180px] gap-4 sm:grid-cols-2 lg:grid-cols-4">
 
@@ -125,7 +144,9 @@ export default function WelcomeSection() {
                 "
               >
 
-                {/* Top green line */}
+                {/* =================================================
+                    TOP GREEN LINE
+                ================================================= */}
 
                 <div
                   className="
@@ -140,6 +161,10 @@ export default function WelcomeSection() {
                     group-hover:w-full
                   "
                 />
+
+                {/* =================================================
+                    CARD CONTENT
+                ================================================= */}
 
                 <div className="flex items-center gap-4">
 
@@ -189,7 +214,9 @@ export default function WelcomeSection() {
 
         </div>
 
-        {/* About link */}
+        {/* =======================================================
+            ABOUT LINK
+        ======================================================= */}
 
         <div className="mt-9 flex justify-center">
 
@@ -225,7 +252,9 @@ export default function WelcomeSection() {
         </div>
       </div>
 
-      {/* Bottom separator */}
+      {/* =========================================================
+          BOTTOM SEPARATOR
+      ========================================================= */}
 
       <div className="h-px bg-[#e5dfd0]" />
     </section>
