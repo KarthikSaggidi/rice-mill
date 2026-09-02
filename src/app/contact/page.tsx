@@ -2,6 +2,7 @@
 
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import Link from "next/link";
 
 import {
   ArrowRight,
@@ -16,9 +17,10 @@ import {
   ShieldCheck,
   Truck,
   Wheat,
+  X,
 } from "lucide-react";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useEffect } from "react";
 
 type FormStatus = "idle" | "loading" | "success" | "error";
 
@@ -46,11 +48,36 @@ const products = [
 
 export default function ContactPage() {
   const [status, setStatus] = useState<FormStatus>("idle");
+  const [modalStatus, setModalStatus] = useState<FormStatus>("idle");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [prefilledEnquiry, setPrefilledEnquiry] = useState("");
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isModalOpen]);
+
+  const handleOpenModal = (enquiryType: string) => {
+    setPrefilledEnquiry(enquiryType);
+    setModalStatus("idle");
+    setIsModalOpen(true);
+  };
+
+  const handleSubmit = async (
+    e: FormEvent<HTMLFormElement>,
+    isModal = false
+  ) => {
     e.preventDefault();
 
-    setStatus("loading");
+    const currentSetStatus = isModal ? setModalStatus : setStatus;
+    currentSetStatus("loading");
 
     const form = e.currentTarget;
     const formData = new FormData(form);
@@ -82,16 +109,18 @@ export default function ContactPage() {
         throw new Error(result.message || "Something went wrong.");
       }
 
-      setStatus("success");
+      currentSetStatus("success");
       form.reset();
 
-      window.scrollTo({
-        top: document.body.scrollHeight / 2,
-        behavior: "smooth",
-      });
+      if (!isModal) {
+        window.scrollTo({
+          top: document.body.scrollHeight / 2,
+          behavior: "smooth",
+        });
+      }
     } catch (error) {
       console.error(error);
-      setStatus("error");
+      currentSetStatus("error");
     }
   };
 
@@ -212,12 +241,15 @@ export default function ContactPage() {
         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {/* =====================================================
-                BULK ORDERS
+                BULK ORDERS (Triggers Modal)
             ===================================================== */}
 
-            <div
+            <button
+              onClick={() => handleOpenModal("Bulk Purchase")}
               className="
                 group
+                w-full
+                text-left
                 rounded-[22px]
                 border
                 border-[#e4dfcf]
@@ -261,15 +293,18 @@ export default function ContactPage() {
                 Discuss your product, quantity and supply requirements with
                 our team.
               </p>
-            </div>
+            </button>
 
             {/* =====================================================
-                DISTRIBUTORS
+                DISTRIBUTORS (Triggers Modal)
             ===================================================== */}
 
-            <div
+            <button
+              onClick={() => handleOpenModal("Distributor Enquiry")}
               className="
                 group
+                w-full
+                text-left
                 rounded-[22px]
                 border
                 border-[#e4dfcf]
@@ -313,15 +348,17 @@ export default function ContactPage() {
                 Connect with us regarding distribution, wholesale and regular
                 supply opportunities.
               </p>
-            </div>
+            </button>
 
             {/* =====================================================
-                PRODUCT
+                PRODUCT (Links to /products)
             ===================================================== */}
 
-            <div
+            <Link
+              href="/products"
               className="
                 group
+                block
                 rounded-[22px]
                 border
                 border-[#e4dfcf]
@@ -365,7 +402,7 @@ export default function ContactPage() {
                 Ask about available products, processing, packaging and
                 business requirements.
               </p>
-            </div>
+            </Link>
 
             {/* =====================================================
                 CUSTOMER CARE
@@ -658,7 +695,7 @@ export default function ContactPage() {
               ================================================= */}
 
               <form
-                onSubmit={handleSubmit}
+                onSubmit={(e) => handleSubmit(e, false)}
                 className="space-y-4"
               >
                 {/* Name + Phone */}
@@ -1039,7 +1076,6 @@ export default function ContactPage() {
                   {status === "loading" ? (
                     <>
                       <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
-
                       Sending Enquiry...
                     </>
                   ) : (
@@ -1048,9 +1084,7 @@ export default function ContactPage() {
                         size={15}
                         strokeWidth={1.7}
                       />
-
                       Submit Business Enquiry
-
                       <ArrowRight
                         size={15}
                         strokeWidth={1.7}
@@ -1133,16 +1167,26 @@ export default function ContactPage() {
               </p>
             </a>
 
-            {/* Location */}
+            {/* Location (Links to Maps) */}
 
-            <div
+            <a
+              href="https://maps.google.com/?q=Udgir,Maharashtra-413517"
+              target="_blank"
+              rel="noopener noreferrer"
               className="
+                group
+                block
                 rounded-[18px]
                 border
                 border-[#ddd7c4]
                 bg-white
                 p-5
                 text-center
+                transition-all
+                duration-300
+                hover:-translate-y-1
+                hover:border-[#285c24]/30
+                hover:shadow-[0_10px_30px_rgba(35,55,30,0.06)]
               "
             >
               <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#edf3e9] text-[#285c24]">
@@ -1153,10 +1197,10 @@ export default function ContactPage() {
                 Location
               </p>
 
-              <p className="mt-1 text-[11px] font-semibold text-[#173b1b]">
+              <p className="mt-1 text-[11px] font-semibold text-[#173b1b] group-hover:text-[#285c24]">
                 Udgir, Maharashtra - 413517
               </p>
-            </div>
+            </a>
 
             {/* Hours */}
 
@@ -1189,6 +1233,132 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      {/* =========================================================
+          POPUP MODAL FORM
+      ========================================================= */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+            onClick={() => setIsModalOpen(false)}
+          />
+
+          <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-[22px] bg-[#fdfcf7] p-6 shadow-2xl sm:p-8 lg:p-9 animate-in fade-in zoom-in-95 duration-200">
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute right-5 top-5 rounded-full p-2 text-[#6a6d66] transition-colors hover:bg-[#edf4e9] hover:text-[#173b1b]"
+            >
+              <X size={20} strokeWidth={2} />
+            </button>
+
+            <div className="mb-7">
+              <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-[#b08c2c]">
+                Quick Enquiry
+              </p>
+              <h3 className="mt-2 font-serif text-[28px] font-bold text-[#173b1b]">
+                {prefilledEnquiry}
+              </h3>
+              <p className="mt-2 text-[11px] leading-5 text-[#6a6d66]">
+                Please provide your details below and our team will get in
+                touch with you shortly.
+              </p>
+            </div>
+
+            {/* Modal Success Message */}
+            {modalStatus === "success" && (
+              <div className="mb-6 flex gap-3 rounded-xl border border-green-200 bg-green-50 p-4">
+                <CheckCircle2
+                  size={19}
+                  className="mt-0.5 shrink-0 text-green-700"
+                />
+                <div>
+                  <p className="text-[12px] font-bold text-green-800">
+                    Enquiry sent successfully.
+                  </p>
+                  <p className="mt-1 text-[10px] leading-5 text-green-700">
+                    Thank you! We'll review your requirement and reach out.
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* Modal Error Message */}
+            {modalStatus === "error" && (
+              <div className="mb-6 flex gap-3 rounded-xl border border-red-200 bg-red-50 p-4">
+                <MessageCircle
+                  size={18}
+                  className="mt-0.5 shrink-0 text-red-700"
+                />
+                <div>
+                  <p className="text-[12px] font-bold text-red-800">
+                    Unable to send enquiry.
+                  </p>
+                  <p className="mt-1 text-[10px] leading-5 text-red-700">
+                    Please try again or call us at 02385-252063.
+                  </p>
+                </div>
+              </div>
+            )}
+
+            <form
+              onSubmit={(e) => handleSubmit(e, true)}
+              className="space-y-4"
+            >
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="modal-name" className="mb-1.5 block text-[11px] font-semibold text-[#243d26]">Contact Name *</label>
+                  <input id="modal-name" type="text" name="name" required minLength={2} placeholder="Your name" className="h-12 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-[12px] text-[#173b1b] outline-none transition placeholder:text-[#a2a59f] focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10" />
+                </div>
+                <div>
+                  <label htmlFor="modal-phone" className="mb-1.5 block text-[11px] font-semibold text-[#243d26]">Phone Number *</label>
+                  <input id="modal-phone" type="tel" name="phone" required placeholder="Your phone number" className="h-12 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-[12px] text-[#173b1b] outline-none transition placeholder:text-[#a2a59f] focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10" />
+                </div>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="modal-company" className="mb-1.5 block text-[11px] font-semibold text-[#243d26]">Company / Business</label>
+                  <input id="modal-company" type="text" name="company" placeholder="Company or business name" className="h-12 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-[12px] text-[#173b1b] outline-none transition placeholder:text-[#a2a59f] focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10" />
+                </div>
+                <div>
+                  <label htmlFor="modal-enquiry" className="mb-1.5 block text-[11px] font-semibold text-[#243d26]">Enquiry Type *</label>
+                  <select id="modal-enquiry" name="enquiry" required defaultValue={prefilledEnquiry || ""} className="h-12 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-[12px] text-[#173b1b] outline-none transition focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10">
+                    <option value="" disabled>Select enquiry type</option>
+                    {enquiryTypes.map((type) => (
+                      <option key={type} value={type}>{type}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="modal-message" className="mb-1.5 block text-[11px] font-semibold text-[#243d26]">Requirement Details *</label>
+                <textarea id="modal-message" name="message" required minLength={10} rows={4} placeholder="Tell us about your requirement..." className="w-full resize-none rounded-xl border border-[#ddd9ca] bg-white px-4 py-3.5 text-[12px] leading-5 text-[#173b1b] outline-none transition placeholder:text-[#a2a59f] focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10" />
+              </div>
+
+              <button
+                type="submit"
+                disabled={modalStatus === "loading"}
+                className="group flex h-12 w-full items-center justify-center gap-2.5 rounded-xl bg-[#285c24] text-[11px] font-bold text-white shadow-[0_8px_22px_rgba(40,92,36,0.16)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#214d1f] hover:shadow-[0_12px_26px_rgba(40,92,36,0.2)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+              >
+                {modalStatus === "loading" ? (
+                  <>
+                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send size={15} strokeWidth={1.7} />
+                    Submit Request
+                    <ArrowRight size={15} strokeWidth={1.7} className="transition-transform duration-200 group-hover:translate-x-1" />
+                  </>
+                )}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
