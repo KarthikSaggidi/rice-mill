@@ -12,7 +12,7 @@ const products = [
   {
     number: "01",
     name: "Toor Dal",
-    subtitle: "Pigeon Pea",
+    subtitle: "Mahadal",
     description:
       "Clean and carefully processed toor dal with a smooth texture and consistent quality.",
     image: "/images/products/toor-dal.jpg",
@@ -21,7 +21,7 @@ const products = [
   {
     number: "02",
     name: "Moong Dal",
-    subtitle: "Green Gram",
+    subtitle: "Mahadal",
     description:
       "Light and easy to cook, with clean grains and a naturally mild taste.",
     image: "/images/products/moong-dal.jpg",
@@ -30,7 +30,7 @@ const products = [
   {
     number: "03",
     name: "Urad Dal",
-    subtitle: "Black Gram",
+    subtitle: "Mahadal",
     description:
       "Well-processed urad dal with good texture, suitable for traditional Indian recipes.",
     image: "/images/products/urad-dal.jpg",
@@ -39,7 +39,7 @@ const products = [
   {
     number: "04",
     name: "Chana Dal",
-    subtitle: "Bengal Gram",
+    subtitle: "Mahadal",
     description:
       "Clean, evenly processed chana dal with a rich taste and firm texture after cooking.",
     image: "/images/products/chana-dal.jpg",
@@ -47,31 +47,32 @@ const products = [
   },
   {
     number: "05",
-    name: "Whole Green Gram",
-    subtitle: "Whole Moong",
+    name: "Whole Moong Dal",
+    subtitle: "Tripple Arrow",
     description:
       "Clean whole green gram with good appearance and quality for everyday use.",
     image: "/images/products/whole-moong.jpg",
     uses: "Sprouts, curries & healthy meals",
   },
   
+  
   {
     number: "06",
+    name: "Toor dal",
+    subtitle: "Tripple Arrow",
+    description:
+      "Clean and quick-cooking toor dal, suitable for simple everyday meals.",
+    image: "/images/products/toor-dal-tripple-arrow.jpg",
+    uses: "Dal, soups & everyday cooking",
+  },
+  {
+    number: "07",
     name: "Cattle Feed",
-    subtitle: "Livestock Feed",
+    subtitle: "Tripple Arrow",
     description:
       "Processed feed suitable for cattle and livestock as part of regular farm feeding.",
     image: "/images/products/cattle-feed.jpg",
     uses: "Cattle & livestock",
-  },
-  {
-    number: "07",
-    name: "Masoor Dal",
-    subtitle: "Red Lentils",
-    description:
-      "Clean and quick-cooking masoor dal, suitable for simple everyday meals.",
-    image: "/images/products/masoor-dal.jpg",
-    uses: "Dal, soups & everyday cooking",
   },
   
 ];

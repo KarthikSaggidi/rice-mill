@@ -263,7 +263,7 @@ export default function Footer() {
                   </p>
 
                   <a
-                    href="tel:02385252063"
+                    href="tel:+91 94230 76699"
                     aria-label="Call Maharashtra Dal Industries"
                     className="
                       mt-0.5
@@ -274,7 +274,7 @@ export default function Footer() {
                       hover:text-[#d9bf61]
                     "
                   >
-                    02385-252063
+                    +91 94230 76699
                   </a>
                 </div>
               </div>

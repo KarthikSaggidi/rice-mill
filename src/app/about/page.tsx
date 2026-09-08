@@ -14,47 +14,66 @@ import {
   Wheat,
 } from "lucide-react";
 
+/* =========================================================
+   OUR JOURNEY — THREE GENERATIONS
+========================================================= */
+
 const generations = [
   {
     number: "01",
-    period: "The Beginning",
-    title: "A Foundation Built on Trust",
+    period: "THE FOUNDATION",
+    name: "Late Shri Nagarmalji Heeralalji Agrawal",
+    title: "The Beginning of Our Journey",
     image: "/images/about/generation-1.jpg",
     description:
-      "What began with a strong connection to agriculture and a deep understanding of pulse cultivation gradually grew into a commitment to providing dependable, nutrient-dense pulses. The early years were shaped by hard work, close partnerships with farmers, and a belief that quality begins at the farm.",
+      "Originally from Jhunjhunu, Rajasthan, Late Shri Nagarmalji Heeralalji Agrawal established the business in Udgir, District Latur, Maharashtra. His entrepreneurial vision and determination laid the foundation of the family's journey in the pulses industry and marked the beginning of the business's manufacturing operations.",
     points: [
-      "Strong agricultural roots",
-      "Focus on premium raw pulses",
-      "Relationships built on trust",
+      "Originally from Jhunjhunu, Rajasthan",
+      "Established the business in Udgir, Maharashtra",
+      "Started the first factory",
+      "Laid the foundation of the family business",
     ],
   },
   {
     number: "02",
-    period: "Growing With Experience",
-    title: "Experience Meets Progress",
+    period: "EXPANSION & EXCELLENCE",
+    name: "Shri Parmanand Nagarmal Agrawal",
+    title: "Building Scale Through Experience",
     image: "/images/about/generation-2.jpg",
     description:
-      "With experience came a wider understanding of grading, sortex cleaning, dehulling, and customer requirements. The business continued to develop while preserving the values that shaped its foundation—consistency, honesty, and responsible practices.",
+      "Shri Parmanand Nagarmal Agrawal joined the business in 1980 and took the journey forward with a strong focus on quality, quantity and operational efficiency. His leadership brought greater manufacturing capability through the installation of modern equipment, a focus on minimum operating costs and the establishment of two new factories.",
     points: [
-      "Deep processing expertise",
-      "Rigorous grading & sorting",
-      "Long-term customer relationships",
+      "Joined the business in 1980",
+      "Developed quality and quantity mastery",
+      "Introduced the latest equipment",
+      "Focused on minimum operating costs",
+      "Established two new factories independently",
+      "Built a strong presence in the pulses industry",
+      "Continued the brand's leadership for more than a decade",
     ],
   },
   {
     number: "03",
-    period: "Looking Ahead",
-    title: "Tradition Meets Modern Processing",
+    period: "THE NEXT GENERATION",
+    name: "Raunak Parmanand Agrawal",
+    title: "Taking the Business Forward",
     image: "/images/about/generation-3.jpg",
     description:
-      "Today, the next generation carries the journey forward with a modern approach. Advanced optical sorting, hygienic processing, and quality-focused operations are combined with the principles that have remained important throughout the family's journey.",
+      "Raunak Parmanand Agrawal joined the business in 2019, bringing a modern approach to business development and market relationships. His focus has been on connecting with new customers, developing modern trade associations and expanding the business's relationships with an evolving market, while carrying forward the foundation established by the previous generations.",
     points: [
-      "Advanced sorting & processing",
-      "Quality-focused operations",
-      "Vision for sustainable nutrition",
+      "Joined the business in 2019",
+      "Modern approach to business development",
+      "Building connections with new customers",
+      "Developing modern trade associations",
+      "Expanding business relationships",
+      "Taking the family business into a new phase",
     ],
   },
 ];
+
+/* =========================================================
+   VALUES
+========================================================= */
 
 const values = [
   {
@@ -67,7 +86,7 @@ const values = [
     icon: Handshake,
     title: "Built on Trust",
     description:
-      "We value transparent relationships with farmers, customers, retailers, and wholesale partners.",
+      "We value transparent relationships with customers, retailers, and wholesale partners.",
   },
   {
     icon: Factory,
@@ -83,6 +102,10 @@ const values = [
   },
 ];
 
+/* =========================================================
+   ABOUT PAGE
+========================================================= */
+
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-[#faf9f4] text-[#172c18]">
@@ -94,6 +117,7 @@ export default function AboutPage() {
       <section className="relative overflow-hidden border-b border-[#e5e0d2] bg-[#f4f1e5] pt-[120px]">
 
         {/* Decorative wheat/grain */}
+
         <div className="pointer-events-none absolute -left-28 top-20 opacity-[0.035]">
           <Wheat
             size={330}
@@ -103,339 +127,534 @@ export default function AboutPage() {
         </div>
       </section>
 
-     
-
       {/* =========================================================
-          THREE GENERATION STORY
+          OUR JOURNEY — THREE GENERATIONS
       ========================================================= */}
 
-      <section className="relative overflow-hidden bg-[#f4f1e5]">
-
-        <div className="mx-auto max-w-[1250px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
-
-          {/* Section heading */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.65 }}
-            className="mx-auto max-w-[720px] text-center"
-          >
-            <div className="mb-4 flex items-center justify-center gap-3">
-              <span className="h-px w-9 bg-[#b59438]" />
-
-              <Wheat
-                size={14}
-                strokeWidth={1.4}
-                className="text-[#b59438]"
-              />
-
-              <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-[#285c24]">
-                Our Journey
-              </span>
-
-              <span className="h-px w-9 bg-[#b59438]" />
-            </div>
-
-            <h2 className="font-serif text-[32px] font-bold leading-tight text-[#172c18] sm:text-[40px]">
-              Three Chapters,
-              <span className="text-[#285c24]">
-                {" "}One Continuing Legacy
-              </span>
-            </h2>
-
-            <p className="mt-4 text-[12px] leading-6 text-[#686e65] sm:text-[13px]">
-              Each stage of our journey has brought new expertise,
-              infrastructure, and refined standards while keeping purity,
-              nutrition, and trust at the absolute center.
-            </p>
-          </motion.div>
-
-          {/* Generation cards */}
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-
-            {generations.map((generation, index) => (
-              <motion.article
-                key={generation.number}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{
-                  duration: 0.6,
-                  delay: index * 0.1,
-                }}
-                className="group overflow-hidden rounded-[18px] border border-[#ddd5bd] bg-white shadow-[0_6px_22px_rgba(35,55,30,0.045)] transition-all duration-300 hover:-translate-y-1.5 hover:border-[#cfc087] hover:shadow-[0_15px_35px_rgba(35,55,30,0.09)]"
-              >
-
-                {/* =================================================
-                    FIXED SQUARE IMAGE
-                ================================================= */}
-
-                <div className="relative aspect-square w-full overflow-hidden bg-[#e5dfcd]">
-
-                  <Image
-                    src={generation.image}
-                    alt={generation.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                  />
-
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#102f12]/75 via-transparent to-transparent" />
-
-                  {/* Number */}
-                  <div className="absolute left-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-black/20 backdrop-blur-md">
-                    <span className="font-serif text-[12px] font-bold text-white">
-                      {generation.number}
-                    </span>
-                  </div>
-
-                  {/* Image text */}
-                  <div className="absolute inset-x-4 bottom-4">
-                    <p className="text-[8px] font-bold uppercase tracking-[0.18em] text-[#dfc76a]">
-                      {generation.period}
-                    </p>
-
-                    <h3 className="mt-1 font-serif text-[21px] font-bold leading-tight text-white">
-                      {generation.title}
-                    </h3>
-                  </div>
-                </div>
-
-                {/* Card content */}
-                <div className="p-5">
-
-                  <p className="text-[11px] leading-5 text-[#686e65]">
-                    {generation.description}
-                  </p>
-
-                  <div className="mt-4 space-y-2 border-t border-[#ebe6d9] pt-4">
-                    {generation.points.map((point) => (
-                      <div
-                        key={point}
-                        className="flex items-center gap-2"
-                      >
-                        <CheckCircle2
-                          size={13}
-                          strokeWidth={1.7}
-                          className="shrink-0 text-[#285c24]"
-                        />
-
-                        <span className="text-[9px] font-medium text-[#555c53]">
-                          {point}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* =========================================================
-          OUR APPROACH
-      ========================================================= */}
+    OUR JOURNEY — THREE GENERATIONS
+========================================================= */}
 
-      <section className="relative overflow-hidden bg-white">
-  {/* =========================================================
-      SUBTLE BACKGROUND DETAIL
-  ========================================================= */}
+<section className="relative overflow-hidden bg-[#f4f1e5]">
+
+  {/* Subtle background elements */}
 
   <div
     aria-hidden="true"
-    className="
-      pointer-events-none
-      absolute
-      -right-32
-      top-10
-      h-[360px]
-      w-[360px]
-      rounded-full
-      border
-      border-[#b08b30]/[0.07]
-    "
+    className="pointer-events-none absolute -left-40 top-[20%] h-[420px] w-[420px] rounded-full border border-[#285c24]/[0.045]"
   />
 
   <div
     aria-hidden="true"
-    className="
-      pointer-events-none
-      absolute
-      -left-40
-      bottom-0
-      h-[320px]
-      w-[320px]
-      rounded-full
-      border
-      border-[#285c24]/[0.05]
-    "
+    className="pointer-events-none absolute -right-40 bottom-[8%] h-[420px] w-[420px] rounded-full border border-[#b08b30]/[0.055]"
   />
 
-  <div className="relative mx-auto max-w-[1200px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
+  <div className="relative mx-auto max-w-[1250px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
 
-    {/* =========================================================
-        SECTION INTRO
-    ========================================================= */}
+    {/* =====================================================
+        SECTION HEADING
+    ===================================================== */}
 
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="mx-auto max-w-[720px] text-center"
+      transition={{ duration: 0.65 }}
+      className="mx-auto max-w-[760px] text-center"
     >
-      {/* Eyebrow */}
 
-      <div className="flex items-center justify-center gap-3">
-        <span className="h-px w-7 bg-[#b08b30]" />
+      <div className="mb-4 flex items-center justify-center gap-3">
 
-        <p className="text-[9px] font-bold uppercase tracking-[0.23em] text-[#b08b30]">
-          What Guides Us
-        </p>
+        <span className="h-px w-9 bg-[#b59438]" />
 
-        <span className="h-px w-7 bg-[#b08b30]" />
+        <Wheat
+          size={14}
+          strokeWidth={1.4}
+          className="text-[#b59438]"
+        />
+
+        <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-[#285c24]">
+          Our Journey
+        </span>
+
+        <span className="h-px w-9 bg-[#b59438]" />
+
       </div>
 
-      {/* Heading */}
-
-      <h2 className="mt-3 font-serif text-[32px] font-bold leading-[1.08] tracking-[-0.02em] text-[#1b321c] sm:text-[40px]">
-        Our Values Shape{" "}
-        <span className="text-[#285c24]">
-          Our Work
+      <h2 className="font-serif text-[32px] font-bold leading-[1.08] tracking-[-0.025em] text-[#172c18] sm:text-[40px] lg:text-[44px]">
+        Three Generations,
+        <span className="block text-[#285c24]">
+          One Continuing Legacy
         </span>
       </h2>
 
-      {/* Description */}
-
-      <p className="mx-auto mt-5 max-w-[650px] text-[12px] leading-6 text-[#686e65] sm:text-[13px]">
-        The way we operate is anchored in clear principles. These values
-        guide how we procure, clean, sort, grade and supply natural pulses
-        to our valued partners and customers.
+      <p className="mx-auto mt-4 max-w-[680px] text-[12px] leading-6 text-[#686e65] sm:text-[13px]">
+        From establishing the first factory to expanding manufacturing
+        capabilities and embracing modern business relationships, each
+        generation has shaped the next chapter of our journey.
       </p>
+
     </motion.div>
 
-    {/* =========================================================
-        VALUE CARDS
-    ========================================================= */}
+    {/* =====================================================
+        JOURNEY CARDS
+    ===================================================== */}
 
-    <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {values.map((value, index) => {
-        const Icon = value.icon;
+    <div className="relative mx-auto mt-12 max-w-[1150px]">
 
-        return (
-          <motion.div
-            key={value.title}
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.5,
-              delay: index * 0.07,
-            }}
-            className="
-              group
-              relative
-              overflow-hidden
-              rounded-[18px]
-              border
-              border-[#e5e1d6]
-              bg-[#faf9f4]
-              p-5
-              transition-all
-              duration-300
-              hover:-translate-y-1
-              hover:border-[#d4c48d]
-              hover:bg-white
-              hover:shadow-[0_14px_35px_rgba(40,92,36,0.08)]
-            "
-          >
-            {/* Top gold accent */}
+      {/* Desktop centre line */}
 
-            <span
-              aria-hidden="true"
-              className="
-                absolute
-                left-0
-                top-0
-                h-[2px]
-                w-0
-                bg-[#b08b30]
-                transition-all
-                duration-300
-                group-hover:w-full
-              "
-            />
+      <div
+        aria-hidden="true"
+        className="
+          absolute
+          bottom-16
+          left-1/2
+          top-16
+          hidden
+          w-px
+          -translate-x-1/2
+          bg-gradient-to-b
+          from-transparent
+          via-[#c9bb87]
+          to-transparent
+          lg:block
+        "
+      />
 
-            {/* Icon */}
+      <div className="space-y-8 lg:space-y-12">
 
-            <div
-              className="
-                flex
-                h-11
-                w-11
+        {generations.map((generation, index) => {
+
+          const reversed = index % 2 !== 0;
+
+          return (
+            <motion.article
+              key={generation.number}
+              initial={{
+                opacity: 0,
+                y: 25,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.12,
+              }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.08,
+              }}
+              className={`
+                group
+                relative
+                grid
                 items-center
-                justify-center
-                rounded-xl
+                gap-7
+                rounded-[24px]
                 border
-                border-[#285c24]/10
-                bg-[#edf3e9]
+                border-[#ddd5bd]
+                bg-[#fffdf8]
+                p-5
+                shadow-[0_8px_30px_rgba(35,55,30,0.045)]
                 transition-all
                 duration-300
-                group-hover:border-[#b08b30]/20
-                group-hover:bg-[#f5f0df]
-              "
+                hover:border-[#d1bf82]
+                hover:shadow-[0_18px_42px_rgba(35,55,30,0.09)]
+                sm:p-7
+                lg:grid-cols-2
+                lg:gap-10
+                lg:p-8
+                ${
+                  reversed
+                    ? "lg:[&>div:first-child]:order-2"
+                    : ""
+                }
+              `}
             >
-              <Icon
-                size={19}
-                strokeWidth={1.45}
-                className="
-                  text-[#285c24]
-                  transition-colors
-                  duration-300
-                  group-hover:text-[#b08b30]
-                "
-              />
-            </div>
 
-            {/* Content */}
+              {/* =================================================
+                  CIRCULAR IMAGE CONTAINER
+              ================================================= */}
 
-            <h3
-              className="
-                mt-5
-                font-serif
-                text-[17px]
-                font-bold
-                leading-tight
-                text-[#1d341e]
-              "
-            >
-              {value.title}
-            </h3>
+              <div className="flex items-center justify-center">
 
-            <p
-              className="
-                mt-2
-                text-[10px]
-                leading-[1.7]
-                text-[#6c726a]
-              "
-            >
-              {value.description}
-            </p>
+                {/* Outer decorative frame */}
 
-            
-          </motion.div>
-        );
-      })}
+                <div
+                  className="
+                    relative
+                    flex
+                    h-[270px]
+                    w-[270px]
+                    items-center
+                    justify-center
+                    rounded-full
+                    border
+                    border-[#cbbd8b]
+                    bg-[#eee8d8]
+                    p-3
+                    shadow-[0_12px_35px_rgba(35,55,30,0.08)]
+                    sm:h-[330px]
+                    sm:w-[330px]
+                    sm:p-4
+                    lg:h-[390px]
+                    lg:w-[390px]
+                    lg:p-4
+                  "
+                >
+
+                  {/* Inner circular image */}
+
+                  <div
+                    className="
+                      relative
+                      h-full
+                      w-full
+                      overflow-hidden
+                      rounded-full
+                      border
+                      border-white
+                      bg-[#e7e0ce]
+                      shadow-inner
+                    "
+                  >
+
+                    <Image
+                      src={generation.image}
+                      alt={`${generation.name} - ${generation.title}`}
+                      fill
+                      sizes="(max-width: 640px) 270px, (max-width: 1024px) 330px, 390px"
+                      className="
+                        object-contain
+                        object-center
+                        p-1
+                        transition-transform
+                        duration-700
+                        ease-out
+                        group-hover:scale-[1.025]
+                      "
+                    />
+
+                    {/* Very subtle image tint */}
+
+                    <div className="pointer-events-none absolute inset-0 rounded-full bg-[#285c24]/[0.025]" />
+
+                    {/* Inner border */}
+
+                    <div
+                      aria-hidden="true"
+                      className="
+                        pointer-events-none
+                        absolute
+                        inset-1
+                        rounded-full
+                        border
+                        border-[#285c24]/10
+                      "
+                    />
+
+                  </div>
+
+                  {/* Generation number badge */}
+
+                  <div
+                    className="
+                      absolute
+                      right-3
+                      top-3
+                      flex
+                      h-11
+                      w-11
+                      items-center
+                      justify-center
+                      rounded-full
+                      border
+                      border-white
+                      bg-[#285c24]
+                      shadow-[0_6px_18px_rgba(40,92,36,0.22)]
+                      sm:right-5
+                      sm:top-5
+                    "
+                  >
+
+                    <span className="font-serif text-[12px] font-bold text-white">
+                      {generation.number}
+                    </span>
+
+                  </div>
+
+                  {/* Gold decorative dot */}
+
+                  <span
+                    aria-hidden="true"
+                    className="
+                      absolute
+                      bottom-8
+                      left-1/2
+                      h-2.5
+                      w-2.5
+                      -translate-x-1/2
+                      rounded-full
+                      border
+                      border-white
+                      bg-[#b08b30]
+                      shadow-[0_2px_8px_rgba(176,139,48,0.3)]
+                    "
+                  />
+
+                </div>
+
+              </div>
+
+              {/* =================================================
+                  CONTENT
+              ================================================= */}
+
+              <div className="flex flex-col justify-center px-1 py-2 sm:px-2 lg:px-3">
+
+                {/* Generation indicator */}
+
+                <div className="flex items-center gap-3">
+
+                  <span className="font-serif text-[12px] font-bold text-[#b08b30]">
+                    {generation.number}
+                  </span>
+
+                  <span className="h-px w-8 bg-[#d0bf87]" />
+
+                  <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-[#7a7d73]">
+                    {generation.period}
+                  </span>
+
+                </div>
+
+                {/* Title */}
+
+                <h3 className="mt-4 max-w-[470px] font-serif text-[27px] font-bold leading-[1.08] tracking-[-0.02em] text-[#1a321b] sm:text-[31px]">
+
+                  {generation.title}
+
+                </h3>
+
+                {/* Person */}
+
+                <p className="mt-3 max-w-[500px] font-serif text-[16px] font-bold leading-snug text-[#285c24]">
+
+                  {generation.name}
+
+                </p>
+
+                {/* Description */}
+
+                <p className="mt-4 max-w-[510px] text-[11px] leading-[1.75] text-[#686e65] sm:text-[12px]">
+
+                  {generation.description}
+
+                </p>
+
+                {/* Contributions */}
+
+                <div className="mt-6 max-w-[520px] border-t border-[#e8e3d7] pt-5">
+
+                  <p className="text-[8px] font-bold uppercase tracking-[0.18em] text-[#b08b30]">
+                    Key Contributions
+                  </p>
+
+                  <div className="mt-3 grid gap-2.5 sm:grid-cols-2">
+
+                    {generation.points.map((point) => (
+                      <div
+                        key={point}
+                        className="flex items-start gap-2"
+                      >
+
+                        <CheckCircle2
+                          size={13}
+                          strokeWidth={1.7}
+                          className="mt-0.5 shrink-0 text-[#285c24]"
+                        />
+
+                        <span className="text-[9px] font-medium leading-4 text-[#555c53]">
+                          {point}
+                        </span>
+
+                      </div>
+                    ))}
+
+                  </div>
+
+                </div>
+
+                {/* Chapter marker */}
+
+                <div className="mt-6 flex items-center gap-2">
+
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#b08b30]" />
+
+                  <span className="text-[8px] font-semibold uppercase tracking-[0.15em] text-[#85887f]">
+                    Chapter {generation.number}
+                  </span>
+
+                </div>
+
+              </div>
+
+              {/* Bottom accent */}
+
+              <div className="absolute bottom-0 left-0 h-[3px] w-0 rounded-b-[24px] bg-[#285c24] transition-all duration-300 group-hover:w-full" />
+
+            </motion.article>
+          );
+        })}
+
+      </div>
+
     </div>
+
+    {/* =====================================================
+        JOURNEY CLOSING LINE
+    ===================================================== */}
+
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.55 }}
+      className="mx-auto mt-10 max-w-[850px] text-center"
+    >
+
+      <div className="flex items-center justify-center gap-3">
+
+        <span className="h-px w-10 bg-[#d0bf87]" />
+
+        <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-[#b08b30]">
+          Then • Now • Next
+        </span>
+
+        <span className="h-px w-10 bg-[#d0bf87]" />
+
+      </div>
+
+      <p className="mx-auto mt-3 max-w-[650px] text-[10px] leading-5 text-[#777b72]">
+        A journey built through experience, strengthened through
+        expansion and carried forward with a modern business outlook.
+      </p>
+
+    </motion.div>
+
   </div>
 </section>
 
       {/* =========================================================
-          BOTTOM CTA
+          VALUES
+      ========================================================= */}
+
+      <section className="relative overflow-hidden bg-white">
+
+        <div className="mx-auto max-w-[1200px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mx-auto max-w-[720px] text-center"
+          >
+
+            <div className="mb-4 flex items-center justify-center gap-3">
+
+              <span className="h-px w-8 bg-[#b59438]" />
+
+              <span className="text-[9px] font-bold uppercase tracking-[0.23em] text-[#b08b30]">
+                What Guides Us
+              </span>
+
+              <span className="h-px w-8 bg-[#b59438]" />
+
+            </div>
+
+            <h2 className="font-serif text-[32px] font-bold leading-tight text-[#172c18] sm:text-[40px]">
+              Principles That Shape
+              <span className="text-[#285c24]">
+                {" "}Our Work
+              </span>
+            </h2>
+
+            <p className="mt-4 text-[12px] leading-6 text-[#686e65] sm:text-[13px]">
+              The experience built across generations continues to influence
+              how we approach quality, relationships and the future of the
+              business.
+            </p>
+
+          </motion.div>
+
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
+            {values.map((value, index) => {
+              const Icon = value.icon;
+
+              return (
+                <motion.div
+                  key={value.title}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.5,
+                    delay: index * 0.07,
+                  }}
+                  className="
+                    group
+                    relative
+                    overflow-hidden
+                    rounded-[18px]
+                    border
+                    border-[#e5e1d6]
+                    bg-[#faf9f4]
+                    p-5
+                    transition-all
+                    duration-300
+                    hover:-translate-y-1
+                    hover:border-[#d4c48d]
+                    hover:bg-white
+                    hover:shadow-[0_14px_35px_rgba(40,92,36,0.08)]
+                  "
+                >
+
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#edf3e9]">
+
+                    <Icon
+                      size={19}
+                      strokeWidth={1.4}
+                      className="text-[#285c24]"
+                    />
+
+                  </div>
+
+                  <h3 className="mt-5 font-serif text-[17px] font-bold leading-tight text-[#1d341e]">
+                    {value.title}
+                  </h3>
+
+                  <p className="mt-2 text-[10px] leading-[1.7] text-[#6c726a]">
+                    {value.description}
+                  </p>
+
+                  <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#285c24] transition-all duration-300 group-hover:w-full" />
+
+                </motion.div>
+              );
+            })}
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* =========================================================
+          CTA
       ========================================================= */}
 
       <section className="border-t border-[#e5e0d3] bg-[#f4f1e5]">
@@ -448,23 +667,40 @@ export default function AboutPage() {
             className="mx-auto text-[#b08b30]"
           />
 
-          <h2 className="mt-3 font-serif text-[28px] font-bold text-[#1b321c] sm:text-[34px]">
-            Wholesome Nutrition,
-            <span className="text-[#285c24]">
-              {" "}From Farm to Kitchen
+          <h2 className="mt-3 font-serif text-[28px] font-bold leading-tight text-[#1b321c] sm:text-[34px]">
+            A Legacy That Continues,
+            <span className="block text-[#285c24] sm:inline">
+              {" "}A Business That Evolves
             </span>
           </h2>
 
-          <p className="mx-auto mt-3 max-w-[600px] text-[11px] leading-5 text-[#6a7068]">
-            Discover our wide range of pulses, dals, and legumes, or speak with
-            our team for institutional and wholesale requirements.
+          <p className="mx-auto mt-3 max-w-[620px] text-[11px] leading-5 text-[#6a7068]">
+            Explore our range of pulses and discover the products that
+            represent the continuing journey of the business.
           </p>
 
           <div className="mt-6 flex flex-wrap justify-center gap-3">
 
             <Link
               href="/products"
-              className="group inline-flex items-center gap-2 rounded-xl bg-[#285c24] px-6 py-3.5 text-[10px] font-bold text-white shadow-[0_7px_18px_rgba(40,92,36,0.14)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1b4a17]"
+              className="
+                group
+                inline-flex
+                items-center
+                gap-2
+                rounded-xl
+                bg-[#285c24]
+                px-6
+                py-3.5
+                text-[10px]
+                font-bold
+                text-white
+                shadow-[0_7px_18px_rgba(40,92,36,0.14)]
+                transition-all
+                duration-300
+                hover:-translate-y-0.5
+                hover:bg-[#1b4a17]
+              "
             >
               View Products
 
@@ -476,11 +712,29 @@ export default function AboutPage() {
 
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-xl border border-[#285c24] px-6 py-3.5 text-[10px] font-semibold text-[#285c24] transition-all duration-300 hover:bg-[#285c24] hover:text-white"
+              className="
+                inline-flex
+                items-center
+                gap-2
+                rounded-xl
+                border
+                border-[#285c24]
+                px-6
+                py-3.5
+                text-[10px]
+                font-semibold
+                text-[#285c24]
+                transition-all
+                duration-300
+                hover:bg-[#285c24]
+                hover:text-white
+              "
             >
               Contact Us
             </Link>
+
           </div>
+
         </div>
       </section>
 

@@ -9,7 +9,6 @@ import {
   CheckCircle2,
   Clock3,
   Factory,
-  Mail,
   MapPin,
   MessageCircle,
   Phone,
@@ -23,6 +22,9 @@ import {
 import { FormEvent, useState, useEffect } from "react";
 
 type FormStatus = "idle" | "loading" | "success" | "error";
+
+const CUSTOMER_PHONE = "+91 94230 76699";
+const CUSTOMER_PHONE_LINK = "tel:+919423076699";
 
 const enquiryTypes = [
   "Bulk Purchase",
@@ -52,23 +54,55 @@ export default function ContactPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [prefilledEnquiry, setPrefilledEnquiry] = useState("");
 
-  // Lock body scroll when modal is open
+  /* =========================================================
+     LOCK BODY SCROLL WHEN MODAL IS OPEN
+  ========================================================= */
+
   useEffect(() => {
     if (isModalOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
     }
+
     return () => {
       document.body.style.overflow = "unset";
     };
   }, [isModalOpen]);
+
+  /* =========================================================
+     ESCAPE KEY
+  ========================================================= */
+
+  useEffect(() => {
+    if (!isModalOpen) return;
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsModalOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [isModalOpen]);
+
+  /* =========================================================
+     OPEN MODAL
+  ========================================================= */
 
   const handleOpenModal = (enquiryType: string) => {
     setPrefilledEnquiry(enquiryType);
     setModalStatus("idle");
     setIsModalOpen(true);
   };
+
+  /* =========================================================
+     SUBMIT FORM
+  ========================================================= */
 
   const handleSubmit = async (
     e: FormEvent<HTMLFormElement>,
@@ -77,6 +111,7 @@ export default function ContactPage() {
     e.preventDefault();
 
     const currentSetStatus = isModal ? setModalStatus : setStatus;
+
     currentSetStatus("loading");
 
     const form = e.currentTarget;
@@ -110,6 +145,7 @@ export default function ContactPage() {
       }
 
       currentSetStatus("success");
+
       form.reset();
 
       if (!isModal) {
@@ -240,21 +276,20 @@ export default function ContactPage() {
       <section className="relative pb-20">
         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {/* =====================================================
-                BULK ORDERS (Triggers Modal)
-            ===================================================== */}
+            {/* BULK ORDERS */}
 
             <button
+              type="button"
               onClick={() => handleOpenModal("Bulk Purchase")}
               className="
                 group
                 w-full
-                text-left
                 rounded-[22px]
                 border
                 border-[#e4dfcf]
                 bg-white
                 p-6
+                text-left
                 shadow-[0_10px_35px_rgba(30,60,30,0.05)]
                 transition-all
                 duration-300
@@ -262,22 +297,7 @@ export default function ContactPage() {
                 hover:shadow-[0_16px_40px_rgba(30,60,30,0.09)]
               "
             >
-              <div
-                className="
-                  flex
-                  h-12
-                  w-12
-                  items-center
-                  justify-center
-                  rounded-2xl
-                  bg-[#edf4e9]
-                  text-[#225b27]
-                  transition-colors
-                  duration-300
-                  group-hover:bg-[#285c24]
-                  group-hover:text-white
-                "
-              >
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#edf4e9] text-[#225b27] transition-colors duration-300 group-hover:bg-[#285c24] group-hover:text-white">
                 <Factory size={22} strokeWidth={1.6} />
               </div>
 
@@ -295,21 +315,20 @@ export default function ContactPage() {
               </p>
             </button>
 
-            {/* =====================================================
-                DISTRIBUTORS (Triggers Modal)
-            ===================================================== */}
+            {/* DISTRIBUTORS */}
 
             <button
+              type="button"
               onClick={() => handleOpenModal("Distributor Enquiry")}
               className="
                 group
                 w-full
-                text-left
                 rounded-[22px]
                 border
                 border-[#e4dfcf]
                 bg-white
                 p-6
+                text-left
                 shadow-[0_10px_35px_rgba(30,60,30,0.05)]
                 transition-all
                 duration-300
@@ -317,22 +336,7 @@ export default function ContactPage() {
                 hover:shadow-[0_16px_40px_rgba(30,60,30,0.09)]
               "
             >
-              <div
-                className="
-                  flex
-                  h-12
-                  w-12
-                  items-center
-                  justify-center
-                  rounded-2xl
-                  bg-[#edf4e9]
-                  text-[#225b27]
-                  transition-colors
-                  duration-300
-                  group-hover:bg-[#285c24]
-                  group-hover:text-white
-                "
-              >
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#edf4e9] text-[#225b27] transition-colors duration-300 group-hover:bg-[#285c24] group-hover:text-white">
                 <Truck size={22} strokeWidth={1.6} />
               </div>
 
@@ -350,9 +354,7 @@ export default function ContactPage() {
               </p>
             </button>
 
-            {/* =====================================================
-                PRODUCT (Links to /products)
-            ===================================================== */}
+            {/* PRODUCTS */}
 
             <Link
               href="/products"
@@ -371,22 +373,7 @@ export default function ContactPage() {
                 hover:shadow-[0_16px_40px_rgba(30,60,30,0.09)]
               "
             >
-              <div
-                className="
-                  flex
-                  h-12
-                  w-12
-                  items-center
-                  justify-center
-                  rounded-2xl
-                  bg-[#edf4e9]
-                  text-[#225b27]
-                  transition-colors
-                  duration-300
-                  group-hover:bg-[#285c24]
-                  group-hover:text-white
-                "
-              >
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#edf4e9] text-[#225b27] transition-colors duration-300 group-hover:bg-[#285c24] group-hover:text-white">
                 <Wheat size={22} strokeWidth={1.6} />
               </div>
 
@@ -404,41 +391,10 @@ export default function ContactPage() {
               </p>
             </Link>
 
-            {/* =====================================================
-                CUSTOMER CARE
-            ===================================================== */}
+            {/* CUSTOMER CARE */}
 
-            <div
-              className="
-                group
-                rounded-[22px]
-                border
-                border-[#e4dfcf]
-                bg-white
-                p-6
-                shadow-[0_10px_35px_rgba(30,60,30,0.05)]
-                transition-all
-                duration-300
-                hover:-translate-y-1
-                hover:shadow-[0_16px_40px_rgba(30,60,30,0.09)]
-              "
-            >
-              <div
-                className="
-                  flex
-                  h-12
-                  w-12
-                  items-center
-                  justify-center
-                  rounded-2xl
-                  bg-[#edf4e9]
-                  text-[#225b27]
-                  transition-colors
-                  duration-300
-                  group-hover:bg-[#285c24]
-                  group-hover:text-white
-                "
-              >
+            <div className="group rounded-[22px] border border-[#e4dfcf] bg-white p-6 shadow-[0_10px_35px_rgba(30,60,30,0.05)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(30,60,30,0.09)]">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#edf4e9] text-[#225b27] transition-colors duration-300 group-hover:bg-[#285c24] group-hover:text-white">
                 <Phone size={22} strokeWidth={1.6} />
               </div>
 
@@ -451,10 +407,10 @@ export default function ContactPage() {
               </h3>
 
               <a
-                href="tel:02385252063"
+                href={CUSTOMER_PHONE_LINK}
                 className="mt-2 block text-[11px] font-semibold text-[#62665e] transition-colors hover:text-[#285c24]"
               >
-                02385 - 252063
+                {CUSTOMER_PHONE}
               </a>
             </div>
           </div>
@@ -466,19 +422,13 @@ export default function ContactPage() {
       ========================================================= */}
 
       <section className="relative overflow-hidden bg-[#173f1b] py-16 md:py-20">
-        {/* Background decoration */}
-
         <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full border border-[#d2b450]/15" />
-
         <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full border border-[#d2b450]/10" />
-
         <div className="pointer-events-none absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full border border-[#d2b450]/10" />
 
         <div className="relative mx-auto max-w-[1250px] px-5 sm:px-8 lg:px-10">
           <div className="grid items-start gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
-            {/* =====================================================
-                LEFT CONTENT
-            ===================================================== */}
+            {/* LEFT CONTENT */}
 
             <div className="text-white">
               <div className="flex items-center gap-3">
@@ -502,13 +452,9 @@ export default function ContactPage() {
                 your requirement and our team will get in touch with you.
               </p>
 
-              {/* =================================================
-                  B2B BENEFITS
-              ================================================= */}
+              {/* BENEFITS */}
 
               <div className="mt-9 space-y-6">
-                {/* Bulk Procurement */}
-
                 <div className="flex gap-4">
                   <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#d4b451]/30 text-[#dfc263]">
                     <Factory size={17} strokeWidth={1.5} />
@@ -525,8 +471,6 @@ export default function ContactPage() {
                     </p>
                   </div>
                 </div>
-
-                {/* Product Requirements */}
 
                 <div className="flex gap-4">
                   <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#d4b451]/30 text-[#dfc263]">
@@ -545,8 +489,6 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Distribution */}
-
                 <div className="flex gap-4">
                   <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#d4b451]/30 text-[#dfc263]">
                     <Truck size={17} strokeWidth={1.5} />
@@ -563,8 +505,6 @@ export default function ContactPage() {
                     </p>
                   </div>
                 </div>
-
-                {/* Quality */}
 
                 <div className="flex gap-4">
                   <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#d4b451]/30 text-[#dfc263]">
@@ -584,10 +524,10 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Direct Call */}
+              {/* DIRECT CALL */}
 
               <a
-                href="tel:02385252063"
+                href={CUSTOMER_PHONE_LINK}
                 className="
                   mt-9
                   inline-flex
@@ -611,12 +551,9 @@ export default function ContactPage() {
               >
                 <Phone size={15} strokeWidth={1.6} />
 
-                Call Customer Care
+                {CUSTOMER_PHONE}
 
-                <ArrowRight
-                  size={15}
-                  strokeWidth={1.6}
-                />
+                <ArrowRight size={15} strokeWidth={1.6} />
               </a>
             </div>
 
@@ -625,8 +562,6 @@ export default function ContactPage() {
             ===================================================== */}
 
             <div className="rounded-[22px] bg-[#fdfcf7] p-6 shadow-[0_25px_70px_rgba(0,0,0,0.18)] sm:p-8 lg:p-9">
-              {/* Form Header */}
-
               <div className="mb-7">
                 <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-[#b08c2c]">
                   B2B Requirement Form
@@ -642,9 +577,7 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              {/* =================================================
-                  SUCCESS MESSAGE
-              ================================================= */}
+              {/* SUCCESS */}
 
               {status === "success" && (
                 <div className="mb-6 flex gap-3 rounded-xl border border-green-200 bg-green-50 p-4">
@@ -666,9 +599,7 @@ export default function ContactPage() {
                 </div>
               )}
 
-              {/* =================================================
-                  ERROR MESSAGE
-              ================================================= */}
+              {/* ERROR */}
 
               {status === "error" && (
                 <div className="mb-6 flex gap-3 rounded-xl border border-red-200 bg-red-50 p-4">
@@ -684,15 +615,13 @@ export default function ContactPage() {
 
                     <p className="mt-1 text-[10px] leading-5 text-red-700">
                       Please try again or contact our customer-care team
-                      directly at 02385-252063.
+                      directly at {CUSTOMER_PHONE}.
                     </p>
                   </div>
                 </div>
               )}
 
-              {/* =================================================
-                  FORM
-              ================================================= */}
+              {/* FORM */}
 
               <form
                 onSubmit={(e) => handleSubmit(e, false)}
@@ -716,23 +645,7 @@ export default function ContactPage() {
                       required
                       minLength={2}
                       placeholder="Your name"
-                      className="
-                        h-12
-                        w-full
-                        rounded-xl
-                        border
-                        border-[#ddd9ca]
-                        bg-white
-                        px-4
-                        text-[12px]
-                        text-[#173b1b]
-                        outline-none
-                        transition
-                        placeholder:text-[#a2a59f]
-                        focus:border-[#285f2b]
-                        focus:ring-2
-                        focus:ring-[#285f2b]/10
-                      "
+                      className="h-12 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-[12px] text-[#173b1b] outline-none transition placeholder:text-[#a2a59f] focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10"
                     />
                   </div>
 
@@ -750,23 +663,7 @@ export default function ContactPage() {
                       name="phone"
                       required
                       placeholder="Your phone number"
-                      className="
-                        h-12
-                        w-full
-                        rounded-xl
-                        border
-                        border-[#ddd9ca]
-                        bg-white
-                        px-4
-                        text-[12px]
-                        text-[#173b1b]
-                        outline-none
-                        transition
-                        placeholder:text-[#a2a59f]
-                        focus:border-[#285f2b]
-                        focus:ring-2
-                        focus:ring-[#285f2b]/10
-                      "
+                      className="h-12 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-[12px] text-[#173b1b] outline-none transition placeholder:text-[#a2a59f] focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10"
                     />
                   </div>
                 </div>
@@ -787,23 +684,7 @@ export default function ContactPage() {
                       type="text"
                       name="company"
                       placeholder="Company or business name"
-                      className="
-                        h-12
-                        w-full
-                        rounded-xl
-                        border
-                        border-[#ddd9ca]
-                        bg-white
-                        px-4
-                        text-[12px]
-                        text-[#173b1b]
-                        outline-none
-                        transition
-                        placeholder:text-[#a2a59f]
-                        focus:border-[#285f2b]
-                        focus:ring-2
-                        focus:ring-[#285f2b]/10
-                      "
+                      className="h-12 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-[12px] text-[#173b1b] outline-none transition placeholder:text-[#a2a59f] focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10"
                     />
                   </div>
 
@@ -820,28 +701,12 @@ export default function ContactPage() {
                       type="email"
                       name="email"
                       placeholder="you@company.com"
-                      className="
-                        h-12
-                        w-full
-                        rounded-xl
-                        border
-                        border-[#ddd9ca]
-                        bg-white
-                        px-4
-                        text-[12px]
-                        text-[#173b1b]
-                        outline-none
-                        transition
-                        placeholder:text-[#a2a59f]
-                        focus:border-[#285f2b]
-                        focus:ring-2
-                        focus:ring-[#285f2b]/10
-                      "
+                      className="h-12 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-[12px] text-[#173b1b] outline-none transition placeholder:text-[#a2a59f] focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10"
                     />
                   </div>
                 </div>
 
-                {/* Enquiry Type + Product */}
+                {/* Enquiry + Product */}
 
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
@@ -857,32 +722,14 @@ export default function ContactPage() {
                       name="enquiry"
                       required
                       defaultValue=""
-                      className="
-                        h-12
-                        w-full
-                        rounded-xl
-                        border
-                        border-[#ddd9ca]
-                        bg-white
-                        px-4
-                        text-[12px]
-                        text-[#173b1b]
-                        outline-none
-                        transition
-                        focus:border-[#285f2b]
-                        focus:ring-2
-                        focus:ring-[#285f2b]/10
-                      "
+                      className="h-12 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-[12px] text-[#173b1b] outline-none transition focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10"
                     >
                       <option value="" disabled>
                         Select enquiry type
                       </option>
 
                       {enquiryTypes.map((type) => (
-                        <option
-                          key={type}
-                          value={type}
-                        >
+                        <option key={type} value={type}>
                           {type}
                         </option>
                       ))}
@@ -902,32 +749,14 @@ export default function ContactPage() {
                       name="product"
                       required
                       defaultValue=""
-                      className="
-                        h-12
-                        w-full
-                        rounded-xl
-                        border
-                        border-[#ddd9ca]
-                        bg-white
-                        px-4
-                        text-[12px]
-                        text-[#173b1b]
-                        outline-none
-                        transition
-                        focus:border-[#285f2b]
-                        focus:ring-2
-                        focus:ring-[#285f2b]/10
-                      "
+                      className="h-12 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-[12px] text-[#173b1b] outline-none transition focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10"
                     >
                       <option value="" disabled>
                         Select product
                       </option>
 
                       {products.map((product) => (
-                        <option
-                          key={product}
-                          value={product}
-                        >
+                        <option key={product} value={product}>
                           {product}
                         </option>
                       ))}
@@ -951,23 +780,7 @@ export default function ContactPage() {
                       type="text"
                       name="quantity"
                       placeholder="e.g. 5 MT / 10 MT / 500 kg"
-                      className="
-                        h-12
-                        w-full
-                        rounded-xl
-                        border
-                        border-[#ddd9ca]
-                        bg-white
-                        px-4
-                        text-[12px]
-                        text-[#173b1b]
-                        outline-none
-                        transition
-                        placeholder:text-[#a2a59f]
-                        focus:border-[#285f2b]
-                        focus:ring-2
-                        focus:ring-[#285f2b]/10
-                      "
+                      className="h-12 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-[12px] text-[#173b1b] outline-none transition placeholder:text-[#a2a59f] focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10"
                     />
                   </div>
 
@@ -984,23 +797,7 @@ export default function ContactPage() {
                       type="text"
                       name="location"
                       placeholder="City / State"
-                      className="
-                        h-12
-                        w-full
-                        rounded-xl
-                        border
-                        border-[#ddd9ca]
-                        bg-white
-                        px-4
-                        text-[12px]
-                        text-[#173b1b]
-                        outline-none
-                        transition
-                        placeholder:text-[#a2a59f]
-                        focus:border-[#285f2b]
-                        focus:ring-2
-                        focus:ring-[#285f2b]/10
-                      "
+                      className="h-12 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-[12px] text-[#173b1b] outline-none transition placeholder:text-[#a2a59f] focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10"
                     />
                   </div>
                 </div>
@@ -1022,25 +819,7 @@ export default function ContactPage() {
                     minLength={10}
                     rows={5}
                     placeholder="Tell us about your requirement, preferred product, quantity, packaging or any other business details..."
-                    className="
-                      w-full
-                      resize-none
-                      rounded-xl
-                      border
-                      border-[#ddd9ca]
-                      bg-white
-                      px-4
-                      py-3.5
-                      text-[12px]
-                      leading-5
-                      text-[#173b1b]
-                      outline-none
-                      transition
-                      placeholder:text-[#a2a59f]
-                      focus:border-[#285f2b]
-                      focus:ring-2
-                      focus:ring-[#285f2b]/10
-                    "
+                    className="w-full resize-none rounded-xl border border-[#ddd9ca] bg-white px-4 py-3.5 text-[12px] leading-5 text-[#173b1b] outline-none transition placeholder:text-[#a2a59f] focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10"
                   />
                 </div>
 
@@ -1049,29 +828,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="
-                    group
-                    flex
-                    h-12
-                    w-full
-                    items-center
-                    justify-center
-                    gap-2.5
-                    rounded-xl
-                    bg-[#285c24]
-                    text-[11px]
-                    font-bold
-                    text-white
-                    shadow-[0_8px_22px_rgba(40,92,36,0.16)]
-                    transition-all
-                    duration-300
-                    hover:-translate-y-0.5
-                    hover:bg-[#214d1f]
-                    hover:shadow-[0_12px_26px_rgba(40,92,36,0.2)]
-                    disabled:cursor-not-allowed
-                    disabled:opacity-60
-                    disabled:hover:translate-y-0
-                  "
+                  className="group flex h-12 w-full items-center justify-center gap-2.5 rounded-xl bg-[#285c24] text-[11px] font-bold text-white shadow-[0_8px_22px_rgba(40,92,36,0.16)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#214d1f] hover:shadow-[0_12px_26px_rgba(40,92,36,0.2)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
                 >
                   {status === "loading" ? (
                     <>
@@ -1080,10 +837,7 @@ export default function ContactPage() {
                     </>
                   ) : (
                     <>
-                      <Send
-                        size={15}
-                        strokeWidth={1.7}
-                      />
+                      <Send size={15} strokeWidth={1.7} />
                       Submit Business Enquiry
                       <ArrowRight
                         size={15}
@@ -1093,8 +847,6 @@ export default function ContactPage() {
                     </>
                   )}
                 </button>
-
-                {/* Privacy note */}
 
                 <p className="text-center text-[9px] leading-4 text-[#8a8d87]">
                   Your information will be used only to respond to your
@@ -1135,24 +887,11 @@ export default function ContactPage() {
           </div>
 
           <div className="mt-9 grid gap-4 sm:grid-cols-3">
-            {/* Phone */}
+            {/* PHONE */}
 
             <a
-              href="tel:02385252063"
-              className="
-                group
-                rounded-[18px]
-                border
-                border-[#ddd7c4]
-                bg-white
-                p-5
-                text-center
-                transition-all
-                duration-300
-                hover:-translate-y-1
-                hover:border-[#285c24]/30
-                hover:shadow-[0_10px_30px_rgba(35,55,30,0.06)]
-              "
+              href={CUSTOMER_PHONE_LINK}
+              className="group rounded-[18px] border border-[#ddd7c4] bg-white p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-[#285c24]/30 hover:shadow-[0_10px_30px_rgba(35,55,30,0.06)]"
             >
               <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#edf3e9] text-[#285c24]">
                 <Phone size={17} strokeWidth={1.5} />
@@ -1163,31 +902,17 @@ export default function ContactPage() {
               </p>
 
               <p className="mt-1 text-[11px] font-semibold text-[#173b1b] group-hover:text-[#285c24]">
-                02385 - 252063
+                {CUSTOMER_PHONE}
               </p>
             </a>
 
-            {/* Location (Links to Maps) */}
+            {/* LOCATION */}
 
             <a
               href="https://maps.google.com/?q=Udgir,Maharashtra-413517"
               target="_blank"
               rel="noopener noreferrer"
-              className="
-                group
-                block
-                rounded-[18px]
-                border
-                border-[#ddd7c4]
-                bg-white
-                p-5
-                text-center
-                transition-all
-                duration-300
-                hover:-translate-y-1
-                hover:border-[#285c24]/30
-                hover:shadow-[0_10px_30px_rgba(35,55,30,0.06)]
-              "
+              className="group block rounded-[18px] border border-[#ddd7c4] bg-white p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-[#285c24]/30 hover:shadow-[0_10px_30px_rgba(35,55,30,0.06)]"
             >
               <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#edf3e9] text-[#285c24]">
                 <MapPin size={17} strokeWidth={1.5} />
@@ -1202,18 +927,9 @@ export default function ContactPage() {
               </p>
             </a>
 
-            {/* Hours */}
+            {/* HOURS */}
 
-            <div
-              className="
-                rounded-[18px]
-                border
-                border-[#ddd7c4]
-                bg-white
-                p-5
-                text-center
-              "
-            >
+            <div className="rounded-[18px] border border-[#ddd7c4] bg-white p-5 text-center">
               <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#edf3e9] text-[#285c24]">
                 <Clock3 size={17} strokeWidth={1.5} />
               </div>
@@ -1235,107 +951,216 @@ export default function ContactPage() {
       </section>
 
       {/* =========================================================
-          POPUP MODAL FORM
+          POPUP MODAL
       ========================================================= */}
+
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="enquiry-modal-title"
+        >
+          {/* Backdrop */}
+
           <div
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             onClick={() => setIsModalOpen(false)}
           />
 
-          <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-[22px] bg-[#fdfcf7] p-6 shadow-2xl sm:p-8 lg:p-9 animate-in fade-in zoom-in-95 duration-200">
+          {/* Modal */}
+
+          <div className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-[22px] bg-[#fdfcf7] p-6 shadow-2xl sm:p-8 lg:p-9">
+            {/* Close */}
+
             <button
+              type="button"
               onClick={() => setIsModalOpen(false)}
+              aria-label="Close enquiry form"
               className="absolute right-5 top-5 rounded-full p-2 text-[#6a6d66] transition-colors hover:bg-[#edf4e9] hover:text-[#173b1b]"
             >
               <X size={20} strokeWidth={2} />
             </button>
 
-            <div className="mb-7">
+            {/* Modal Header */}
+
+            <div className="mb-7 pr-10">
               <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-[#b08c2c]">
                 Quick Enquiry
               </p>
-              <h3 className="mt-2 font-serif text-[28px] font-bold text-[#173b1b]">
+
+              <h3
+                id="enquiry-modal-title"
+                className="mt-2 font-serif text-[28px] font-bold text-[#173b1b]"
+              >
                 {prefilledEnquiry}
               </h3>
+
               <p className="mt-2 text-[11px] leading-5 text-[#6a6d66]">
                 Please provide your details below and our team will get in
                 touch with you shortly.
               </p>
             </div>
 
-            {/* Modal Success Message */}
+            {/* Modal Success */}
+
             {modalStatus === "success" && (
               <div className="mb-6 flex gap-3 rounded-xl border border-green-200 bg-green-50 p-4">
                 <CheckCircle2
                   size={19}
                   className="mt-0.5 shrink-0 text-green-700"
                 />
+
                 <div>
                   <p className="text-[12px] font-bold text-green-800">
                     Enquiry sent successfully.
                   </p>
+
                   <p className="mt-1 text-[10px] leading-5 text-green-700">
-                    Thank you! We'll review your requirement and reach out.
+                    Thank you! We&apos;ll review your requirement and reach out.
                   </p>
                 </div>
               </div>
             )}
 
-            {/* Modal Error Message */}
+            {/* Modal Error */}
+
             {modalStatus === "error" && (
               <div className="mb-6 flex gap-3 rounded-xl border border-red-200 bg-red-50 p-4">
                 <MessageCircle
                   size={18}
                   className="mt-0.5 shrink-0 text-red-700"
                 />
+
                 <div>
                   <p className="text-[12px] font-bold text-red-800">
                     Unable to send enquiry.
                   </p>
+
                   <p className="mt-1 text-[10px] leading-5 text-red-700">
-                    Please try again or call us at 02385-252063.
+                    Please try again or call us at {CUSTOMER_PHONE}.
                   </p>
                 </div>
               </div>
             )}
 
+            {/* Modal Form */}
+
             <form
               onSubmit={(e) => handleSubmit(e, true)}
               className="space-y-4"
             >
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label htmlFor="modal-name" className="mb-1.5 block text-[11px] font-semibold text-[#243d26]">Contact Name *</label>
-                  <input id="modal-name" type="text" name="name" required minLength={2} placeholder="Your name" className="h-12 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-[12px] text-[#173b1b] outline-none transition placeholder:text-[#a2a59f] focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10" />
-                </div>
-                <div>
-                  <label htmlFor="modal-phone" className="mb-1.5 block text-[11px] font-semibold text-[#243d26]">Phone Number *</label>
-                  <input id="modal-phone" type="tel" name="phone" required placeholder="Your phone number" className="h-12 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-[12px] text-[#173b1b] outline-none transition placeholder:text-[#a2a59f] focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10" />
-                </div>
-              </div>
+              {/* Name + Phone */}
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label htmlFor="modal-company" className="mb-1.5 block text-[11px] font-semibold text-[#243d26]">Company / Business</label>
-                  <input id="modal-company" type="text" name="company" placeholder="Company or business name" className="h-12 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-[12px] text-[#173b1b] outline-none transition placeholder:text-[#a2a59f] focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10" />
+                  <label
+                    htmlFor="modal-name"
+                    className="mb-1.5 block text-[11px] font-semibold text-[#243d26]"
+                  >
+                    Contact Name *
+                  </label>
+
+                  <input
+                    id="modal-name"
+                    type="text"
+                    name="name"
+                    required
+                    minLength={2}
+                    placeholder="Your name"
+                    className="h-12 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-[12px] text-[#173b1b] outline-none transition placeholder:text-[#a2a59f] focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10"
+                  />
                 </div>
+
                 <div>
-                  <label htmlFor="modal-enquiry" className="mb-1.5 block text-[11px] font-semibold text-[#243d26]">Enquiry Type *</label>
-                  <select id="modal-enquiry" name="enquiry" required defaultValue={prefilledEnquiry || ""} className="h-12 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-[12px] text-[#173b1b] outline-none transition focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10">
-                    <option value="" disabled>Select enquiry type</option>
+                  <label
+                    htmlFor="modal-phone"
+                    className="mb-1.5 block text-[11px] font-semibold text-[#243d26]"
+                  >
+                    Phone Number *
+                  </label>
+
+                  <input
+                    id="modal-phone"
+                    type="tel"
+                    name="phone"
+                    required
+                    placeholder="Your phone number"
+                    className="h-12 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-[12px] text-[#173b1b] outline-none transition placeholder:text-[#a2a59f] focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10"
+                  />
+                </div>
+              </div>
+
+              {/* Company + Enquiry */}
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label
+                    htmlFor="modal-company"
+                    className="mb-1.5 block text-[11px] font-semibold text-[#243d26]"
+                  >
+                    Company / Business
+                  </label>
+
+                  <input
+                    id="modal-company"
+                    type="text"
+                    name="company"
+                    placeholder="Company or business name"
+                    className="h-12 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-[12px] text-[#173b1b] outline-none transition placeholder:text-[#a2a59f] focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="modal-enquiry"
+                    className="mb-1.5 block text-[11px] font-semibold text-[#243d26]"
+                  >
+                    Enquiry Type *
+                  </label>
+
+                  <select
+                    id="modal-enquiry"
+                    name="enquiry"
+                    required
+                    defaultValue={prefilledEnquiry || ""}
+                    className="h-12 w-full rounded-xl border border-[#ddd9ca] bg-white px-4 text-[12px] text-[#173b1b] outline-none transition focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10"
+                  >
+                    <option value="" disabled>
+                      Select enquiry type
+                    </option>
+
                     {enquiryTypes.map((type) => (
-                      <option key={type} value={type}>{type}</option>
+                      <option key={type} value={type}>
+                        {type}
+                      </option>
                     ))}
                   </select>
                 </div>
               </div>
 
+              {/* Message */}
+
               <div>
-                <label htmlFor="modal-message" className="mb-1.5 block text-[11px] font-semibold text-[#243d26]">Requirement Details *</label>
-                <textarea id="modal-message" name="message" required minLength={10} rows={4} placeholder="Tell us about your requirement..." className="w-full resize-none rounded-xl border border-[#ddd9ca] bg-white px-4 py-3.5 text-[12px] leading-5 text-[#173b1b] outline-none transition placeholder:text-[#a2a59f] focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10" />
+                <label
+                  htmlFor="modal-message"
+                  className="mb-1.5 block text-[11px] font-semibold text-[#243d26]"
+                >
+                  Requirement Details *
+                </label>
+
+                <textarea
+                  id="modal-message"
+                  name="message"
+                  required
+                  minLength={10}
+                  rows={4}
+                  placeholder="Tell us about your requirement..."
+                  className="w-full resize-none rounded-xl border border-[#ddd9ca] bg-white px-4 py-3.5 text-[12px] leading-5 text-[#173b1b] outline-none transition placeholder:text-[#a2a59f] focus:border-[#285f2b] focus:ring-2 focus:ring-[#285f2b]/10"
+                />
               </div>
+
+              {/* Submit */}
 
               <button
                 type="submit"
@@ -1351,7 +1176,11 @@ export default function ContactPage() {
                   <>
                     <Send size={15} strokeWidth={1.7} />
                     Submit Request
-                    <ArrowRight size={15} strokeWidth={1.7} className="transition-transform duration-200 group-hover:translate-x-1" />
+                    <ArrowRight
+                      size={15}
+                      strokeWidth={1.7}
+                      className="transition-transform duration-200 group-hover:translate-x-1"
+                    />
                   </>
                 )}
               </button>
