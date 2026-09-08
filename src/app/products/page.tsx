@@ -47,7 +47,7 @@ const products = [
   },
   {
     number: "05",
-    name: "Whole Moong Dal",
+    name: "Whole Moong ",
     subtitle: "Tripple Arrow",
     description:
       "Clean whole green gram with good appearance and quality for everyday use.",

@@ -455,50 +455,6 @@ export default function AboutPage() {
 
                 </p>
 
-                {/* Contributions */}
-
-                <div className="mt-6 max-w-[520px] border-t border-[#e8e3d7] pt-5">
-
-                  <p className="text-[8px] font-bold uppercase tracking-[0.18em] text-[#b08b30]">
-                    Key Contributions
-                  </p>
-
-                  <div className="mt-3 grid gap-2.5 sm:grid-cols-2">
-
-                    {generation.points.map((point) => (
-                      <div
-                        key={point}
-                        className="flex items-start gap-2"
-                      >
-
-                        <CheckCircle2
-                          size={13}
-                          strokeWidth={1.7}
-                          className="mt-0.5 shrink-0 text-[#285c24]"
-                        />
-
-                        <span className="text-[9px] font-medium leading-4 text-[#555c53]">
-                          {point}
-                        </span>
-
-                      </div>
-                    ))}
-
-                  </div>
-
-                </div>
-
-                {/* Chapter marker */}
-
-                <div className="mt-6 flex items-center gap-2">
-
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#b08b30]" />
-
-                  <span className="text-[8px] font-semibold uppercase tracking-[0.15em] text-[#85887f]">
-                    Chapter {generation.number}
-                  </span>
-
-                </div>
 
               </div>
 
