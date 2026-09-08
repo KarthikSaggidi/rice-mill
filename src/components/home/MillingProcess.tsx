@@ -4,7 +4,9 @@ import Link from "next/link";
 import {
   ArrowRight,
   CheckCircle2,
+  ClipboardCheck,
   Factory,
+  Filter,
   PackageCheck,
   SearchCheck,
   Settings2,
@@ -19,33 +21,33 @@ const processSteps = [
     title: "Raw Material Selection",
     shortTitle: "Selection",
     description:
-      "Quality pulses are carefully selected based on size, maturity, cleanliness and overall raw material quality.",
+      "Quality pulses are carefully selected based on size, maturity and overall raw material quality.",
     icon: Sprout,
   },
   {
-    number: "02",
-    title: "Cleaning & Grading",
-    shortTitle: "Cleaning",
-    description:
-      "The raw material is thoroughly cleaned and graded to remove dust, stones, husk and other unwanted impurities.",
-    icon: SearchCheck,
-  },
+  number: "02",
+  title: "Cleaning & Grading",
+  shortTitle: "Cleaning",
+  description:
+    "The raw material is thoroughly cleaned and graded to remove dust, stones, husk and other foreign materials.",
+  icon: Filter,
+},
   {
     number: "03",
     title: "Dal Processing",
     shortTitle: "Processing",
     description:
-      "Modern processing equipment is used with controlled operations to maintain the quality and consistency of the pulses.",
+      "Modern processing equipment is used with controlled operations to maintain the sortex quality and consistency.",
     icon: Settings2,
   },
   {
-    number: "04",
-    title: "Quality Inspection",
-    shortTitle: "Inspection",
-    description:
-      "Processed dal is carefully inspected for cleanliness, appearance, consistency and overall product quality.",
-    icon: CheckCircle2,
-  },
+  number: "04",
+  title: "Quality Inspection",
+  shortTitle: "Inspection",
+  description:
+    "Processed dal is carefully inspected for appearance, consistency and overall product quality.",
+  icon: ClipboardCheck,
+},
   {
     number: "05",
     title: "Packing & Dispatch",
@@ -121,8 +123,8 @@ export default function MillingProcess() {
           {/* Heading */}
 
           <h2 className="font-serif text-[39px] font-bold leading-[1.06] tracking-[-0.035em] text-[#172c18] sm:text-[48px] lg:text-[54px]">
-            From Quality Pulses to
-            <span className="text-[#285c24]"> Quality Dal</span>
+            Cultivated to Perfection,
+            <span className="text-[#285c24]"> Deliver with Pride.</span>
           </h2>
 
           {/* Description */}
@@ -130,7 +132,7 @@ export default function MillingProcess() {
           <p className="mx-auto mt-5 max-w-[670px] text-[13px] leading-6 text-[#656a62] sm:text-[14px] sm:leading-7">
             Every batch passes through a carefully controlled process where
             quality sourcing, modern processing and careful inspection come
-            together to deliver clean, consistent and reliable pulses.
+            together to deliver sortex clean, consistent and reliable pulses.
           </p>
         </div>
 

@@ -73,7 +73,7 @@ const values = [
     icon: Factory,
     title: "Modern Processing",
     description:
-      "State-of-the-art cleaning, grading, and dehulling ensure clean, unadulterated, and nutrient-rich pulses.",
+      "State-of-the-art cleaning, grading, and dehulling ensure clean and nutrient-rich pulses.",
   },
   {
     icon: Leaf,
@@ -101,198 +101,9 @@ export default function AboutPage() {
             className="rotate-[-18deg] text-[#285c24]"
           />
         </div>
-
-        <div className="pointer-events-none absolute -right-28 top-16 opacity-[0.035]">
-          <Wheat
-            size={330}
-            strokeWidth={0.7}
-            className="rotate-[18deg] text-[#285c24]"
-          />
-        </div>
-
-        <div className="relative z-10 mx-auto max-w-[1150px] px-5 pb-14 text-center sm:px-8 lg:px-12 lg:pb-16">
-
-          {/* Label */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-4 flex items-center justify-center gap-3"
-          >
-            <span className="h-px w-10 bg-[#b59438]" />
-
-            <div className="flex items-center gap-2">
-              <Wheat
-                size={14}
-                strokeWidth={1.4}
-                className="text-[#b59438]"
-              />
-
-              <span className="text-[9px] font-bold uppercase tracking-[0.27em] text-[#285c24]">
-                About Our Pulses & Grains
-              </span>
-            </div>
-
-            <span className="h-px w-10 bg-[#b59438]" />
-          </motion.div>
-
-          {/* Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-serif text-[38px] font-bold leading-[1.08] tracking-[-0.035em] text-[#172c18] sm:text-[48px] lg:text-[56px]"
-          >
-            Rooted in Tradition,
-            <span className="block text-[#285c24]">
-              Nourishing With Purpose
-            </span>
-          </motion.h1>
-
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.2 }}
-            className="mx-auto mt-5 max-w-[700px] text-[12px] leading-6 text-[#646a62] sm:text-[13px]"
-          >
-            Our journey is built around agriculture, purity, and trust.
-            Over the years, our processing methods have evolved with modern
-            technology while our commitment to wholesome, unadulterated pulses
-            has remained constant.
-          </motion.p>
-        </div>
       </section>
 
-      {/* =========================================================
-          COMPANY STORY
-      ========================================================= */}
-
-      <section className="relative overflow-hidden bg-white">
-
-        <div className="mx-auto max-w-[1200px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
-
-          <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-
-            {/* Left */}
-            <motion.div
-              initial={{ opacity: 0, x: -25 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.65 }}
-            >
-              <p className="text-[9px] font-bold uppercase tracking-[0.24em] text-[#b08b30]">
-                Who We Are
-              </p>
-
-              <h2 className="mt-2 font-serif text-[32px] font-bold leading-tight tracking-[-0.03em] text-[#1b321c] sm:text-[38px]">
-                More Than a
-                <span className="text-[#285c24]"> Pulse Processor</span>
-              </h2>
-
-              <div className="mt-5 space-y-4 text-[12px] leading-6 text-[#62685f] sm:text-[13px]">
-                <p>
-                  Delivering nutritious pulses is not just about machinery and
-                  processing lines. It is about understanding the crop,
-                  respecting the farming communities behind it, and delivering
-                  unpolished, wholesome dal and legumes that families can rely on.
-                </p>
-
-                <p>
-                  Our heritage unites deep agronomic knowledge, multi-stage
-                  sorting, and modern processing infrastructure. From sourcing
-                  raw harvest to final hygienic packing, every single batch receives
-                  stringent quality control.
-                </p>
-
-                <p>
-                  As we continue to grow, our mission remains clear:
-                  maintain dependable purity, nurture lasting partnerships,
-                  and bring naturally nourishing pulses to kitchens and businesses nationwide.
-                </p>
-              </div>
-
-              <div className="mt-7 flex flex-wrap gap-3">
-                <Link
-                  href="/products"
-                  className="group inline-flex items-center gap-2 rounded-xl bg-[#285c24] px-5 py-3 text-[10px] font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1b4a17]"
-                >
-                  Explore Our Pulses
-
-                  <ArrowRight
-                    size={14}
-                    className="transition-transform duration-300 group-hover:translate-x-1"
-                  />
-                </Link>
-
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 rounded-xl border border-[#285c24] px-5 py-3 text-[10px] font-semibold text-[#285c24] transition-all duration-300 hover:bg-[#285c24] hover:text-white"
-                >
-                  Get In Touch
-                </Link>
-              </div>
-            </motion.div>
-
-            {/* Right - Highlights */}
-            <motion.div
-              initial={{ opacity: 0, x: 25 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.65 }}
-              className="grid grid-cols-2 gap-3"
-            >
-              {[
-                {
-                  icon: Wheat,
-                  title: "Pure Legumes",
-                  text: "Carefully selected harvest",
-                },
-                {
-                  icon: Factory,
-                  title: "Modern Facility",
-                  text: "Advanced optical sorting",
-                },
-                {
-                  icon: ShieldCheck,
-                  title: "Quality Checks",
-                  text: "Multi-stage lab testing",
-                },
-                {
-                  icon: Handshake,
-                  title: "Trusted Relationships",
-                  text: "Direct farmer partnerships",
-                },
-              ].map((item) => {
-                const Icon = item.icon;
-
-                return (
-                  <div
-                    key={item.title}
-                    className="rounded-[14px] border border-[#e5e0d3] bg-[#faf9f4] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#d5c58f] hover:shadow-[0_10px_25px_rgba(35,55,30,0.06)]"
-                  >
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#edf3e9]">
-                      <Icon
-                        size={18}
-                        strokeWidth={1.4}
-                        className="text-[#285c24]"
-                      />
-                    </div>
-
-                    <h3 className="mt-4 font-serif text-[17px] font-bold text-[#1d341e]">
-                      {item.title}
-                    </h3>
-
-                    <p className="mt-1 text-[9px] leading-4 text-[#70756c]">
-                      {item.text}
-                    </p>
-                  </div>
-                );
-              })}
-            </motion.div>
-          </div>
-        </div>
-      </section>
+     
 
       {/* =========================================================
           THREE GENERATION STORY
@@ -429,149 +240,199 @@ export default function AboutPage() {
       ========================================================= */}
 
       <section className="relative overflow-hidden bg-white">
+  {/* =========================================================
+      SUBTLE BACKGROUND DETAIL
+  ========================================================= */}
 
-        <div className="mx-auto max-w-[1200px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
+  <div
+    aria-hidden="true"
+    className="
+      pointer-events-none
+      absolute
+      -right-32
+      top-10
+      h-[360px]
+      w-[360px]
+      rounded-full
+      border
+      border-[#b08b30]/[0.07]
+    "
+  />
 
-          <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+  <div
+    aria-hidden="true"
+    className="
+      pointer-events-none
+      absolute
+      -left-40
+      bottom-0
+      h-[320px]
+      w-[320px]
+      rounded-full
+      border
+      border-[#285c24]/[0.05]
+    "
+  />
 
-            {/* Values */}
-            <div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
-                <p className="text-[9px] font-bold uppercase tracking-[0.23em] text-[#b08b30]">
-                  What Guides Us
-                </p>
+  <div className="relative mx-auto max-w-[1200px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
 
-                <h2 className="mt-2 font-serif text-[31px] font-bold leading-tight text-[#1b321c] sm:text-[38px]">
-                  Our Values Shape
-                  <span className="text-[#285c24]">
-                    {" "}Our Work
-                  </span>
-                </h2>
+    {/* =========================================================
+        SECTION INTRO
+    ========================================================= */}
 
-                <p className="mt-4 max-w-[600px] text-[12px] leading-6 text-[#686e65]">
-                  The way we operate is anchored in clear principles.
-                  These values guide how we procure, clean, sort, grade, and
-                  supply natural pulses to our valued partners and customers.
-                </p>
-              </motion.div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="mx-auto max-w-[720px] text-center"
+    >
+      {/* Eyebrow */}
 
-              <div className="mt-7 grid gap-3 sm:grid-cols-2">
-                {values.map((value, index) => {
-                  const Icon = value.icon;
+      <div className="flex items-center justify-center gap-3">
+        <span className="h-px w-7 bg-[#b08b30]" />
 
-                  return (
-                    <motion.div
-                      key={value.title}
-                      initial={{ opacity: 0, y: 15 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{
-                        duration: 0.5,
-                        delay: index * 0.07,
-                      }}
-                      className="rounded-[14px] border border-[#e5e0d3] bg-[#faf9f4] p-4 transition-all duration-300 hover:border-[#d4c48d] hover:bg-white"
-                    >
-                      <div className="flex items-start gap-3">
-                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#edf3e9]">
-                          <Icon
-                            size={17}
-                            strokeWidth={1.4}
-                            className="text-[#285c24]"
-                          />
-                        </div>
+        <p className="text-[9px] font-bold uppercase tracking-[0.23em] text-[#b08b30]">
+          What Guides Us
+        </p>
 
-                        <div>
-                          <h3 className="font-serif text-[16px] font-bold text-[#1d341e]">
-                            {value.title}
-                          </h3>
+        <span className="h-px w-7 bg-[#b08b30]" />
+      </div>
 
-                          <p className="mt-1 text-[9px] leading-4 text-[#6c726a]">
-                            {value.description}
-                          </p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
+      {/* Heading */}
+
+      <h2 className="mt-3 font-serif text-[32px] font-bold leading-[1.08] tracking-[-0.02em] text-[#1b321c] sm:text-[40px]">
+        Our Values Shape{" "}
+        <span className="text-[#285c24]">
+          Our Work
+        </span>
+      </h2>
+
+      {/* Description */}
+
+      <p className="mx-auto mt-5 max-w-[650px] text-[12px] leading-6 text-[#686e65] sm:text-[13px]">
+        The way we operate is anchored in clear principles. These values
+        guide how we procure, clean, sort, grade and supply natural pulses
+        to our valued partners and customers.
+      </p>
+    </motion.div>
+
+    {/* =========================================================
+        VALUE CARDS
+    ========================================================= */}
+
+    <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {values.map((value, index) => {
+        const Icon = value.icon;
+
+        return (
+          <motion.div
+            key={value.title}
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.5,
+              delay: index * 0.07,
+            }}
+            className="
+              group
+              relative
+              overflow-hidden
+              rounded-[18px]
+              border
+              border-[#e5e1d6]
+              bg-[#faf9f4]
+              p-5
+              transition-all
+              duration-300
+              hover:-translate-y-1
+              hover:border-[#d4c48d]
+              hover:bg-white
+              hover:shadow-[0_14px_35px_rgba(40,92,36,0.08)]
+            "
+          >
+            {/* Top gold accent */}
+
+            <span
+              aria-hidden="true"
+              className="
+                absolute
+                left-0
+                top-0
+                h-[2px]
+                w-0
+                bg-[#b08b30]
+                transition-all
+                duration-300
+                group-hover:w-full
+              "
+            />
+
+            {/* Icon */}
+
+            <div
+              className="
+                flex
+                h-11
+                w-11
+                items-center
+                justify-center
+                rounded-xl
+                border
+                border-[#285c24]/10
+                bg-[#edf3e9]
+                transition-all
+                duration-300
+                group-hover:border-[#b08b30]/20
+                group-hover:bg-[#f5f0df]
+              "
+            >
+              <Icon
+                size={19}
+                strokeWidth={1.45}
+                className="
+                  text-[#285c24]
+                  transition-colors
+                  duration-300
+                  group-hover:text-[#b08b30]
+                "
+              />
             </div>
 
-            {/* Right commitment card */}
-            <motion.div
-              initial={{ opacity: 0, x: 25 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.65 }}
-              className="relative overflow-hidden rounded-[20px] bg-[#1c401b] p-7 sm:p-9"
+            {/* Content */}
+
+            <h3
+              className="
+                mt-5
+                font-serif
+                text-[17px]
+                font-bold
+                leading-tight
+                text-[#1d341e]
+              "
             >
-              <div className="pointer-events-none absolute -right-16 -top-16 opacity-[0.07]">
-                <Wheat
-                  size={230}
-                  strokeWidth={0.7}
-                  className="rotate-[20deg] text-[#dfc76a]"
-                />
-              </div>
+              {value.title}
+            </h3>
 
-              <div className="relative z-10">
+            <p
+              className="
+                mt-2
+                text-[10px]
+                leading-[1.7]
+                text-[#6c726a]
+              "
+            >
+              {value.description}
+            </p>
 
-                <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#d9bf61]/30 bg-[#d9bf61]/10">
-                  <Award
-                    size={20}
-                    strokeWidth={1.4}
-                    className="text-[#d9bf61]"
-                  />
-                </div>
-
-                <p className="mt-6 text-[9px] font-bold uppercase tracking-[0.22em] text-[#d9bf61]">
-                  Our Commitment
-                </p>
-
-                <h3 className="mt-2 font-serif text-[27px] font-bold leading-tight text-white sm:text-[32px]">
-                  Nutrient-Rich Pulses
-                  <span className="block text-[#d9bf61]">
-                    Start With Good Practices
-                  </span>
-                </h3>
-
-                <p className="mt-4 text-[11px] leading-5 text-white/60">
-                  We continually enhance our cleaning and grading processes while
-                  remaining grounded in traditional agricultural integrity and
-                  honest farmer relationships.
-                </p>
-
-                <div className="mt-6 space-y-3">
-                  {[
-                    "Unadulterated raw sourcing",
-                    "Advanced sortex cleaning",
-                    "Nutrient-preserving packaging",
-                    "Reliable supply chain service",
-                  ].map((item) => (
-                    <div
-                      key={item}
-                      className="flex items-center gap-2"
-                    >
-                      <CheckCircle2
-                        size={14}
-                        strokeWidth={1.7}
-                        className="text-[#d9bf61]"
-                      />
-
-                      <span className="text-[10px] font-medium text-white/70">
-                        {item}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+            
+          </motion.div>
+        );
+      })}
+    </div>
+  </div>
+</section>
 
       {/* =========================================================
           BOTTOM CTA

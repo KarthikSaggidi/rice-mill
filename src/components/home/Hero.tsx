@@ -67,9 +67,9 @@ export default function Hero() {
               xl:text-[78px]
             "
           >
-            Quality Grains.
+            Mahadal Means,
             <span className="block text-[#285c24]">
-              Trusted for Generations.
+              Pure Dal.
             </span>
           </h1>
 

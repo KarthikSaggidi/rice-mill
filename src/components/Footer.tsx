@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowUpRight,
   MapPin,
@@ -18,12 +19,8 @@ const quickLinks = [
 ];
 
 const productLinks = [
-  "Toor Dal",
-  "Moong Dal",
-  "Urad Dal",
-  "Chana Dal",
-  "Masoor Dal",
-  "Raw Toor",
+  "Split Dal",
+  "Whole Pulses",
   "Cattle Feed",
 ];
 
@@ -56,6 +53,7 @@ export default function Footer() {
 
       <div className="relative z-10 mx-auto max-w-[1400px] px-5 py-10 sm:px-8 sm:py-12 lg:px-12">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.5fr_0.8fr_0.85fr_1fr] lg:gap-10">
+
           {/* =====================================================
               BRAND
           ===================================================== */}
@@ -64,82 +62,38 @@ export default function Footer() {
             <Link
               href="/"
               aria-label="Mahadal - Maharashtra Dal Industries"
-              className="group inline-flex items-center gap-3"
+              className="group inline-flex items-center"
             >
-              {/* Logo */}
+              {/* =================================================
+                  SEPARATE FOOTER LOGO
+              ================================================= */}
 
               <div
                 className="
-                  flex
-                  h-11
-                  w-11
-                  items-center
-                  justify-center
-                  rounded-full
-                  border
-                  border-[#d9bf61]/30
-                  bg-[#d9bf61]/10
-                  transition-all
-                  duration-300
-                  group-hover:border-[#d9bf61]/50
-                  group-hover:bg-[#d9bf61]/15
+                  relative
+                  h-[72px]
+                  w-[250px]
+                  sm:h-[78px]
+                  sm:w-[270px]
                 "
               >
-                <Wheat
-                  size={21}
-                  strokeWidth={1.25}
-                  className="text-[#d9bf61]"
+                <Image
+                  src="/images/footer-logo.png"
+                  alt="Mahadal - Maharashtra Dal Industries"
+                  fill
+                  sizes="(max-width: 640px) 250px, 270px"
+                  className="
+                    object-contain
+                    object-left
+                    transition-opacity
+                    duration-200
+                    group-hover:opacity-90
+                  "
                 />
-              </div>
-
-              {/* Brand */}
-
-              <div>
-                <div className="font-serif text-[21px] font-bold leading-none">
-                  Mahadal
-                </div>
-
-                <div className="mt-1 flex items-center gap-1.5">
-                  <span className="h-px w-4 bg-[#d9bf61]/70" />
-
-                  <span className="text-[7px] font-bold uppercase tracking-[0.2em] text-[#d9bf61]">
-                    Maharashtra Dal Industries
-                  </span>
-
-                  <span className="h-px w-4 bg-[#d9bf61]/70" />
-                </div>
               </div>
             </Link>
 
-            {/* Company Description */}
-
-            <p className="mt-4 max-w-[350px] text-[10px] leading-5 text-white/45">
-              Maharashtra Dal Industries is committed to delivering quality
-              pulses and dal through careful sourcing, modern processing,
-              quality inspection and hygienic handling.
-            </p>
-
-            {/* Quality Highlight */}
-
-            <div className="mt-5 flex items-center gap-2.5">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#d9bf61]/10">
-                <Wheat
-                  size={14}
-                  strokeWidth={1.3}
-                  className="text-[#d9bf61]"
-                />
-              </div>
-
-              <div>
-                <p className="text-[8px] font-bold uppercase tracking-[0.16em] text-[#d9bf61]">
-                  Quality Pulses
-                </p>
-
-                <p className="mt-0.5 text-[9px] text-white/35">
-                  Processed with care and consistency
-                </p>
-              </div>
-            </div>
+            
           </div>
 
           {/* =====================================================
@@ -173,7 +127,16 @@ export default function Footer() {
                     hover:text-white
                   "
                 >
-                  <span className="h-px w-0 bg-[#d9bf61] transition-all duration-200 group-hover:w-2.5" />
+                  <span
+                    className="
+                      h-px
+                      w-0
+                      bg-[#d9bf61]
+                      transition-all
+                      duration-200
+                      group-hover:w-2.5
+                    "
+                  />
 
                   {link.name}
                 </Link>
@@ -243,13 +206,29 @@ export default function Footer() {
             </div>
 
             <div className="mt-4 space-y-4">
-              {/* Address */}
 
-              <div className="flex items-start gap-2.5">
+              {/* =================================================
+                  LOCATION
+              ================================================= */}
+
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Udgir%2C%20Maharashtra%20413517%2C%20India"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open Maharashtra Dal Industries location in Google Maps"
+                className="group flex items-start gap-2.5"
+              >
                 <MapPin
                   size={14}
                   strokeWidth={1.4}
-                  className="mt-0.5 shrink-0 text-[#d9bf61]"
+                  className="
+                    mt-0.5
+                    shrink-0
+                    text-[#d9bf61]
+                    transition-transform
+                    duration-200
+                    group-hover:-translate-y-0.5
+                  "
                 />
 
                 <div>
@@ -257,15 +236,19 @@ export default function Footer() {
                     Location
                   </p>
 
-                  <p className="mt-0.5 text-[10px] leading-4 text-white/45">
-                    Udgir,
-                    <br />
-                    Maharashtra - 413517, India
+                  <p className="mt-0.5 text-[10px] leading-4 text-white/45 transition-colors group-hover:text-white/70">
+                    Udgir, Maharashtra - 413517, India
                   </p>
-                </div>
-              </div>
 
-              {/* Phone */}
+                  <span className="mt-1 inline-block text-[8px] font-semibold text-[#d4b451]/60 transition-colors group-hover:text-[#d4b451]">
+                    View on Google Maps →
+                  </span>
+                </div>
+              </a>
+
+              {/* =================================================
+                  CUSTOMER CARE
+              ================================================= */}
 
               <div className="flex items-start gap-2.5">
                 <Phone
@@ -281,6 +264,7 @@ export default function Footer() {
 
                   <a
                     href="tel:02385252063"
+                    aria-label="Call Maharashtra Dal Industries"
                     className="
                       mt-0.5
                       block
@@ -295,7 +279,9 @@ export default function Footer() {
                 </div>
               </div>
 
-              {/* Contact Button */}
+              {/* =================================================
+                  CONTACT BUTTON
+              ================================================= */}
 
               <Link
                 href="/contact"
@@ -317,6 +303,7 @@ export default function Footer() {
                   duration-200
                   hover:border-[#d9bf61]/45
                   hover:bg-[#d9bf61]/10
+                  hover:text-[#ead483]
                 "
               >
                 Send an Enquiry

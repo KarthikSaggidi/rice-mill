@@ -131,10 +131,7 @@ export default function WhyChooseUsPage() {
               <span className="text-[#285c24]"> Trust</span>
             </h1>
 
-            <p className="mx-auto mt-4 max-w-[680px] text-[13px] leading-6 text-[#5f655c] sm:text-[14px]">
-              From farm-sourced legumes to sortex-cleaned, unpolished dals, every step
-              of our processing focuses on natural nutrition, zero adulteration, and dependable service.
-            </p>
+            
           </motion.div>
         </div>
       </section>

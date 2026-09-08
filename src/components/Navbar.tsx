@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, Phone, X } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -28,23 +29,37 @@ export default function Navbar() {
 
   return (
     <header className="fixed left-0 right-0 top-0 z-[100]">
-      <div className="mx-auto max-w-[1536px] px-4 pt-4 sm:px-6 lg:px-8 lg:pt-5">
+      <div className="mx-auto max-w-[1536px] px-3 pt-3 sm:px-6 sm:pt-4 lg:px-8 lg:pt-5">
         <nav
           aria-label="Main navigation"
           className="
-            rounded-[18px]
+            relative
+            overflow-visible
+            rounded-[24px]
             border
             border-white/70
             bg-white/95
             shadow-[0_10px_40px_rgba(20,50,20,0.12)]
             backdrop-blur-xl
+            sm:rounded-[28px]
           "
         >
           {/* =====================================================
               MAIN NAVBAR
           ===================================================== */}
 
-          <div className="flex h-[72px] items-center justify-between px-5 sm:px-7 lg:h-[76px] lg:px-8">
+          <div
+            className="
+              relative
+              flex
+              h-[72px]
+              items-center
+              px-4
+              sm:h-[76px]
+              sm:px-7
+              lg:px-8
+            "
+          >
             {/* =================================================
                 LOGO
             ================================================= */}
@@ -53,37 +68,38 @@ export default function Navbar() {
               href="/"
               onClick={() => setIsOpen(false)}
               aria-label="Mahadal - Maharashtra Dal Industries"
-              className="flex shrink-0 items-center"
+              className="
+                relative
+                z-10
+                flex
+                min-w-0
+                max-w-[calc(100%-58px)]
+                shrink
+                items-center
+                lg:max-w-none
+                lg:shrink-0
+              "
             >
-              <div className="flex items-center gap-2.5">
-                {/* Logo Mark */}
-
-                <div className="flex h-[48px] w-[40px] items-center justify-center">
-                  <span
-                    className="text-[30px] leading-none"
-                    aria-hidden="true"
-                  >
-                    🌾
-                  </span>
-                </div>
-
-                {/* Brand Name */}
-
-                <div>
-                  <div className="font-serif text-[22px] font-bold leading-none tracking-[-0.02em] text-[#174719] sm:text-[25px]">
-                    Mahadal
-                  </div>
-
-                  <div className="mt-[5px] flex items-center gap-1.5">
-                    <span className="h-px w-5 bg-[#b8963e]" />
-
-                    <span className="text-[9px] font-medium tracking-[0.22em] text-[#a17c1e] sm:text-[10px] sm:tracking-[0.24em]">
-                      MAHARASHTRA DAL INDUSTRIES
-                    </span>
-
-                    <span className="h-px w-5 bg-[#b8963e]" />
-                  </div>
-                </div>
+              <div
+                className="
+                  relative
+                  h-[55px]
+                  w-[210px]
+                  max-w-full
+                  sm:h-[60px]
+                  sm:w-[225px]
+                  lg:h-[68px]
+                  lg:w-[240px]
+                "
+              >
+                <Image
+                  src="/images/logo.png"
+                  alt="Mahadal - Maharashtra Dal Industries"
+                  fill
+                  priority
+                  sizes="(max-width: 640px) 210px, (max-width: 1024px) 225px, 240px"
+                  className="object-contain object-left"
+                />
               </div>
             </Link>
 
@@ -91,7 +107,7 @@ export default function Navbar() {
                 DESKTOP NAVIGATION
             ================================================= */}
 
-            <div className="hidden items-center gap-6 xl:flex 2xl:gap-8">
+            <div className="ml-auto hidden items-center gap-6 xl:flex 2xl:gap-8">
               {navItems.map((item) => {
                 const active = checkActive(pathname, item.href);
 
@@ -120,16 +136,19 @@ export default function Navbar() {
             </div>
 
             {/* =================================================
-                DESKTOP PHONE
+                DESKTOP GET IN TOUCH
             ================================================= */}
 
-            <a
-              href="tel:02385252063"
-              aria-label="Call Maharashtra Dal Industries"
+            <Link
+              href="/contact"
+              aria-label="Get in touch with Maharashtra Dal Industries"
               className="
+                group
+                ml-7
                 hidden
+                shrink-0
                 items-center
-                gap-2.5
+                gap-2
                 rounded-xl
                 bg-[#205719]
                 px-5
@@ -146,10 +165,18 @@ export default function Navbar() {
                 xl:flex
               "
             >
-              <Phone size={15} strokeWidth={1.7} />
+              <span>Get in Touch</span>
 
-              <span>02385-252063</span>
-            </a>
+              <ArrowRight
+                size={15}
+                strokeWidth={1.7}
+                className="
+                  transition-transform
+                  duration-200
+                  group-hover:translate-x-1
+                "
+              />
+            </Link>
 
             {/* =================================================
                 MOBILE MENU BUTTON
@@ -157,28 +184,42 @@ export default function Navbar() {
 
             <button
               type="button"
-              onClick={() => setIsOpen((current) => !current)}
-              aria-label={isOpen ? "Close navigation" : "Open navigation"}
+              onClick={() => setIsOpen((value) => !value)}
+              aria-label={
+                isOpen ? "Close navigation menu" : "Open navigation menu"
+              }
               aria-expanded={isOpen}
               className="
+                absolute
+                right-3
+                top-1/2
+                z-50
                 flex
-                h-10
-                w-10
+                h-11
+                w-11
+                -translate-y-1/2
                 items-center
                 justify-center
                 rounded-xl
                 border
-                border-[#dfe5dc]
+                border-[#174719]/15
                 bg-white
-                text-[#205719]
+                text-[#174719]
+                shadow-[0_3px_10px_rgba(23,71,25,0.08)]
                 transition-all
                 duration-200
-                hover:border-[#c8d4c4]
-                hover:bg-[#f5f8f3]
+                hover:border-[#174719]/30
+                hover:bg-[#f8faf5]
+                active:scale-95
                 xl:hidden
+                sm:right-5
               "
             >
-              {isOpen ? <X size={21} /> : <Menu size={21} />}
+              {isOpen ? (
+                <X size={22} strokeWidth={1.8} />
+              ) : (
+                <Menu size={22} strokeWidth={1.8} />
+              )}
             </button>
           </div>
 
@@ -187,7 +228,17 @@ export default function Navbar() {
           ===================================================== */}
 
           {isOpen && (
-            <div className="border-t border-[#e7ebe4] px-5 pb-5 pt-3 xl:hidden">
+            <div
+              className="
+                border-t
+                border-[#e7ebe4]
+                px-4
+                pb-5
+                pt-3
+                sm:px-6
+                xl:hidden
+              "
+            >
               <div className="flex flex-col">
                 {navItems.map((item) => {
                   const active = checkActive(pathname, item.href);
@@ -215,11 +266,15 @@ export default function Navbar() {
                   );
                 })}
 
-                {/* Mobile Contact Button */}
+                {/* =================================================
+                    MOBILE GET IN TOUCH
+                ================================================= */}
 
-                <a
-                  href="tel:02385252063"
+                <Link
+                  href="/contact"
+                  onClick={() => setIsOpen(false)}
                   className="
+                    group
                     mt-4
                     flex
                     items-center
@@ -238,10 +293,18 @@ export default function Navbar() {
                     hover:bg-[#285c24]
                   "
                 >
-                  <Phone size={16} strokeWidth={1.7} />
+                  <span>Get in Touch</span>
 
-                  <span>02385-252063</span>
-                </a>
+                  <ArrowRight
+                    size={16}
+                    strokeWidth={1.7}
+                    className="
+                      transition-transform
+                      duration-200
+                      group-hover:translate-x-1
+                    "
+                  />
+                </Link>
               </div>
             </div>
           )}
