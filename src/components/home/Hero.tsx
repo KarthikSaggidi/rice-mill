@@ -174,7 +174,7 @@ export default function Hero() {
             {/* Our Story */}
 
             <Link
-              href="/about"
+              href="/contact"
               className="
                 group
                 inline-flex
@@ -200,7 +200,7 @@ export default function Hero() {
                 sm:w-auto
               "
             >
-              Our Story
+              Contact Us
 
               <ArrowRight
                 size={15}

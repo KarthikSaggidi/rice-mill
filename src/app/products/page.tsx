@@ -14,7 +14,7 @@ const products = [
     name: "Toor Dal",
     subtitle: "Mahadal",
     description:
-      "Clean and carefully processed toor dal with a smooth texture and consistent quality.",
+      "Sortex clean and carefully processed toor dal with a smooth texture and consistent quality.",
     image: "/images/products/toor-dal.jpg",
     uses: "Everyday dal, sambar & curries",
   },
@@ -41,7 +41,7 @@ const products = [
     name: "Chana Dal",
     subtitle: "Mahadal",
     description:
-      "Clean, evenly processed chana dal with a rich taste and firm texture after cooking.",
+      "Sortex clean, evenly processed chana dal with a rich taste and firm texture after cooking.",
     image: "/images/products/chana-dal.jpg",
     uses: "Dal, snacks & traditional dishes",
   },
@@ -50,7 +50,7 @@ const products = [
     name: "Whole Moong ",
     subtitle: "Tripple Arrow",
     description:
-      "Clean whole green gram with good appearance and quality for everyday use.",
+      "Sortex clean whole green gram with good appearance and quality for everyday use.",
     image: "/images/products/whole-moong.jpg",
     uses: "Sprouts, curries & healthy meals",
   },
@@ -61,9 +61,9 @@ const products = [
     name: "Toor dal",
     subtitle: "Tripple Arrow",
     description:
-      "Clean and quick-cooking toor dal, suitable for simple everyday meals.",
+      "Sortex clean and quick-cooking toor dal, suitable for simple everyday meals.",
     image: "/images/products/toor-dal-tripple-arrow.jpg",
-    uses: "Dal, soups & everyday cooking",
+    uses: "Commercial utility",
   },
   {
     number: "07",
@@ -167,7 +167,7 @@ export default function ProductsPage() {
             </p>
 
             <h2 className="mt-1 font-serif text-[29px] font-bold text-[#1d341e] sm:text-[34px]">
-              Clean, consistent and carefully processed
+              Sortex clean, consistent and carefully processed
             </h2>
 
             <p className="mt-2 max-w-[650px] text-[11px] leading-5 text-[#6b7068]">
