@@ -211,7 +211,6 @@ export default function WhyChooseUsPage() {
                   "Carefully selected raw legumes",
                   "Optical color-sorting technology",
                   "Consistent grain size & purity",
-                  "Zero artificial colors or oil polish",
                   "Food-grade packaging standards",
                   "Dedicated bulk & wholesale support",
                 ].map((point) => (
