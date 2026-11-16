@@ -1,27 +1,7 @@
-import type { Metadata } from "next";
 import "./globals.css";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-
-export const metadata: Metadata = {
-  title: {
-    default: "Mahadal",
-    template: "%s | Mahadal",
-  },
-  description:
-    "Mahadal Rice Mill delivers quality rice processed with modern technology, careful quality control and trusted milling practices.",
-  keywords: [
-    "Mahadal Rice Mill",
-    "Rice Mill",
-    "Basmati Rice",
-    "Sona Masuri Rice",
-    "Steam Rice",
-    "Raw Rice",
-    "Quality Rice",
-    "Rice Supplier",
-  ],
-};
 
 export default function RootLayout({
   children,
