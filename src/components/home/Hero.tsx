@@ -14,19 +14,19 @@ export default function Hero() {
           HERO BACKGROUND
       ========================================================= */}
 
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute inset-0 hidden lg:block">
         <img
           src="/images/hero/rice-hero.jpg"
-          alt="Mahadal processing facility and agricultural fields"
+          alt="Mahadal pulses arranged in wooden scoops"
           className="h-full w-full object-cover object-center"
           fetchPriority="high"
         />
 
         {/* Left readability overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#fff8e9]/95 via-[#fff8e9]/78 to-[#fff8e9]/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#fff8e9]/75 via-[#fff8e9]/42 to-[#fff8e9]/5" />
 
         {/* Bottom blend */}
-        <div className="absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-t from-[#f5ecd5] via-[#f5ecd5]/65 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-t from-[#f5ecd5]/80 via-[#f5ecd5]/35 to-transparent" />
 
         {/* Subtle overall tint */}
         <div className="absolute inset-0 bg-[#285c24]/[0.025]" />
@@ -118,96 +118,116 @@ export default function Hero() {
             goodness and dependable value to every customer.
           </p>
 
-          {/* =====================================================
-              BUTTONS
-          ===================================================== */}
+          <div className="relative mt-6 lg:contents">
+            {/* Mobile image sits after the introduction, with its CTAs overlaid on the left. */}
+            <div className="relative mx-[-20px] h-[220px] overflow-hidden sm:mx-[-32px] sm:h-[240px] lg:hidden">
+              <img
+                src="/images/hero/rice-hero.jpg"
+                alt="Mahadal pulses arranged in wooden scoops"
+                className="h-full w-full object-cover object-[72%_center]"
+                fetchPriority="high"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#fff8e9]/10 via-transparent to-[#fff8e9]/5" />
+            </div>
 
-          <div
-            className="
-              hero-fade-up
-              hero-delay-2
-              mt-6
-              flex
-              flex-col
-              gap-3
-              sm:mt-7
-              sm:flex-row
-            "
-          >
-            {/* Explore Products */}
+            {/* =====================================================
+                BUTTONS
+            ===================================================== */}
 
-            <Link
-              href="/products"
+            <div
               className="
-                group
-                inline-flex
-                min-h-[48px]
-                w-full
-                items-center
-                justify-center
-                gap-2.5
-                rounded-xl
-                bg-[#285c24]
-                px-6
-                py-3.5
-                text-[12px]
-                font-semibold
-                text-white
-                shadow-[0_8px_22px_rgba(40,92,36,0.20)]
-                transition-all
-                duration-300
-                hover:-translate-y-0.5
-                hover:bg-[#1b4a17]
-                hover:shadow-[0_12px_28px_rgba(40,92,36,0.25)]
-                sm:w-auto
+                hero-fade-up
+                hero-delay-2
+                absolute
+                left-4
+                top-1/2
+                z-10
+                flex
+                -translate-y-1/2
+                flex-col
+                gap-2
+                lg:static
+                lg:mt-6
+                lg:translate-y-0
+                lg:flex-row
+                lg:gap-3
               "
             >
-              Explore Products
+              {/* Explore Products */}
 
-              <ArrowRight
-                size={15}
-                strokeWidth={2}
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              />
-            </Link>
+              <Link
+                href="/products"
+                className="
+                  group
+                  inline-flex
+                  min-h-[48px]
+                  w-[172px]
+                  items-center
+                  justify-center
+                  gap-2.5
+                  rounded-xl
+                  bg-[#285c24]
+                  px-6
+                  py-3.5
+                  text-[12px]
+                  font-semibold
+                  text-white
+                  shadow-[0_8px_22px_rgba(40,92,36,0.20)]
+                  transition-all
+                  duration-300
+                  hover:-translate-y-0.5
+                  hover:bg-[#1b4a17]
+                  hover:shadow-[0_12px_28px_rgba(40,92,36,0.25)]
+                  lg:w-auto
+                "
+              >
+                Explore Products
 
-            {/* Our Story */}
+                <ArrowRight
+                  size={15}
+                  strokeWidth={2}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </Link>
 
-            <Link
-              href="/contact"
-              className="
-                group
-                inline-flex
-                min-h-[48px]
-                w-full
-                items-center
-                justify-center
-                gap-2.5
-                rounded-xl
-                border
-                border-[#285c24]/70
-                bg-white/40
-                px-6
-                py-3.5
-                text-[12px]
-                font-semibold
-                text-[#285c24]
-                backdrop-blur-sm
-                transition-all
-                duration-300
-                hover:-translate-y-0.5
-                hover:bg-white/80
-                sm:w-auto
-              "
-            >
-              Contact Us
+              {/* Our Story */}
 
-              <ArrowRight
-                size={15}
-                strokeWidth={2}
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              />
-            </Link>
+              <Link
+                href="/contact"
+                className="
+                  group
+                  inline-flex
+                  min-h-[48px]
+                  w-[172px]
+                  items-center
+                  justify-center
+                  gap-2.5
+                  rounded-xl
+                  border
+                  border-[#285c24]/70
+                  bg-white/40
+                  px-6
+                  py-3.5
+                  text-[12px]
+                  font-semibold
+                  text-[#285c24]
+                  backdrop-blur-sm
+                  transition-all
+                  duration-300
+                  hover:-translate-y-0.5
+                  hover:bg-white/80
+                  lg:w-auto
+                "
+              >
+                Contact Us
+
+                <ArrowRight
+                  size={15}
+                  strokeWidth={2}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </Link>
+            </div>
           </div>
 
           {/* =====================================================
