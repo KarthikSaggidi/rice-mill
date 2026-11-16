@@ -1,8 +1,5 @@
 "use client";
 
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
-
 import {
   ArrowRight,
   CheckCircle2,
@@ -46,6 +43,7 @@ const products = [
 
 export default function ContactPage() {
   const [status, setStatus] = useState<FormStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   /* =========================================================
      SUBMIT FORM
@@ -55,6 +53,7 @@ export default function ContactPage() {
     e.preventDefault();
 
     setStatus("loading");
+    setErrorMessage("");
 
     const form = e.currentTarget;
     const formData = new FormData(form);
@@ -80,22 +79,26 @@ export default function ContactPage() {
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
+      const result = (await response.json().catch(() => null)) as {
+        success?: boolean;
+        message?: string;
+      } | null;
 
-      if (!response.ok) {
-        throw new Error(result.message || "Something went wrong.");
+      if (!response.ok || !result?.success) {
+        setErrorMessage(
+          result?.message || "We couldn't send your enquiry. Please try again."
+        );
+        setStatus("error");
+        return;
       }
 
       setStatus("success");
 
       form.reset();
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    } catch (error) {
-      console.error("Contact form error:", error);
+    } catch {
+      setErrorMessage(
+        "We couldn't connect to our email service. Please try again or call us directly."
+      );
       setStatus("error");
     }
   };
@@ -106,8 +109,6 @@ export default function ContactPage() {
       {/* =========================================================
           NAVBAR
       ========================================================= */}
-
-      <Navbar />
 
       {/* =========================================================
           BUSINESS ENQUIRY
@@ -372,7 +373,7 @@ export default function ContactPage() {
               ===================================================== */}
 
               {status === "success" && (
-                <div className="mb-6 flex gap-3 rounded-xl border border-green-200 bg-green-50 p-4">
+                <div role="status" aria-live="polite" className="mb-6 flex gap-3 rounded-xl border border-green-200 bg-green-50 p-4">
 
                   <CheckCircle2
                     size={19}
@@ -401,7 +402,7 @@ export default function ContactPage() {
               ===================================================== */}
 
               {status === "error" && (
-                <div className="mb-6 flex gap-3 rounded-xl border border-red-200 bg-red-50 p-4">
+                <div role="alert" className="mb-6 flex gap-3 rounded-xl border border-red-200 bg-red-50 p-4">
 
                   <MessageCircle
                     size={18}
@@ -415,8 +416,7 @@ export default function ContactPage() {
                     </p>
 
                     <p className="mt-1 text-[10px] leading-5 text-red-700">
-                      Please try again or contact our customer-care team
-                      directly at {CUSTOMER_PHONE}.
+                      {errorMessage || "Please try again or contact our customer-care team directly."} {CUSTOMER_PHONE}
                     </p>
 
                   </div>
