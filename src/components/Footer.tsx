@@ -312,60 +312,40 @@ export default function Footer() {
 
             <div className="mt-4 space-y-2">
 
-              {/* Location */}
 
-              <a
-                href="https://www.google.com/maps/search/?api=1&query=Udgir%2C%20Maharashtra%20413517%2C%20India"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="
-                  group
-                  flex
-                  items-center
-                  gap-2.5
-                  rounded-lg
-                  border
-                  border-white/[0.05]
-                  bg-white/[0.018]
-                  px-3
-                  py-2.5
-                  transition-all
-                  duration-200
-                  hover:border-[#d9bf61]/20
-                  hover:bg-[#d9bf61]/[0.04]
-                "
-              >
+{/* Location */}
+<a
+  href="https://www.google.com/maps/dir/17.5567618,78.4325934/18.393244,77.106247/@17.8611782,77.1381274,9z/data=!3m1!4b1!4m4!4m3!1m1!4e1!1m0?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="
+    group flex items-center gap-2.5 rounded-lg
+    border border-white/[0.05] bg-white/[0.018]
+    px-3 py-2.5 transition-all duration-200
+    hover:border-[#d9bf61]/20 hover:bg-[#d9bf61]/[0.04]
+  "
+>
+  <MapPin
+    size={13}
+    strokeWidth={1.5}
+    className="shrink-0 text-[#d9bf61]"
+  />
 
-                <MapPin
-                  size={13}
-                  strokeWidth={1.5}
-                  className="shrink-0 text-[#d9bf61]"
-                />
+  <div className="min-w-0">
+    <p className="text-[8px] font-semibold uppercase tracking-[0.1em] text-white/25">
+      Location
+    </p>
+    <p className="mt-0.5 text-[9px] leading-4 text-white/45">
+      Udgir, Maharashtra - 413517, India
+    </p>
+  </div>
 
-                <div className="min-w-0">
+  <ArrowUpRight
+    size={10}
+    className="ml-auto shrink-0 text-white/15 transition-colors group-hover:text-[#d9bf61]"
+  />
+</a>
 
-                  <p className="text-[8px] font-semibold uppercase tracking-[0.1em] text-white/25">
-                    Location
-                  </p>
-
-                  <p className="mt-0.5 text-[9px] leading-4 text-white/45">
-                    Udgir, Maharashtra - 413517, India
-                  </p>
-
-                </div>
-
-                <ArrowUpRight
-                  size={10}
-                  className="
-                    ml-auto
-                    shrink-0
-                    text-white/15
-                    transition-colors
-                    group-hover:text-[#d9bf61]
-                  "
-                />
-
-              </a>
 
               {/* Phone */}
 

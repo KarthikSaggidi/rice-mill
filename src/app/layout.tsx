@@ -6,8 +6,8 @@ import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
   title: {
-    default: "Mahadal Rice Mill",
-    template: "%s | Mahadal Rice Mill",
+    default: "Mahadal",
+    template: "%s | Mahadal",
   },
   description:
     "Mahadal Rice Mill delivers quality rice processed with modern technology, careful quality control and trusted milling practices.",
