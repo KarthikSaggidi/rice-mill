@@ -34,7 +34,7 @@ const products = [
     description:
       "Well-processed urad dal with good texture, suitable for traditional Indian recipes.",
     image: "/images/products/urad-dal.jpg",
-    uses: "Idli, dosa, vada & dal makhani",
+    uses: "Idli, dosa, vada",
   },
   {
     number: "04",
